@@ -2,10 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-20 19:51:47
+ * @LastEditTime: 2024-05-21 18:03:46
  * @Description:
  */
-
+'use client';
 import { Loader } from '@/components/ui/loader/Loader';
 import { Suspense } from 'react';
 
@@ -18,7 +18,9 @@ export default function Home() {
         </Loader>
       }
     >
-      <div className=" w-screen pb-10">55</div>
+      <div className=" w-screen pb-10">
+        555
+      </div>
     </Suspense>
   );
 }

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@kasuie/icon':
+    specifier: ^0.0.3
+    version: 0.0.3
   next:
     specifier: 14.2.3
     version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
@@ -1523,6 +1526,15 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@kasuie/icon@0.0.3:
+    resolution: {integrity: sha512-b67Xa4ln2LsglGpvoduLpyuVmAVpXN16tEHIt+1+s27PeUIJxYyx45U87BvQymgn85canMsO25Wr9eJ/1veCYg==}
+    engines: {pnpm: '>=8'}
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      typescript: 5.4.5
+    dev: false
 
   /@kasuie/prettier@0.1.2:
     resolution: {integrity: sha512-XT2ygPnbrjcgTSaWQIKRhhbRUp9mH6kxVjP6uWs576iDsmNrEQLhYXLxRW3M9ImIPP0rpfpJLgAFE1tuHsBLyg==}
@@ -5735,7 +5747,6 @@ packages:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
