@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .mio-scroll {
+    &::-webkit-scrollbar {
+      /*滚动条整体样式*/
+      @apply w-[4px] transition-all duration-300 ease-in-out;
+    }
+    &::-webkit-scrollbar-thumb {
+      /*滚动条里面小方块*/
+      @apply cursor-pointer rounded-lg duration-150;
+      background: rgba(var(--mio-text-default), 0.15);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    &::-webkit-scrollbar-track {
+      /*滚动条里面轨道*/
+      @apply rounded-lg;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      /*滚动条整体样式*/
+      @apply bg-[#64d1e2];
+    }
+  }
+  .mio-tooltip {
+    @apply pointer-events-none absolute bottom-[-20px] min-w-20 rounded-[5px] bg-black/30 px-2 py-[5px] text-sm leading-none text-white opacity-0 shadow-[0_10px_10px_#0000001a] before:absolute before:left-[calc(50%-6px)] before:top-[-6px] before:h-0 before:w-0 before:border-x-[6px] before:border-b-[6px] before:border-x-transparent before:border-b-black/30 before:content-[''];
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    &::before {
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+  }
+}

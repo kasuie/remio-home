@@ -2,10 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:57:07
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-20 19:58:18
+ * @LastEditTime: 2024-05-22 11:42:24
  * @Description:
  */
-import { Paw } from '@/components/icon';
+import { Paw } from '@kasuie/icon';
 
 export const Loader = ({
   className = '',
@@ -24,7 +24,7 @@ export const Loader = ({
     >
       {miao ? (
         <Paw
-          className={className}
+          className={`h-full w-full ${className}`}
           style={{
             width: '300px',
             height: '200px',
