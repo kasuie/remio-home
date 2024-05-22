@@ -26,7 +26,7 @@
     }
   }
   .mio-tooltip {
-    @apply pointer-events-none absolute bottom-[-20px] min-w-20 rounded-[5px] bg-black/30 px-2 py-[5px] text-sm leading-none text-white opacity-0 shadow-[0_10px_10px_#0000001a] before:absolute before:left-[calc(50%-6px)] before:top-[-6px] before:h-0 before:w-0 before:border-x-[6px] before:border-b-[6px] before:border-x-transparent before:border-b-black/30 before:content-[''];
+    @apply pointer-events-none absolute bottom-[-20px] min-w-20 rounded-[5px] bg-black/30 px-2 py-2 text-sm leading-none text-white opacity-0 shadow-[0_10px_10px_#0000001a] before:absolute before:left-[calc(50%-6px)] before:top-[-6px] before:h-0 before:w-0 before:border-x-[6px] before:border-b-[6px] before:border-x-transparent before:border-b-black/30 before:content-[''];
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     &::before {
