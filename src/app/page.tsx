@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 09:47:36
+ * @LastEditTime: 2024-05-23 17:40:46
  * @Description:
  */
 'use client';
@@ -10,10 +10,21 @@ import { SocialIcons } from '@/components/social-icons/SocialIcons';
 import { TextEffect } from '@/components/text-effect/TextEffect';
 import { Avatar } from '@/components/ui/image/Avatar';
 import { Loader } from '@/components/ui/loader/Loader';
-import { Links } from '@/components/links/Links';
+import { Links, Site } from '@/components/links/Links';
+import { siteConfig } from '@/config/app.config';
 import { Suspense } from 'react';
 
 export default function Home() {
+  const index = siteConfig?.sites?.findIndex?.((v: Site) => !v.url);
+
+  let staticSites: Array<Site> = [],
+    modalSites: Array<Site> = [];
+
+  if (index > -1) {
+    staticSites = siteConfig.sites.slice(0, index + 1);
+    modalSites = siteConfig.sites.slice(index + 1, siteConfig.sites.length);
+  }
+
   return (
     <Suspense
       fallback={
@@ -22,7 +33,7 @@ export default function Home() {
         </Loader>
       }
     >
-      <div className="flex w-full pt-[25vh] flex-col items-center justify-center gap-8 pb-10">
+      <div className="flex w-full flex-col items-center justify-center gap-8 pb-10 pt-[25vh]">
         <Avatar
           alt="image"
           src="https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp"
@@ -30,7 +41,7 @@ export default function Home() {
         />
         <TextEffect text={`This is kasuie's personal homepage.`}></TextEffect>
         <SocialIcons />
-        <Links />
+        <Links staticSites={staticSites} modalSites={modalSites} />
       </div>
     </Suspense>
   );
