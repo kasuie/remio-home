@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-22 15:28:53
+ * @LastEditTime: 2024-05-23 10:46:50
  * @Description:
  */
 'use client';
@@ -42,7 +42,7 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
 
   return (
     <div
-      className={`k-words-hearts relative text-center text-[20px] text-white`}
+      className={`k-words-hearts relative text-center font-[cursive] text-[20px] text-white`}
     >
       {`${text}`}
       {heart && renderParticles()}

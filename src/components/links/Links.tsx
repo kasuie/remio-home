@@ -2,15 +2,19 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-22 20:34:28
+ * @LastEditTime: 2024-05-23 11:53:31
  * @Description:
  */
 'use client';
 import { Image } from '@/components/ui/image/Image';
+import useModal from '@/components/ui/modal/useModal';
+import { Modal } from '@/components/ui/modal/Modal';
 import Link from 'next/link';
 import { LinkIn } from '@kasuie/icon';
 
 export function Links() {
+  const { isVisible, openModal, closeModal } = useModal();
+
   const staticSites = [
     {
       icon: 'https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover',
@@ -70,10 +74,10 @@ export function Links() {
       >
         <Link
           href={item.type && item.type === 'more' ? '' : item.site}
-          className="group relative z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] backdrop-blur-[7px] duration-500 hover:z-10 hover:scale-110 hover:border-transparent hover:bg-[#229fff] "
+          className="group/main relative z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] backdrop-blur-[7px] duration-500 hover:z-10 hover:!scale-110 hover:border-transparent hover:bg-[#229fff] hover:!blur-none group-hover/links:scale-90 group-hover/links:blur-[1px]"
           target="_blank"
         >
-          <div className="absolute left-[20px] right-0 top-24 z-[-1] h-[25rem] w-[25rem] rotate-[-36deg] rounded-full bg-[#3651cf26] duration-500 group-hover:left-[-20px] group-hover:top-[-20px]"></div>
+          <div className="absolute left-[20px] right-0 top-24 z-[-1] h-[25rem] w-[25rem] rotate-[-36deg] rounded-full bg-[#3651cf26] duration-500 group-hover/main:left-[-20px] group-hover/main:top-[-20px]"></div>
           {item.icon && (
             <div className="p-[5px]">
               <Image
@@ -102,8 +106,15 @@ export function Links() {
   };
 
   return (
-    <div className="mt-3 md:mt-12 md:w-[70vw] flex w-[95vw] flex-wrap justify-evenly">
+    <div className="group/links mt-3 flex w-[95vw] flex-wrap justify-evenly md:mt-12 md:w-[70vw]">
       {staticSites.map((v, index) => linkItem(v, index))}
+      {staticSites?.length > 8 ? (
+        <>
+          <Modal visible={isVisible} closeModal={closeModal}>
+            454545
+          </Modal>
+        </>
+      ) : null}
     </div>
   );
 }

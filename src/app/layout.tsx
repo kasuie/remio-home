@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-20 17:18:36
+ * @LastEditTime: 2024-05-23 10:35:44
  * @Description:
  */
 import type { Metadata } from 'next';
@@ -58,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} mio-scroll overflow-y-auto`}>
         <Layout>{children}</Layout>
       </body>
     </html>

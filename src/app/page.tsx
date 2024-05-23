@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-22 20:30:23
+ * @LastEditTime: 2024-05-23 09:47:36
  * @Description:
  */
 'use client';
@@ -22,7 +22,7 @@ export default function Home() {
         </Loader>
       }
     >
-      <div className="flex w-screen pt-[25vh] flex-col items-center justify-center gap-8 pb-10">
+      <div className="flex w-full pt-[25vh] flex-col items-center justify-center gap-8 pb-10">
         <Avatar
           alt="image"
           src="https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp"
