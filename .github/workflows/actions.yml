@@ -28,4 +28,4 @@ jobs:
         with:
           file: ./Dockerfile
           push: true
-          tags: remio-home:latest,remio-home:${{github.sha}}
+          tags: kasuie/remio-home:latest,kasuie/remio-home:${{github.sha}}
