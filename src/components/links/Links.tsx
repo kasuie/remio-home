@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 17:41:18
+ * @LastEditTime: 2024-05-23 20:13:49
  * @Description:
  */
 'use client';
@@ -10,17 +10,23 @@ import { Image } from '@/components/ui/image/Image';
 import useModal from '@/components/ui/modal/useModal';
 import { Modal } from '@/components/ui/modal/Modal';
 import Link from 'next/link';
-import { LinkIn } from '@kasuie/icon';
+import { ExternalLink, DotsHorizontal } from '@kasuie/icon';
 import { clsx } from '@kasuie/utils';
 
 export type Site = {
-  icon?: string,
-  title: string,
-  url?: string,
-  desc?: string,
-}
+  icon?: string;
+  title: string;
+  url?: string;
+  desc?: string;
+};
 
-export function Links({staticSites, modalSites}: { staticSites: Array<Site>, modalSites: Array<Site> }) {
+export function Links({
+  staticSites,
+  modalSites,
+}: {
+  staticSites: Array<Site>;
+  modalSites: Array<Site>;
+}) {
   const { isVisible, openModal, closeModal } = useModal();
 
   const itemContent = (item: Site, animate: boolean = true) => {
@@ -49,7 +55,7 @@ export function Links({staticSites, modalSites}: { staticSites: Array<Site>, mod
           )}
         </div>
         <span className="absolute bottom-[5px] right-[7px]">
-          <LinkIn size={12} />
+        { item?.url ? <ExternalLink size={14} /> : <DotsHorizontal size={14} /> }
         </span>
       </>
     );
@@ -57,7 +63,7 @@ export function Links({staticSites, modalSites}: { staticSites: Array<Site>, mod
 
   const linkItem = (item: Site, key: number, animate: boolean = true) => {
     const className = clsx(
-      'group/main relative z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none ',
+      'group/main relative shadow-mio-link z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none ',
       {
         'hover:!scale-110 hover:bg-[#229fff] group-hover/links:scale-90 group-hover/links:blur-[1px] backdrop-blur-[7px]':
           animate,
@@ -86,18 +92,18 @@ export function Links({staticSites, modalSites}: { staticSites: Array<Site>, mod
   };
 
   return (
-    <div className="group/links mt-3 flex w-[95vw] flex-wrap justify-evenly md:mt-12 md:w-[70vw]">
+    <div className="group/links mt-3 flex w-[95vw] flex-wrap gap-[20px_0] justify-evenly md:mt-12 md:w-[70vw]">
       {staticSites.map((v, index) => linkItem(v, index))}
       {modalSites?.length ? (
-          <Modal
-            className="w-[650px]"
-            visible={isVisible}
-            closeModal={closeModal}
-          >
-            <div className="flex flex-wrap justify-between">
-              {modalSites.map((v, index) => linkItem(v, index, false))}
-            </div>
-          </Modal>
+        <Modal
+          className="w-[650px]"
+          visible={isVisible}
+          closeModal={closeModal}
+        >
+          <div className="flex flex-wrap justify-between">
+            {modalSites.map((v, index) => linkItem(v, index, false))}
+          </div>
+        </Modal>
       ) : null}
     </div>
   );

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:58:37
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 17:42:22
+ * @LastEditTime: 2024-05-23 20:05:14
  * @Description:
  */
 
@@ -15,41 +15,45 @@ export const siteConfig = {
   keywords:
     'remio,rem,mio,C.C.,KASUIEの次元,KASUIE的个人博客,KASUIE,个人主页,主页,个人记录,技术博客,个人生活',
   description: 'KASUIEの次元，兴趣至上，内容随缘，个人主页',
+  avatar:
+    'https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp',
+  subTilte: "This is kasuie's personal homepage.",
+  footer: '© 2020 - 2024 By KASUIE',
   links: [
     {
-      title: "",
-      url: "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=zIvBSvLDRr4MvqFSHcioDwS090ljUYHT&authKey=THHoVVpDZWHfnpZoNf57rDWzwrXmTWtnlN70ljCM6cG9eZ5KTIJcTxrvc7%2B7YdVI&noverify=0&group_code=793752494",
-      icon: "",
+      title: '',
+      url: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=zIvBSvLDRr4MvqFSHcioDwS090ljUYHT&authKey=THHoVVpDZWHfnpZoNf57rDWzwrXmTWtnlN70ljCM6cG9eZ5KTIJcTxrvc7%2B7YdVI&noverify=0&group_code=793752494',
+      icon: 'https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover',
     },
     {
-      title: "",
-      url: "https://t.me/PixivLips",
-      icon: "",
+      title: '',
+      url: 'https://t.me/PixivLips',
+      icon: '',
     },
     {
-      title: "",
-      url: "https://github.com/kasuie",
-      icon: "",
+      title: '',
+      url: 'https://github.com/kasuie',
+      icon: '',
     },
     {
-      title: "",
-      url: "https://twitter.com/kasuie3",
-      icon: "",
+      title: '',
+      url: 'https://twitter.com/kasuie3',
+      icon: '',
     },
     {
-      title: "",
-      url: "https://weibo.com/u/5659149266",
-      icon: "",
+      title: '',
+      url: 'https://weibo.com/u/5659149266',
+      icon: '',
     },
     {
-      title: "",
-      url: "https://space.bilibili.com/85447052",
-      icon: "",
+      title: '',
+      url: 'https://space.bilibili.com/85447052',
+      icon: '',
     },
     {
-      title: "",
-      url: "https://s.team/p/fhwd-fwbn/NWWVGPJV",
-      icon: "",
+      title: '',
+      url: 'https://s.team/p/fhwd-fwbn/NWWVGPJV',
+      icon: '',
     },
   ],
   sites: [
@@ -142,7 +146,5 @@ export const siteConfig = {
       url: 'https://pixlips.github.io',
       desc: '导航页(beta)',
     },
-  ]
+  ],
 };
-
-
