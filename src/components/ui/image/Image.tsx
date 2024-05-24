@@ -2,11 +2,11 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:11:51
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-22 14:16:36
+ * @LastEditTime: 2024-05-24 10:09:47
  * @Description:
  */
 'use client';
-import { makeBlurDataURL } from '@/lib/image';
+import { makeBlurDataURL } from '@kasuie/utils';
 import NextImage, { ImageProps as OImageProps } from 'next/image';
 
 export type ImageProps = {

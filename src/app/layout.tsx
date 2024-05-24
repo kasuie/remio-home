@@ -10,6 +10,7 @@ import { Inter } from 'next/font/google';
 import { siteConfig } from '@/config/app.config';
 import { Layout } from '@/components/layout/Layout';
 import '@/styles/index.css';
+import { AppProviders } from '@/providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -59,7 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} mio-scroll overflow-y-auto`}>
-        <Layout>{children}</Layout>
+        <AppProviders>
+          <Layout>{children}</Layout>
+        </AppProviders>
       </body>
     </html>
   );
