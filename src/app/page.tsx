@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 09:46:42
+ * @LastEditTime: 2024-05-24 11:53:11
  * @Description:
  */
 'use client';
@@ -17,6 +17,8 @@ import { Suspense } from 'react';
 export default function Home() {
   const index = siteConfig?.sites?.findIndex?.((v: Site) => !v.url);
   const links = siteConfig?.links;
+
+  const subTitle = siteConfig?.subTitle;
 
   let staticSites: Array<Site> = [],
     modalSites: Array<Site> = [];
@@ -41,7 +43,7 @@ export default function Home() {
           src={siteConfig.avatar}
           warpClass="hover:top-[-10px] w-32 h-32 relative rounded-full inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]"
         />
-        <TextEffect text={siteConfig.subTilte}></TextEffect>
+        <TextEffect text={subTitle}></TextEffect>
         <SocialIcons links={links} />
         <Links staticSites={staticSites} modalSites={modalSites} />
       </div>

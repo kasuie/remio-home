@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-22 14:59:45
+ * @LastEditTime: 2024-05-24 11:44:27
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -45,6 +45,17 @@ const nextConfig = {
         hostname: "kasuie.cc",
       },
     ]
+  },
+  async rewrites() {
+    const ret = [
+      {
+        source: '/hapi/:path*',
+        destination: 'https://v1.hitokoto.cn/:path*',
+      },
+    ];
+    return {
+      beforeFiles: ret,
+    };
   },
 };
 
