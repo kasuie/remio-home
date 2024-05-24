@@ -13,7 +13,7 @@ export function AppProviders({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  if (isClientSide) { 
+  if (isClientSide) {
     aSakura();
     onDebug();
   }

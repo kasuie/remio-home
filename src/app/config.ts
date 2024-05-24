@@ -2,10 +2,9 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:58:37
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 11:28:20
+ * @LastEditTime: 2024-05-24 15:13:04
  * @Description:
  */
-
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -17,6 +16,8 @@ export const siteConfig = {
   description: 'KASUIEの次元，兴趣至上，内容随缘，个人主页',
   avatar:
     'https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp',
+  bg: 'https://cs.kasuie.cc/blog/image/wallpaper/bg.webp',
+  mbg: "",
   // subTilte: "This is kasuie's personal homepage.",
   subTitle: 'https://v1.hitokoto.cn',
   footer: '© 2020 - 2024 By KASUIE',

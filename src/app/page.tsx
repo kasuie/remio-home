@@ -11,7 +11,7 @@ import { TextEffect } from '@/components/text-effect/TextEffect';
 import { Avatar } from '@/components/ui/image/Avatar';
 import { Loader } from '@/components/ui/loader/Loader';
 import { Links, Site } from '@/components/links/Links';
-import { siteConfig } from '@/config/app.config';
+import { siteConfig } from '@/app/config';
 import { Suspense } from 'react';
 
 export default function Home() {
