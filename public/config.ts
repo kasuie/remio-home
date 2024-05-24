@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:58:37
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 15:13:04
+ * @LastEditTime: 2024-05-24 16:53:32
  * @Description:
  */
 export type SiteConfig = typeof siteConfig;
@@ -19,7 +19,7 @@ export const siteConfig = {
   bg: 'https://cs.kasuie.cc/blog/image/wallpaper/bg.webp',
   mbg: "",
   // subTilte: "This is kasuie's personal homepage.",
-  subTitle: 'https://v1.hitokoto.cn',
+  subTitle: 'https://v1.hitokoto.cn?c=a&c=b&c=c',
   footer: '© 2020 - 2024 By KASUIE',
   links: [
     {

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 11:53:11
+ * @LastEditTime: 2024-05-24 16:47:31
  * @Description:
  */
 'use client';
@@ -11,7 +11,7 @@ import { TextEffect } from '@/components/text-effect/TextEffect';
 import { Avatar } from '@/components/ui/image/Avatar';
 import { Loader } from '@/components/ui/loader/Loader';
 import { Links, Site } from '@/components/links/Links';
-import { siteConfig } from '@/app/config';
+import { siteConfig } from '../../public/config';
 import { Suspense } from 'react';
 
 export default function Home() {
