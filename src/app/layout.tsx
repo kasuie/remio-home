@@ -7,7 +7,7 @@
  */
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { siteConfig } from '../../public/config';
+import { siteConfig } from '../config/config';
 import { Layout } from '@/components/layout/Layout';
 import '@/styles/index.css';
 import { AppProviders } from '@/providers';

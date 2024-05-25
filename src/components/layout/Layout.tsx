@@ -2,10 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-20 17:15:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 16:47:01
+ * @LastEditTime: 2024-05-25 14:57:03
  * @Description:
  */
-import { siteConfig } from '../../../public/config';
+import { siteConfig } from "@/config/config";
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main

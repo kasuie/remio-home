@@ -2,10 +2,11 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:21:22
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 19:51:31
+ * @LastEditTime: 2024-05-25 14:42:57
  * @Description:
  */
 'use client';
+import { getConfig } from '@/lib/config';
 import { ImageProps, Image } from './Image';
 
 export type AvatarProps = {
@@ -15,7 +16,12 @@ export type AvatarProps = {
 
 export function Avatar({ warpClass, src, alt, ...imageProps }: AvatarProps) {
   return (
-    <div className={warpClass}>
+    <div
+      className={warpClass}
+      onClick={() => {
+        console.log(getConfig('config.json'));
+      }}
+    >
       <Image alt={alt || 'image'} src={src} {...imageProps} />
     </div>
   );

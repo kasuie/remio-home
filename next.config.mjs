@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 11:44:27
+ * @LastEditTime: 2024-05-25 14:47:37
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -25,26 +25,34 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      };
+    }
+    return config;
+  },
   images: {
     minimumCacheTTL: 60,
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "cdn.staticaly.com",
+        protocol: 'https',
+        hostname: 'cdn.staticaly.com',
       },
       {
-        protocol: "https",
-        hostname: "cdn.jsdelivr.net",
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
       },
       {
-        protocol: "https",
-        hostname: "pixiv.re",
+        protocol: 'https',
+        hostname: 'pixiv.re',
       },
       {
-        protocol: "https",
-        hostname: "kasuie.cc",
+        protocol: 'https',
+        hostname: 'kasuie.cc',
       },
-    ]
+    ],
   },
   async rewrites() {
     const ret = [
