@@ -7,7 +7,7 @@
     "avatar": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
     "bg": "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
     "mbg": "",
-    "subTilte": "This is kasuie's personal homepage.",
+    "subTitle": "This is kasuie's personal homepage.",
     "_subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
     "footer": "© 2020 - 2024 By KASUIE",
     "links": [
@@ -67,7 +67,7 @@
             "desc": "ChatGPT"
         },
         {
-            "icon": "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2-55a26fc52bd8.png!cover",
+            "icon": "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
             "title": "KASUIEの库",
             "url": "https://dist.kasuie.cc",
             "desc": "网盘挂载程序"

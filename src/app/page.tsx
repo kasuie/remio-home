@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-25 23:57:20
+ * @LastEditTime: 2024-05-26 01:14:32
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -13,10 +13,6 @@ import { Links, Site } from '@/components/links/Links';
 import { Suspense } from 'react';
 import { getConfig } from '@/lib/config';
 
-// async function configs() {
-//   return getConfig('config.json');
-// }
-
 export const revalidate = 0;
 
 export default async function Home() {
@@ -25,7 +21,6 @@ export default async function Home() {
   
   const index = siteConfig?.sites?.findIndex?.((v: Site) => !v.url);
   const links = siteConfig?.links;
-
   const subTitle = siteConfig?.subTitle;
 
   let staticSites: Array<Site> = [],
@@ -55,6 +50,11 @@ export default async function Home() {
         <SocialIcons links={links} />
         <Links staticSites={staticSites} modalSites={modalSites} />
       </div>
+      {siteConfig?.footer ? (
+        <footer className="absolute bottom-2 left-1/2 translate-x-[-50%] cursor-pointer select-none whitespace-nowrap text-sm">
+          {siteConfig.footer}
+        </footer>
+      ) : null}
     </Suspense>
   );
 }

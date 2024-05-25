@@ -71,7 +71,7 @@ export const siteConfig = {
       desc: "ChatGPT",
     },
     {
-      icon: "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2-55a26fc52bd8.png!cover",
+      icon: "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
       title: "KASUIEの库",
       url: "https://dist.kasuie.cc",
       desc: "网盘挂载程序",

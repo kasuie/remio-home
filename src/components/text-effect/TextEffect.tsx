@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-24 14:56:25
+ * @LastEditTime: 2024-05-26 00:26:57
  * @Description:
  */
 'use client';
@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react';
 
 export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
   const [heartCount, setHeartCount] = useState(0);
-  const [search, setSearch] = useState('');
-  const [subTitle, setSubTitle] = useState();
+  const [search, setSearch] = useState("");
+  const [subTitle, setSubTitle] = useState("");
 
   useEffect(() => {
     const width: number | undefined =
@@ -26,7 +26,6 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
     if (text?.includes('hitokoto') && text?.includes('http')) {
       const search = new URL(text)?.search;
       setSearch(search);
-      // fetch(`/hapi${search}`)
       fetch(text)
         .then((response) => {
           return response.ok ? response?.json() : null;
@@ -36,7 +35,7 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
         })
         .catch((e) => console.log('error>>>', e));
     } else {
-      setSubTitle(subTitle);
+      setSubTitle(text);
     }
   }, [text]);
 
@@ -69,7 +68,7 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
     <div
       className={`k-words-hearts relative text-center font-[cursive] text-[20px] text-white`}
     >
-      {`${subTitle}`}
+      {subTitle}
       {heart && renderParticles()}
       <span
         className={`absolute rotate-[75deg] bg-[#cc2a5d] opacity-100 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:translate-x-[-50%] before:rounded-[100px] before:bg-[#cc2a5d] before:content-[''] after:absolute after:left-0 after:top-0 after:h-full after:w-full after:translate-y-[-50%] after:rounded-[100px] after:bg-[#cc2a5d] after:content-['']`}
