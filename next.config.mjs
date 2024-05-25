@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-25 14:47:37
+ * @LastEditTime: 2024-05-26 01:58:45
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -19,19 +19,11 @@ const withPWA = nextPWA({
 
 const nextConfig = {
   output: 'standalone',
-  compiler: {
-    removeConsole: isProd,
-  },
+  // compiler: {
+  //   removeConsole: isProd,
+  // },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-      };
-    }
-    return config;
   },
   images: {
     minimumCacheTTL: 60,
@@ -53,18 +45,7 @@ const nextConfig = {
         hostname: 'kasuie.cc',
       },
     ],
-  },
-  async rewrites() {
-    const ret = [
-      {
-        source: '/hapi/:path*',
-        destination: 'https://v1.hitokoto.cn/:path*',
-      },
-    ];
-    return {
-      beforeFiles: ret,
-    };
-  },
+  }
 };
 
 export default withPWA(nextConfig);
