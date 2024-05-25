@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-25 16:49:46
+ * @LastEditTime: 2024-05-25 21:25:21
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -10,17 +10,16 @@ import { TextEffect } from '@/components/text-effect/TextEffect';
 import { Avatar } from '@/components/ui/image/Avatar';
 import { Loader } from '@/components/ui/loader/Loader';
 import { Links, Site } from '@/components/links/Links';
-// import { siteConfig } from '@/config/config';
 import { Suspense } from 'react';
 import { getConfig } from '@/lib/config';
 
-async function configs() {
-  return getConfig('config.json');
-}
+// async function configs() {
+//   return getConfig('config.json');
+// }
 
 export default async function Home() {
 
-  const siteConfig: any = await configs();
+  const siteConfig: any = await getConfig('config.json');
   
   const index = siteConfig?.sites?.findIndex?.((v: Site) => !v.url);
   const links = siteConfig?.links;
