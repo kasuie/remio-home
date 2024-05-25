@@ -31,9 +31,9 @@ RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
 ENV NODE_ENV production
+ENV CONFIG_DIR=/remio-home/config
 
 COPY --from=builder /remio-home/public ./public
-COPY --from=builder /remio-home/src/config ./config
 COPY --from=builder --chown=nextjs:nodejs /remio-home/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /remio-home/.next/static ./.next/static
 

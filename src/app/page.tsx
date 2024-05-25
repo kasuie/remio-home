@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-25 21:25:21
+ * @LastEditTime: 2024-05-25 23:57:20
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -17,9 +17,11 @@ import { getConfig } from '@/lib/config';
 //   return getConfig('config.json');
 // }
 
+export const revalidate = 0;
+
 export default async function Home() {
 
-  const siteConfig: any = await getConfig('config.json');
+  const siteConfig = await getConfig('config.json');
   
   const index = siteConfig?.sites?.findIndex?.((v: Site) => !v.url);
   const links = siteConfig?.links;
