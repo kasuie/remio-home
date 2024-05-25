@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 01:58:45
+ * @LastEditTime: 2024-05-26 02:01:15
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -24,6 +24,14 @@ const nextConfig = {
   // },
   eslint: {
     ignoreDuringBuilds: true,
+  },  
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      };
+    }
+    return config;
   },
   images: {
     minimumCacheTTL: 60,
