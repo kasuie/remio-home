@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 00:38:09
+ * @LastEditTime: 2024-05-26 01:49:37
  * @Description:
  */
 import { SiteConfig } from '@/config/config';
@@ -11,7 +11,7 @@ import { join } from 'path';
 
 export const CONFIG_DIR = process.env.CONFIG_DIR
   ? process.env.CONFIG_DIR
-  : process.cwd();
+  : join(process.cwd(), "src");
 
 export async function getConfig(fileName: string) {
   const configPath = join(CONFIG_DIR, fileName);
