@@ -7,44 +7,46 @@
     "avatar": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
     "bg": "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
     "mbg": "",
+    "bgStyle": "snow",
     "subTitle": "This is kasuie's personal homepage.",
     "_subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
     "footer": "© 2020 - 2024 By KASUIE",
     "links": [
         {
-            "title": "",
+            "title": "qq",
+            "color": "#dfba00",
             "url": "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=zIvBSvLDRr4MvqFSHcioDwS090ljUYHT&authKey=THHoVVpDZWHfnpZoNf57rDWzwrXmTWtnlN70ljCM6cG9eZ5KTIJcTxrvc7%2B7YdVI&noverify=0&group_code=793752494",
-            "icon": "https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover"
+            "icon": "qq"
         },
         {
-            "title": "",
+            "title": "telegram",
+            "color": "#1da1f2",
             "url": "https://t.me/PixivLips",
-            "icon": ""
+            "icon": "telegram"
         },
         {
-            "title": "",
+            "title": "github",
+            "color": "#000000",
             "url": "https://github.com/kasuie",
-            "icon": ""
+            "icon": "github"
         },
         {
-            "title": "",
+            "title": "twitter",
+            "color": "#1da1f2",
             "url": "https://twitter.com/kasuie3",
-            "icon": ""
+            "icon": "twitter"
         },
         {
-            "title": "",
-            "url": "https://weibo.com/u/5659149266",
-            "icon": ""
-        },
-        {
-            "title": "",
+            "title": "bilibili",
+            "color": "#0088cc",
             "url": "https://space.bilibili.com/85447052",
-            "icon": ""
+            "icon": "bilibili"
         },
         {
-            "title": "",
+            "title": "steam",
+            "color": "#000000",
             "url": "https://s.team/p/fhwd-fwbn/NWWVGPJV",
-            "icon": ""
+            "icon": "steam"
         }
     ],
     "sites": [
@@ -96,7 +98,7 @@
             "desc": "阿巴阿巴..."
         },
         {
-            "icon": "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2-55a26fc52bd8.png!cover",
+            "icon": "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
             "title": "喜好生成表",
             "url": "https://like.kasuie.cc",
             "desc": "个人喜好生成表"
@@ -137,5 +139,21 @@
             "url": "https://pixlips.github.io",
             "desc": "导航页(beta)"
         }
-    ]
+    ],
+    "pwa": {
+        "theme_color": "#FFFFFF",
+        "background_color": "#FFFFFF",
+        "display": "standalone",
+        "orientation": "portrait",
+        "start_url": "/",
+        "icons": [
+          {
+            "src": "/icons/favicon64.png",
+            "sizes": "64x64",
+            "type": "image/png",
+            "purpose": "any maskable"
+          }
+        ],
+        "splash_pages": null
+    }
 }

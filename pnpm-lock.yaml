@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@kasuie/icon':
-    specifier: ^0.0.6
-    version: 0.0.6
-  '@kasuie/utils':
     specifier: ^0.0.7
     version: 0.0.7
+  '@kasuie/utils':
+    specifier: ^0.0.10
+    version: 0.0.10
   next:
     specifier: 14.2.3
     version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
@@ -1530,8 +1530,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@kasuie/icon@0.0.6:
-    resolution: {integrity: sha512-BfRz0NDz4JXQV08OdtghztC3VVDsgEAAO6wfoPBStr6jhqdJgbn1aaH2gbBO8E/zTwD2AHGcp78/4UNmZo/sWg==}
+  /@kasuie/icon@0.0.7:
+    resolution: {integrity: sha512-guqERcjK8FP5WLQpczSkp7NzwvPs6gzDWOR+4xO3nUgQiDbQ27V+C3TeelTj7mcPT5NX57/iU2I0jE0Ab6pOXQ==}
     engines: {pnpm: '>=8'}
     dependencies:
       react: 18.3.1
@@ -1568,8 +1568,8 @@ packages:
       - supports-color
     dev: true
 
-  /@kasuie/utils@0.0.7:
-    resolution: {integrity: sha512-xskaI+oz8vG46LCQP1yJ3y3vLeIeWb2rIFhb7f5fAqfjSFTJwBkPghDRvuN5nS/Y/ttPpqpjzKCaciLkk3vM8g==}
+  /@kasuie/utils@0.0.10:
+    resolution: {integrity: sha512-XoBwRBzVZgHJ/dNvMYjUA+N00penIfhLG2ST0UZdkVZHHjOc18k+205soBvQ8+c3JgsQF9sfgNyZzjAOpT/kRg==}
     engines: {pnpm: '>=8'}
     dependencies:
       dayjs: 1.11.11

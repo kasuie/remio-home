@@ -11,8 +11,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@kasuie/icon": "^0.0.6",
-    "@kasuie/utils": "^0.0.7",
+    "@kasuie/icon": "^0.0.7",
+    "@kasuie/utils": "^0.0.10",
     "next": "14.2.3",
     "next-pwa": "^5.6.0",
     "react": "^18",

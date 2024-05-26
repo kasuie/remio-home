@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 00:26:57
+ * @LastEditTime: 2024-05-26 15:10:48
  * @Description:
  */
 'use client';
@@ -12,6 +12,7 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
   const [heartCount, setHeartCount] = useState(0);
   const [search, setSearch] = useState("");
   const [subTitle, setSubTitle] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const width: number | undefined =
@@ -61,7 +62,7 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
   };
 
   if (!subTitle) {
-    return null;
+    return loading ? <div>...</div> : null;
   }
 
   return (

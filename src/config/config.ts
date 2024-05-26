@@ -11,17 +11,20 @@ export const siteConfig = {
     "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
   bg: "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
   mbg: "",
+  bgStyle: "",
   _subTilte: "This is kasuie's personal homepage.",
   subTitle: "https://v1.hitokoto.cn?c=a&c=b&c=c",
   footer: "© 2020 - 2024 By KASUIE",
   links: [
     {
       title: "",
+      color: "",
       url: "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=zIvBSvLDRr4MvqFSHcioDwS090ljUYHT&authKey=THHoVVpDZWHfnpZoNf57rDWzwrXmTWtnlN70ljCM6cG9eZ5KTIJcTxrvc7%2B7YdVI&noverify=0&group_code=793752494",
       icon: "https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
     },
     {
       title: "",
+      color: "",
       url: "https://t.me/PixivLips",
       icon: "",
     },
@@ -142,4 +145,21 @@ export const siteConfig = {
       desc: "导航页(beta)",
     },
   ],
+  pwa: {
+      theme_color: "#FFFFFF",
+      background_color: "#FFFFFF",
+      "display": "standalone",
+      "orientation": "portrait",
+      "scope": ".",
+      "start_url": "/",
+      "icons": [
+        {
+          "src": "/icons/favicon64.png",
+          "sizes": "64x64",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ],
+      "splash_pages": null
+  }
 };

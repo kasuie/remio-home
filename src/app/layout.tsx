@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 01:08:55
+ * @LastEditTime: 2024-05-26 12:01:30
  * @Description:
  */
 import type { Metadata } from 'next';
@@ -23,7 +23,7 @@ export async function generateMetadata() {
     title: siteConfig.name,
     description: siteConfig.description,
     keywords: siteConfig.keywords,
-    manifest: '/manifest.json',
+    manifest: '/api/manifest',
     icons: {
       icon: '/favicon.ico',
       shortcut: '/icons/favicon192.png',

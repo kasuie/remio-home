@@ -2,12 +2,14 @@
  * @Author: kasuie
  * @Date: 2024-05-22 15:54:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 19:57:08
+ * @LastEditTime: 2024-05-26 15:14:02
  * @Description:
  */
-import { Github, Twitter } from '@kasuie/icon';
+"use client"
+import { Github, Twitter, QQ, Telegram, Email, Steam, Bilibili, Discord, Instargram, X, SvgProps } from '@kasuie/icon';
 import Link from 'next/link';
 import { Avatar } from '../ui/image/Avatar';
+import { isValidUrl } from '@kasuie/utils';
 
 export type SocialItem = {
   icon?: string;
@@ -18,9 +20,24 @@ export type SocialItem = {
 
 export const SocialIcons = ({ links }: { links: Array<SocialItem> }) => {
 
-  const IconsMap = {
-    github: <Github />,
-    twitter: <Twitter />,
+  const IconsMap: any = {
+    github: (props: SvgProps) => <Github {...props} />,
+    twitter: (props: SvgProps) => <Twitter {...props} />,
+    qq: (props: SvgProps) => <QQ {...props} />,
+    telegram: (props: SvgProps) => <Telegram {...props} />,
+    email: (props: SvgProps) => <Email {...props} />,
+    steam: (props: SvgProps) => <Steam {...props} />,
+    bilibili: (props: SvgProps) => <Bilibili {...props} />,
+    discord: (props: SvgProps) => <Discord {...props} />,
+    instargram: (props: SvgProps) => <Instargram {...props} />,
+    x: (props: SvgProps) => <X {...props} />,
+  }
+
+  const renderIcon = (key: any, color?: string, size: number = 16) => {
+    if (key && Object.keys(IconsMap).includes(key)) {
+      return IconsMap[key]({ color, size })
+    }
+    return null;
   }
 
   return (
@@ -38,7 +55,7 @@ export const SocialIcons = ({ links }: { links: Array<SocialItem> }) => {
                   {v.title}
                 </span>
               )}
-              {v.icon ? (
+              {v.icon && isValidUrl(v.icon) ? (
                 <Avatar
                   alt={v.title}
                   src={v.icon}
@@ -48,9 +65,7 @@ export const SocialIcons = ({ links }: { links: Array<SocialItem> }) => {
                     borderRadius: '50%',
                   }}
                 />
-              ) : (
-                <Github size={16} />
-              )}
+              ) : renderIcon(v.icon, v.color)}
             </Link>
           );
         })}
