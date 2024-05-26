@@ -2,17 +2,18 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 17:01:11
+ * @LastEditTime: 2024-05-26 17:35:11
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
 import { TextEffect } from '@/components/effect/TextEffect';
 import { Avatar } from '@/components/ui/image/Avatar';
 import { Loader } from '@/components/ui/loader/Loader';
-import { Links, Site } from '@/components/links/Links';
+import { Links } from '@/components/links/Links';
 import { Suspense } from 'react';
 import { getConfig } from '@/lib/config';
 import { MainEffect } from '@/components/effect/MainEffect';
+import { Site } from '@/config/config';
 
 export const revalidate = 0;
 

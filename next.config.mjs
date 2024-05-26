@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 17:05:48
+ * @LastEditTime: 2024-05-26 17:19:41
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -47,10 +47,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'pixiv.re',
-      },
-      {
-        protocol: 'https',
-        hostname: 'kasuie.cc',
       }
     ]
   }

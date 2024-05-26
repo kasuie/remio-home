@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 20:13:49
+ * @LastEditTime: 2024-05-26 17:35:00
  * @Description:
  */
 'use client';
@@ -12,13 +12,7 @@ import { Modal } from '@/components/ui/modal/Modal';
 import Link from 'next/link';
 import { ExternalLink, DotsHorizontal } from '@kasuie/icon';
 import { clsx } from '@kasuie/utils';
-
-export type Site = {
-  icon?: string;
-  title: string;
-  url?: string;
-  desc?: string;
-};
+import { Site } from '@/config/config';
 
 export function Links({
   staticSites,

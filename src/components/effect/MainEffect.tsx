@@ -2,13 +2,13 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 16:56:56
+ * @LastEditTime: 2024-05-26 17:31:34
  * @Description: 
  */
 'use client';
 import { isClientSide, aSakura } from '@kasuie/utils';
 
-export function MainEffect({ bg, mbg, bgStyle }: { bg: string, mbg: string, bgStyle: string }) {
+export function MainEffect({ bg, mbg, bgStyle }: { bg: string, mbg: string, bgStyle?: string }) {
 
   if (isClientSide && bgStyle) {
     aSakura(bgStyle);

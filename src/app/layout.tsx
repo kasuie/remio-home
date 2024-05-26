@@ -19,7 +19,6 @@ export async function generateMetadata() {
   const siteConfig = await getConfig('config.json');
 
   return {
-    metadataBase: new URL(siteConfig.domain),
     title: siteConfig.name,
     description: siteConfig.description,
     keywords: siteConfig.keywords,

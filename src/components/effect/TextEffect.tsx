@@ -2,13 +2,13 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 15:10:48
+ * @LastEditTime: 2024-05-26 17:30:32
  * @Description:
  */
 'use client';
 import { useEffect, useState } from 'react';
 
-export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
+export function TextEffect({ text, heart }: { text?: string; heart?: boolean }) {
   const [heartCount, setHeartCount] = useState(0);
   const [search, setSearch] = useState("");
   const [subTitle, setSubTitle] = useState("");
@@ -35,7 +35,7 @@ export function TextEffect({ text, heart }: { text: string; heart?: boolean }) {
           setSubTitle(res?.hitokoto);
         })
         .catch((e) => console.log('error>>>', e));
-    } else {
+    } else if (text) {
       setSubTitle(text);
     }
   }, [text]);
