@@ -2,27 +2,39 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 18:14:39
+ * @LastEditTime: 2024-05-26 18:34:25
  * @Description:
 -->
 
 # 个人主页
 
-remio-home: 个人主页
+remio-home(homepage): 基于配置的个人主页
 
 预览：
+
+> ![prve](./images/prev.png)
+
+[演示 Demo](https://remio-home.vercel.app)
 
 ## 部署
 
 ### 容器部署
 
+拉取镜像
+
 ```sh
 docker pull kasuie/remio-home
 ```
 
+启动容器
+
 ```sh
 docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
 ```
+
+注意 `-v /usr/local/config:/remio-home/config` 是挂载宿主机目录，`/usr/local/config` 需要修改为你想要挂载的资源目录，端口和容器名可根据需要调整，其他的需要保持不变。
+
+首次启动成功后，需要在你挂载的目录里新建`config.json`文件，在里面填写你站点的配置信息，可参考仓库里 `/src/config/config.json` 进行修改，下方有参数说明可进行查看。
 
 ### 部署到Vercel
 
@@ -31,7 +43,7 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
 | 字段        | 类型      | 必填 | 说明                                                                             |
-| ----------- | --------- | ---- | --------------------------------------------------------------------------------|
+| ----------- | --------- | ---- | :--------------------------------------------------------------------------------:|
 | name        | string    | 是   | 站点标题                                                                         |
 | domain      | string    | 是   | 站点链接                                                                         |
 | keywords    | string    | 否   | 站点关键词                                                                       |
