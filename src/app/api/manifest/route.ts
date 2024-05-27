@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 11:51:01
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 10:33:40
+ * @LastEditTime: 2024-05-27 11:08:43
  * @Description: 
  */
 import { getConfig } from '@/lib/config';
@@ -19,8 +19,8 @@ export const GET = async () => {
         ...config.pwa
     }), {
         headers: {
-            'Content-Type': 'application/json',
-            'Content-Disposition': 'attachment; filename="config.json"',
+            'Content-Type': 'application/manifest+json',
+            'Content-Disposition': 'attachment; filename="manifest.json"',
         },
     });
 };
