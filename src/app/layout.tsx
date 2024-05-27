@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 16:06:49
+ * @LastEditTime: 2024-05-27 23:53:08
  * @Description:
  */
 import type { Metadata } from 'next';
@@ -37,7 +37,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} mio-scroll overflow-y-auto`}>
         <AppProviders>
           <Layout>{children}</Layout>

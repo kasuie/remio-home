@@ -2,10 +2,11 @@
  * @Author: kasuie
  * @Date: 2024-05-24 09:39:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 16:54:00
+ * @LastEditTime: 2024-05-27 23:48:46
  * @Description:
  */
 'use client';
+import { ThemeProvider } from 'next-themes';
 
 export function AppProviders({
   children,
@@ -13,5 +14,7 @@ export function AppProviders({
   children: React.ReactNode;
 }>) {
 
-  return <>{children}</>;
+  return <ThemeProvider key="themeProvider" defaultTheme="light" enableSystem>
+    {children}
+  </ThemeProvider>;
 }
