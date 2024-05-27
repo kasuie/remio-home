@@ -22,7 +22,7 @@ export async function generateMetadata() {
     title: appConfig.name,
     description: appConfig.description,
     keywords: appConfig.keywords,
-    manifest: '/api/manifest',
+    // manifest: '/api/manifest',
     icons: {
       icon: appConfig.icon || '/favicon.ico',
       shortcut: '/icons/favicon192.png',
