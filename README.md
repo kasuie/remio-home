@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 16:04:41
+ * @LastEditTime: 2024-05-27 20:46:02
  * @Description:
 -->
 
@@ -10,11 +10,18 @@
 
 remio-home(homepage): 基于配置的个人主页
 
+- Next.js构建，服务端渲染，较好的SEO
+- 部署方便，支持docker，vercel快速部署
+- 配置方便，修改一个文件基本就可完成
+- Pwa 支持，也可进行配置
+- 移动端适配...
+
 预览：
 
 > ![prve](./images/prev.png)
 
 [演示 Demo](https://remio-home.vercel.app)
+
 
 ## 部署
 
@@ -32,9 +39,21 @@ docker pull kasuie/remio-home
 docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
 ```
 
-注意 `-v /usr/local/config:/remio-home/config` 是挂载宿主机目录，`/usr/local/config` 需要修改为你想要挂载的资源目录，端口和容器名可根据需要调整，其他的需要保持不变。
+如果需要自定义`pwa`图标，则需多挂载一个`icons`目录，运行如下命令：
 
-首次启动成功后，需要在你挂载的目录里新建`config.json`文件，在里面填写你站点的配置信息，可参考仓库里 `/src/config/config.json` 进行修改，下方有参数说明可进行查看。
+```sh
+docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/config -v /usr/local/icons:/remio-home/public/icons -d kasuie/remio-home:latest
+```
+
+注意 `-v` 后面冒号前是挂载宿主机目录，即 `/usr/local/config` 和 `/usr/local/icon` 是需要修改为你想要挂载的资源目录，端口和容器名可根据需要调整，其他的需要保持不变。
+
+当然首次启动成功后，还需要在你挂载的配置目录里（`/usr/local/config`）新建`config.json`文件，在里面填写你站点的配置信息，可参考仓库里 `/src/config/config.json` 进行修改，下方有参数说明可进行查看。
+
+对于自定义`pwa`图标需要你在挂载目录`/usr/local/icons`至少上传一张命名为 `favicon192.png` 的图片，不然`pwa`不会生效。另外为了还应包含`favicon64.png `,`favicon128.png`和`favicon512.png`，这三种不是必须，但是不上传控制台会有报错，后续看情况可能会调整所需尺寸的张数。
+
+以上配置修改后不需要重启项目，在页面刷新一下就能看到效果了。
+
+> 有一点需要注意，如果遇到 `icons` 目录上传了文件，但是没有生效，可能需要重启一下容器，首次上传`favicon192.png`的时候可能会出现。
 
 ### 部署到Vercel
 
@@ -55,9 +74,9 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 | bgStyle     | string    | 否   | 背景飘浮风格。可选值：`sakura` 或 `snow`，也可自行填写飘浮物资源图片                 |
 | subTitle    | string    | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`     |
 | footer      | string    | 否   | 底部文字                                                                         |
-| links       | Link[]    | 是   | 社交媒体的链接                                                                    |
-| sites       | Site[]    | 是   | 项目或者其他站点链接                                                              |
-| sitesConfig | SitesConfig | 否   | sites 渲染组件配置项                                                           |
+| links       | [Link[]](#link-类型说明)    | 是   | 社交媒体的链接                                                   |
+| sites       | [Site[]](#site-类型说明)    | 是   | 项目或者其他站点链接                                             |
+| sitesConfig | [SitesConfig](#sitesconfig-类型说明) | 否   | sites 渲染组件配置项                                    |
 
 #### Link 类型说明
 
@@ -104,7 +123,7 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 | hoverScale | boolean | 否   | hover状态下是否调整比例   |
 
 
-## 本地启动
+### 本地启动
 
 安装依赖
 
@@ -123,3 +142,7 @@ pnpm dev
 ```js
 pnpm build
 ```
+
+## 补充
+
+在你部署后，可在部署域名后面加上`/api/config`查看目前的配置信息
