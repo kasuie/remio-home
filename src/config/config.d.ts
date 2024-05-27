@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 10:37:09
+ * @LastEditTime: 2024-05-27 17:44:45
  * @Description: 
  */
 export interface Link {
@@ -42,7 +42,7 @@ interface PWA {
 
 export interface AppConfig {
   name: string; // 站点标题
-  icon?: string;
+  favicon?: string; // 站点图标
   domain: string; // 站点链接
   keywords?: string; // 站点关键词
   description?: string; // 站点描述性信息

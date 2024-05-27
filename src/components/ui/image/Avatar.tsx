@@ -6,7 +6,6 @@
  * @Description:
  */
 'use client';
-import { getConfig } from '@/lib/config';
 import { ImageProps, Image } from './Image';
 
 export type AvatarProps = {
@@ -18,9 +17,6 @@ export function Avatar({ warpClass, src, alt, ...imageProps }: AvatarProps) {
   return (
     <div
       className={warpClass}
-      onClick={() => {
-        console.log(getConfig('config.json'));
-      }}
     >
       <Image alt={alt || 'image'} src={src} {...imageProps} />
     </div>

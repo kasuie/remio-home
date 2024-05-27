@@ -1,6 +1,6 @@
 {
     "name": "KASUIEの主页✨",
-    "icon": "/favicon.ico",
+    "favicon": "/favicon.ico",
     "domain": "https://remio-home.vercel.app",
     "keywords": "remio,rem,mio,C.C.,KASUIEの次元,KASUIE的个人博客,KASUIE,个人主页,主页,个人记录,技术博客,个人生活",
     "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
@@ -9,7 +9,6 @@
     "mbg": "",
     "bgStyle": "",
     "subTitle": "This is kasuie's personal homepage.",
-    "_subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
     "footer": "© 2020 - 2024 By KASUIE",
     "primaryColor": "#229fff",
     "links": [
@@ -150,36 +149,5 @@
     "sitesConfig": {
         "hoverBlur": false,
         "hoverScale": true
-    },
-    "pwa": {
-        "theme_color": "#FFFFFF",
-        "background_color": "#FFFFFF",
-        "display": "standalone",
-        "orientation": "portrait",
-        "start_url": "/",
-        "icons": [
-          {
-            "src": "/icons/favicon64.png",
-            "sizes": "64x64",
-            "type": "image/png",
-            "purpose": "any maskable"
-          },
-          {
-            "src": "/icons/favicon128.png",
-            "sizes": "128x128",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/favicon192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-          },
-          {
-            "src": "/icons/favicon512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-          }
-        ],
-        "splash_pages": null
     }
 }

@@ -2,15 +2,15 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 14:26:43
+ * @LastEditTime: 2024-05-27 16:06:49
  * @Description:
  */
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Layout } from '@/components/layout/Layout';
-import '@/styles/index.css';
 import { AppProviders } from '@/providers';
 import { getConfig } from '@/lib/config';
+import '@/styles/index.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,11 +22,11 @@ export async function generateMetadata() {
     title: appConfig.name,
     description: appConfig.description,
     keywords: appConfig.keywords,
-    manifest: '/manifest.json',
+    manifest: '/api/manifest',
     icons: {
-      icon: appConfig.icon || '/favicon.ico',
+      icon: appConfig.favicon || '/favicon.ico',
       shortcut: '/icons/favicon192.png',
-      apple: '/icons/apple-touch.png',
+      apple: '/icons/favicon192.png',
     },
   } satisfies Metadata;
 }

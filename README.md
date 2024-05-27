@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 10:28:35
+ * @LastEditTime: 2024-05-27 16:04:41
  * @Description:
 -->
 
@@ -45,6 +45,7 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 | 字段        | 类型      | 必填 | 说明                                                                             |
 | ----------- | --------- | ---- | --------------------------------------------------------------------------------|
 | name        | string    | 是   | 站点标题                                                                         |
+| favicon     | string    | 否   | 站点图标                                                                         |
 | domain      | string    | 是   | 站点链接                                                                         |
 | keywords    | string    | 否   | 站点关键词                                                                       |
 | description | string    | 否   | 站点描述性信息                                                                    |
@@ -57,7 +58,6 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 | links       | Link[]    | 是   | 社交媒体的链接                                                                    |
 | sites       | Site[]    | 是   | 项目或者其他站点链接                                                              |
 | sitesConfig | SitesConfig | 否   | sites 渲染组件配置项                                                           |
-| pwa         | PWA       | 是   | PWA 配置。测试用，暂不需要填写                                                     |
 
 #### Link 类型说明
 
