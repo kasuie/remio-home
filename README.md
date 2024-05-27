@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 18:34:25
+ * @LastEditTime: 2024-05-27 10:28:35
  * @Description:
 -->
 
@@ -43,7 +43,7 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
 | 字段        | 类型      | 必填 | 说明                                                                             |
-| ----------- | --------- | ---- | :--------------------------------------------------------------------------------:|
+| ----------- | --------- | ---- | --------------------------------------------------------------------------------|
 | name        | string    | 是   | 站点标题                                                                         |
 | domain      | string    | 是   | 站点链接                                                                         |
 | keywords    | string    | 否   | 站点关键词                                                                       |
@@ -56,6 +56,7 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 | footer      | string    | 否   | 底部文字                                                                         |
 | links       | Link[]    | 是   | 社交媒体的链接                                                                    |
 | sites       | Site[]    | 是   | 项目或者其他站点链接                                                              |
+| sitesConfig | SitesConfig | 否   | sites 渲染组件配置项                                                           |
 | pwa         | PWA       | 是   | PWA 配置。测试用，暂不需要填写                                                     |
 
 #### Link 类型说明
@@ -76,14 +77,39 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 | url   | string | 否   | 链接   |
 | desc  | string | 否   | 描述   |
 
+#### 关于icon
+
+目前内置有图标：
+
+```js
+    github,
+    twitter,
+    qq,
+    telegram,
+    email,
+    steam,
+    bilibili,
+    discord,
+    instargram,
+    x,
+```
+
+`icon` 字段填写图标名即可使用，如果没有你需要的，也可以填写图标的资源链接使用
+
+#### SitesConfig 类型说明
+
+| 字段  | 类型   | 必填 | 说明   |
+| ----- | ------ | ---- | ------ |
+| hoverBlur | boolean | 否   | hover状态下是否模糊   |
+| hoverScale | boolean | 否   | hover状态下是否调整比例   |
+
 
 ## 本地启动
 
 安装依赖
 
 ```js
-// 需要先安装pnpm: https://pnpm.io/
-pnpm install
+pnpm install // 需要先安装pnpm: https://pnpm.io/
 ```
 
 本地启动

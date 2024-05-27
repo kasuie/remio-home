@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 18:06:24
+ * @LastEditTime: 2024-05-27 10:37:09
  * @Description: 
  */
 export interface Link {
@@ -17,6 +17,11 @@ export interface Site {
   title: string;
   url?: string;
   desc?: string;
+}
+
+export interface SitesConfig {
+  hoverBlur?: boolean;
+  hoverScale?: boolean;
 }
 
 interface PWA {
@@ -35,8 +40,9 @@ interface PWA {
   splash_pages: any;
 }
 
-export interface SiteConfig {
+export interface AppConfig {
   name: string; // 站点标题
+  icon?: string;
   domain: string; // 站点链接
   keywords?: string; // 站点关键词
   description?: string; // 站点描述性信息
@@ -48,5 +54,6 @@ export interface SiteConfig {
   footer?: string; // 底部文字
   links: Link[]; // 社交媒体的链接
   sites: Site[]; // 项目或者其他站点链接
+  sitesConfig?: SitesConfig; // sites 渲染组件配置项
   pwa: PWA; // pwa 测试用，暂不需要填写
 }

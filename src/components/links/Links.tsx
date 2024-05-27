@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 17:35:00
+ * @LastEditTime: 2024-05-27 10:04:28
  * @Description:
  */
 'use client';
@@ -12,14 +12,19 @@ import { Modal } from '@/components/ui/modal/Modal';
 import Link from 'next/link';
 import { ExternalLink, DotsHorizontal } from '@kasuie/icon';
 import { clsx } from '@kasuie/utils';
-import { Site } from '@/config/config';
+import { Site, SitesConfig } from '@/config/config';
 
 export function Links({
   staticSites,
   modalSites,
+  sitesConfig = {
+    hoverScale: true,
+    hoverBlur: true
+  }
 }: {
   staticSites: Array<Site>;
   modalSites: Array<Site>;
+  sitesConfig?: SitesConfig;
 }) {
   const { isVisible, openModal, closeModal } = useModal();
 
@@ -57,10 +62,12 @@ export function Links({
 
   const linkItem = (item: Site, key: number, animate: boolean = true) => {
     const className = clsx(
-      'group/main relative shadow-mio-link z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none ',
+      'group/main relative shadow-mio-link z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none',
       {
-        'hover:!scale-110 hover:bg-[#229fff] group-hover/links:scale-90 group-hover/links:blur-[1px] backdrop-blur-[7px]':
+        'hover:!scale-110 hover:bg-[#229fff] backdrop-blur-[7px]':
           animate,
+        'group-hover/links:scale-90': sitesConfig.hoverScale,
+        'group-hover/links:blur-[1px]': sitesConfig.hoverBlur
       }
     );
 

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 18:53:37
+ * @LastEditTime: 2024-05-27 10:37:51
  * @Description:
  */
 import type { Metadata } from 'next';
@@ -16,15 +16,15 @@ const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata() {
 
-  const siteConfig = await getConfig('config.json');
+  const appConfig = await getConfig('config.json');
 
   return {
-    title: siteConfig.name,
-    description: siteConfig.description,
-    keywords: siteConfig.keywords,
-    manifest: '/manifest.json',
+    title: appConfig.name,
+    description: appConfig.description,
+    keywords: appConfig.keywords,
+    manifest: '/api/manifest',
     icons: {
-      icon: '/favicon.ico',
+      icon: appConfig.icon || '/favicon.ico',
       shortcut: '/icons/favicon192.png',
       apple: '/icons/apple-touch.png',
     },

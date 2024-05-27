@@ -2,10 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 01:56:15
+ * @LastEditTime: 2024-05-27 10:15:25
  * @Description:
  */
-import { SiteConfig } from '@/config/config';
+import { AppConfig } from '@/config/config';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
@@ -18,8 +18,8 @@ export async function getConfig(fileName: string) {
   console.log("configPath>>>", configPath);
   if (existsSync(configPath)) {
     const config = await readFileSync(configPath, 'utf-8');
-    return JSON.parse(config) as SiteConfig;
+    return JSON.parse(config) as AppConfig;
   } else {
-    throw new Error(`Config file not found at ${configPath}`);
+    throw new Error(`无法找到配置文件：${configPath}，请检查~`);
   }
 }

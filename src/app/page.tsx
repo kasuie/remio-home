@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 17:35:11
+ * @LastEditTime: 2024-05-27 09:50:56
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -19,21 +19,21 @@ export const revalidate = 0;
 
 export default async function Home() {
 
-  const siteConfig = await getConfig('config.json');
+  const appConfig = await getConfig('config.json');
   
-  const index = siteConfig?.sites?.findIndex?.((v: Site) => !v.url);
-  const links = siteConfig?.links;
-  const subTitle = siteConfig?.subTitle;
-  const bgStyle = siteConfig?.bgStyle;
-  const bg = siteConfig?.bg || "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/aierm-hahee.fmu4lbhz3w0.webp";
-  const mbg = siteConfig?.mbg || "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/next/bg_main_new.e8a46387_cr.3w1kjh9qu3w0.webp";
+  const index = appConfig?.sites?.findIndex?.((v: Site) => !v.url);
+  const links = appConfig?.links;
+  const subTitle = appConfig?.subTitle;
+  const bgStyle = appConfig?.bgStyle;
+  const bg = appConfig?.bg || "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/aierm-hahee.fmu4lbhz3w0.webp";
+  const mbg = appConfig?.mbg || "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/next/bg_main_new.e8a46387_cr.3w1kjh9qu3w0.webp";
 
   let staticSites: Array<Site> = [],
     modalSites: Array<Site> = [];
 
   if (index > -1) {
-    staticSites = siteConfig.sites.slice(0, index + 1);
-    modalSites = siteConfig.sites.slice(index + 1, siteConfig.sites.length);
+    staticSites = appConfig.sites.slice(0, index + 1);
+    modalSites = appConfig.sites.slice(index + 1, appConfig.sites.length);
   }
 
   return (
@@ -48,17 +48,17 @@ export default async function Home() {
         <Avatar
           fill
           alt="image"
-          src={siteConfig.avatar}
+          src={appConfig.avatar}
           warpClass="hover:top-[-10px] w-32 h-32 relative rounded-full inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]"
         />
         <TextEffect text={subTitle}></TextEffect>
         <SocialIcons links={links} />
-        <Links staticSites={staticSites} modalSites={modalSites} />
+        <Links sitesConfig={appConfig.sitesConfig} staticSites={staticSites} modalSites={modalSites} />
       </div>
       <MainEffect bg={bg} mbg={mbg} bgStyle={bgStyle} />
-      {siteConfig?.footer ? (
+      {appConfig?.footer ? (
         <footer className="absolute bottom-2 left-1/2 translate-x-[-50%] cursor-pointer select-none whitespace-nowrap text-sm">
-          {siteConfig.footer}
+          {appConfig.footer}
         </footer>
       ) : null}
     </Suspense>

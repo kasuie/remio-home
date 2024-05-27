@@ -1,15 +1,17 @@
 {
     "name": "KASUIEの主页✨",
+    "icon": "/favicon.ico",
     "domain": "https://remio-home.vercel.app",
     "keywords": "remio,rem,mio,C.C.,KASUIEの次元,KASUIE的个人博客,KASUIE,个人主页,主页,个人记录,技术博客,个人生活",
     "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
     "avatar": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
     "bg": "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
     "mbg": "",
-    "bgStyle": "snow",
+    "bgStyle": "",
     "subTitle": "This is kasuie's personal homepage.",
     "_subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
     "footer": "© 2020 - 2024 By KASUIE",
+    "primaryColor": "#229fff",
     "links": [
         {
             "title": "qq",
@@ -145,6 +147,10 @@
             "desc": "导航页(beta)"
         }
     ],
+    "sitesConfig": {
+        "hoverBlur": false,
+        "hoverScale": true
+    },
     "pwa": {
         "theme_color": "#FFFFFF",
         "background_color": "#FFFFFF",
