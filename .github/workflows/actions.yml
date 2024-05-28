@@ -30,7 +30,7 @@ jobs:
       - name: Build and push Docker Image
         uses: docker/build-push-action@v5
         with:
-          file: .
+          file: ./Dockerfile
           push: true
           platforms: linux/arm64,linux/amd64,windows/amd64
           tags: ${{ secrets.DOCKERHUB_REPO }}:latest,${{ secrets.DOCKERHUB_REPO }}:${{github.sha}}
