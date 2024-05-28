@@ -1,8 +1,8 @@
-FROM node:20 AS base
+FROM node AS base
 
 FROM base AS deps
 
-RUN apk add --no-cache libc6-compat
+RUN apk update && apk add --no-cache libc6-compat
 
 WORKDIR /remio-home
 
