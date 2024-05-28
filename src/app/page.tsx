@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 09:50:56
+ * @LastEditTime: 2024-05-28 14:45:32
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -47,12 +47,13 @@ export default async function Home() {
       <div className="flex w-full flex-col items-center justify-center gap-8 pb-10 pt-[25vh]">
         <Avatar
           fill
+          priority
           alt="image"
           src={appConfig.avatar}
           warpClass="hover:top-[-10px] w-32 h-32 relative rounded-full inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]"
         />
-        <TextEffect text={subTitle}></TextEffect>
-        <SocialIcons links={links} />
+        <TextEffect { ...appConfig.subTitleConfig } text={subTitle}></TextEffect>
+        <SocialIcons {...appConfig.socialConfig} links={links} />
         <Links sitesConfig={appConfig.sitesConfig} staticSites={staticSites} modalSites={modalSites} />
       </div>
       <MainEffect bg={bg} mbg={mbg} bgStyle={bgStyle} />

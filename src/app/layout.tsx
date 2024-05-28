@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 23:53:08
+ * @LastEditTime: 2024-05-28 10:23:31
  * @Description:
  */
 import type { Metadata } from 'next';
@@ -10,7 +10,9 @@ import { Inter } from 'next/font/google';
 import { Layout } from '@/components/layout/Layout';
 import { AppProviders } from '@/providers';
 import { getConfig } from '@/lib/config';
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import '@/styles/index.css';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -42,6 +44,22 @@ export default async function RootLayout({
         <AppProviders>
           <Layout>{children}</Layout>
         </AppProviders>
+        {
+          process.env.GTAGID && (
+            <GoogleAnalytics gaId={process.env.GTAGID} />
+          )
+        }
+        {
+          process.env.GTMID && (
+            <GoogleTagManager gtmId={process.env.GTMID} />
+          )
+        }
+        {
+          process.env.BAIDUID && <Script
+            strategy={"afterInteractive"}
+            src={`https://hm.baidu.com/hm.js?${process.env.BAIDUID}`}
+          />
+        }
       </body>
     </html>
   );

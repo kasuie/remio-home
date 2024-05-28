@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 17:44:45
+ * @LastEditTime: 2024-05-28 16:05:26
  * @Description: 
  */
 export interface Link {
@@ -22,6 +22,20 @@ export interface Site {
 export interface SitesConfig {
   hoverBlur?: boolean;
   hoverScale?: boolean;
+}
+
+export interface SubTitleConfig {
+  heart?: boolean;
+  shadow?: boolean;
+  typing?: boolean;
+  typingGap?: number | string;
+  loopTyping?: boolean;
+  typingCursor?: boolean;
+  showFrom?: boolean;
+}
+
+export interface SocialConfig {
+  autoAnimate?: boolean;
 }
 
 interface PWA {
@@ -51,9 +65,10 @@ export interface AppConfig {
   mbg: string; // 移动端背景图
   bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
+  subTitleConfig?: SubTitleConfig;
+  socialConfig?: SocialConfig;
   footer?: string; // 底部文字
   links: Link[]; // 社交媒体的链接
   sites: Site[]; // 项目或者其他站点链接
   sitesConfig?: SitesConfig; // sites 渲染组件配置项
-  pwa: PWA; // pwa 测试用，暂不需要填写
 }

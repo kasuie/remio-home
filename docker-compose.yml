@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  remio-home:
+    image: kasuie/remio-home
+    container_name: remio-home
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Shanghai
+      - GTMID=value # Google Tag Manager
+      - GTAGID=value # Google Analytics
+      - BAIDUID=value # 百度统计
+    volumes:
+      - /usr/local/config:/remio-home/config
+      - /usr/local/icons:/remio-home/public/icons
+    restart: unless-stopped

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 20:46:02
+ * @LastEditTime: 2024-05-28 17:07:03
  * @Description:
 -->
 
@@ -18,10 +18,10 @@ remio-home(homepage): 基于配置的个人主页
 
 预览：
 
-> ![prve](./images/prev.png)
+> ![snow](./images/snow.png)
+> ![sakura](./images/sakura.png)
 
 [演示 Demo](https://remio-home.vercel.app)
-
 
 ## 部署
 
@@ -33,13 +33,29 @@ remio-home(homepage): 基于配置的个人主页
 docker pull kasuie/remio-home
 ```
 
-启动容器
+**注意：启动容器需要根据自己需要，有所不同，请自行选择**  
+
+**按默认启动容器**
 
 ```sh
 docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
 ```
 
-如果需要自定义`pwa`图标，则需多挂载一个`icons`目录，运行如下命令：
+**需要支持统计分析，需要指定环境变量**
+```sh
+docker run --name remio-home -p 3000:3000 -e GTAGID=value -e GTMID=value -e BAIDUID=value -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
+```
+说明： `GTAGID`为[Google Analytics](https://analytics.google.com)处获取的id，`GTMID`为[Google Tag Manager](https://tagmanager.google.com)处获取的id，`BAIDUID`为[百度统计](https://tongji.baidu.com)处获取的id，如果用`GTMID` 不必再用其它两个了，根据自己需要来。
+
+如果你嫌加在命令上麻烦或者怕重启忘记id，可以考虑从文件中读取环境变量：
+
+```sh
+docker run --name remio-home -p 3000:3000 --env-file /usr/local/.env -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
+```
+
+将`/usr/local/.env`替换为自己环境变量的文件，文件中每行对应一个环境变量，格式为 `key=value`。
+
+**需要自定义`pwa`图标，则需多挂载一个`icons`目录**
 
 ```sh
 docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/config -v /usr/local/icons:/remio-home/public/icons -d kasuie/remio-home:latest
@@ -55,9 +71,46 @@ docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/confi
 
 > 有一点需要注意，如果遇到 `icons` 目录上传了文件，但是没有生效，可能需要重启一下容器，首次上传`favicon192.png`的时候可能会出现。
 
+**如果你都需要自定义**
+
+```sh
+docker run --name remio-home -p 3004:3000 --env-file /usr/local/.env -v /usr/local/config:/remio-home/config -v /usr/local/icons:/remio-home/public/icons -d kasuie/remio-home:latest
+```
+
+也可以使用`docker compose`运行，配置文件`docker-compose.yml`如下：
+
+```yml
+
+version: "3"
+
+services:
+  remio-home:
+    image: kasuie/remio-home
+    container_name: remio-home
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Shanghai
+      - GTMID=value # Google Tag Manager
+      - GTAGID=value # Google Analytics
+      - BAIDUID=value # 百度统计
+    volumes:
+      - /usr/local/config:/remio-home/config
+      - /usr/local/icons:/remio-home/public/icons
+    restart: unless-stopped
+
+```
+
+在文件`docker-compose.yml`目录下，运行命令：
+```sh
+docker-compose up -d remio-home
+```
+
+注意替换~
+
 ### 部署到Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&project-name=remio-home&repository-name=remio-home)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&env=GTMID&env=GTAGID&env=BAIDUID&project-name=remio-home&repository-name=remio-home)
 
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
@@ -65,18 +118,21 @@ docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/confi
 | ----------- | --------- | ---- | --------------------------------------------------------------------------------|
 | name        | string    | 是   | 站点标题                                                                         |
 | favicon     | string    | 否   | 站点图标                                                                         |
-| domain      | string    | 是   | 站点链接                                                                         |
+| domain      | string    | 否   | 站点链接                                                                         |
 | keywords    | string    | 否   | 站点关键词                                                                       |
 | description | string    | 否   | 站点描述性信息                                                                    |
 | avatar      | string    | 是   | 主页头像                                                                         |
-| bg          | string    | 是   | PC背景图                                                                         |
-| mbg         | string    | 是   | 移动端背景图                                                                      |
-| bgStyle     | string    | 否   | 背景飘浮风格。可选值：`sakura` 或 `snow`，也可自行填写飘浮物资源图片                 |
-| subTitle    | string    | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`     |
+| bg          | string    | 否   | PC背景图                                                                         |
+| mbg         | string    | 否   | 移动端背景图                                                                      |
+| bgStyle     | string    | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片     |
+| subTitle    | string    | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`       |
 | footer      | string    | 否   | 底部文字                                                                         |
 | links       | [Link[]](#link-类型说明)    | 是   | 社交媒体的链接                                                   |
 | sites       | [Site[]](#site-类型说明)    | 是   | 项目或者其他站点链接                                             |
-| sitesConfig | [SitesConfig](#sitesconfig-类型说明) | 否   | sites 渲染组件配置项                                    |
+| sitesConfig | [SitesConfig](#SitesConfig-类型说明) | 否   | sites 渲染组件配置项                                    |
+| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否  |   次标题渲染组件配置项                         |
+| socialConfig | [SocialConfig](#SocialConfig-类型说明) | 否   | 社交媒体的链接渲染组件配置项                          |
+
 
 #### Link 类型说明
 
@@ -96,21 +152,30 @@ docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/confi
 | url   | string | 否   | 链接   |
 | desc  | string | 否   | 描述   |
 
+#### SubTitleConfig 类型说明
+
+| 字段    | 类型   | 必填 | 说明   |
+| ------- | ------ | ---- | ------ |
+| heart  | boolean | 否   | 是否显示右上角爱心图标，默认：`true` |
+| typing  | boolean | 否   | 是否开启打字效果，默认：`false` |
+| loopTyping | boolean | 否   | 是否支持切换一言，`typing`为`true`生效，默认：`false`  |
+| shadow   | boolean | 否   | 是否显示文字阴影效果，默认：`false`   |
+| typingGap   | number | 否   | 一言间隔多久开始清除，单位秒(s)，默认为10s，最小3s |
+| typingCursor | boolean | 否   | 是否展示打字光标，`typing`为`true`生效，默认：`true`   |
+| showFrom  | boolean | 否   | 是否显示一言来源，默认：`true`   |
+
+#### SocialConfig 类型说明
+
+| 字段  | 类型   | 必填 | 说明   |
+| ----- | ------ | ---- | ------ |
+| autoAnimate  | boolean | 否   | 是否开启涟漪动画，默认：`true` |
+
 #### 关于icon
 
 目前内置有图标：
 
 ```js
-    github,
-    twitter,
-    qq,
-    telegram,
-    email,
-    steam,
-    bilibili,
-    discord,
-    instargram,
-    x,
+    github, twitter, qq, telegram, email, steam, bilibili, discord, instargram, x,
 ```
 
 `icon` 字段填写图标名即可使用，如果没有你需要的，也可以填写图标的资源链接使用

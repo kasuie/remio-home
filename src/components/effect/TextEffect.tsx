@@ -2,17 +2,22 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 17:30:32
+ * @LastEditTime: 2024-05-28 16:05:14
  * @Description:
  */
 'use client';
+import { SubTitleConfig } from '@/config/config';
+import { clsx } from '@kasuie/utils';
 import { useEffect, useState } from 'react';
 
-export function TextEffect({ text, heart }: { text?: string; heart?: boolean }) {
+export function TextEffect({ text, heart = true, showFrom = true, shadow = false, typing = false, typingGap = 10, loopTyping = false, typingCursor = true }: SubTitleConfig & { text?: string }) {
   const [heartCount, setHeartCount] = useState(0);
-  const [search, setSearch] = useState("");
   const [subTitle, setSubTitle] = useState("");
   const [loading, setLoading] = useState(true);
+  const [tempText, setTempText] = useState("");
+  const [loadingText, setLoadingText] = useState("");
+  const [isHitokoto, setIsHitokoto] = useState(false);
+  const [from, setFrom] = useState("");
 
   useEffect(() => {
     const width: number | undefined =
@@ -25,20 +30,63 @@ export function TextEffect({ text, heart }: { text?: string; heart?: boolean }) 
 
   useEffect(() => {
     if (text?.includes('hitokoto') && text?.includes('http')) {
-      const search = new URL(text)?.search;
-      setSearch(search);
+      setIsHitokoto(true);
       fetch(text)
         .then((response) => {
           return response.ok ? response?.json() : null;
         })
         .then((res) => {
-          setSubTitle(res?.hitokoto);
+          setLoadingText(res?.hitokoto);
+          showFrom && setFrom(res?.from);
         })
         .catch((e) => console.log('error>>>', e));
     } else if (text) {
       setSubTitle(text);
     }
   }, [text]);
+  
+  useEffect(() => {
+    if (loadingText) {
+      typing ? writing(0, loadingText, "") : setSubTitle(loadingText);
+    }
+  }, [loadingText]);
+
+  useEffect(() => {
+    if (isHitokoto && text && typing && loopTyping) {
+      if (subTitle && subTitle === loadingText) {
+        fetch(text)
+        .then((response) => {
+          return response.ok ? response?.json() : null;
+        })
+        .then((res) => {
+          setTimeout(() => {
+            writing(subTitle.length - 1, loadingText, loadingText, false);
+            showFrom && setTimeout(() => setFrom(res?.from), 1000)
+          }, Math.max(+typingGap * 1000, 3000));
+          setTempText(res?.hitokoto);
+        })
+        .catch((e) => console.log('error>>>', e));
+      } else if (!subTitle && tempText && tempText != loadingText) {
+        setTimeout(() => setLoadingText(tempText), 3000);
+      }
+    }
+  }, [subTitle]);
+
+  const writing = (index: number, words: string, text: string, increase: boolean = true) => {
+    if (index < words.length && increase) {
+      text = text + words[index];
+      setSubTitle(text);
+      setTimeout(() => writing(++index, words, text), 200);
+    } else {
+      if (index == 0) {
+        setSubTitle("");
+      } else if(index != words.length){
+        text = text.slice(0, -1);
+        setSubTitle(text);
+        setTimeout(() => writing(--index, words, text, false), 50);
+      }
+    }
+  }
 
   const renderParticles = () => {
     const particles = [];
@@ -61,26 +109,37 @@ export function TextEffect({ text, heart }: { text?: string; heart?: boolean }) 
     return particles;
   };
 
-  if (!subTitle) {
-    return loading ? <div>...</div> : null;
+  if (!subTitle && !loadingText) {
+    return loading ? <div className='min-h-[30px]'>...</div> : null;
   }
 
   return (
     <div
-      className={`k-words-hearts relative text-center font-[cursive] text-[20px] text-white`}
+      className={clsx(`k-words-hearts relative text-center font-[cursive] text-[20px] text-white`, {
+        "min-h-[30px]": typing && !typingCursor,
+        "mb-3": showFrom && typing
+      })}
+      style={{
+        textShadow: shadow ? "2px 2px 1px skyblue" : ""
+      }}
     >
-      {subTitle}
-      {heart && renderParticles()}
-      <span
-        className={`absolute rotate-[75deg] bg-[#cc2a5d] opacity-100 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:translate-x-[-50%] before:rounded-[100px] before:bg-[#cc2a5d] before:content-[''] after:absolute after:left-0 after:top-0 after:h-full after:w-full after:translate-y-[-50%] after:rounded-[100px] after:bg-[#cc2a5d] after:content-['']`}
-        style={{
-          top: `30%`,
-          right: '-3px',
-          width: `6px`,
-          height: `6px`,
-          animationDelay: `0.2s`,
-        }}
-      ></span>
+      <span>{subTitle}</span>
+      {
+        typingCursor && typing ? <span className="animate-[mio-pulse_.7s_infinite]">|</span> : null
+      }
+      {
+        heart &&
+        <span
+          className={clsx(`absolute top-[30%] right-[-10px] w-[6px] h-[6px] rotate-[75deg] bg-[#cc2a5d] opacity-100 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:translate-x-[-50%] before:rounded-[100px] before:bg-[#cc2a5d] before:content-[''] after:absolute after:left-0 after:top-0 after:h-full after:w-full after:translate-y-[-50%] after:rounded-[100px] after:bg-[#cc2a5d] after:content-['']`, {
+            "!opacity-0": loadingText && loadingText != subTitle
+          })}
+        ></span>
+      }
+      {
+        showFrom ? <span className={clsx("absolute scale-75 opacity-0 duration-500 ease-in-out right-0 left-0 flex justify-center bottom-[-20px] md:bottom-[calc(-100%+12px)] text-xs", {
+          "!opacity-100 !scale-100": loadingText == subTitle
+        })}>《{from}》</span> : null
+      }
     </div>
   );
 }

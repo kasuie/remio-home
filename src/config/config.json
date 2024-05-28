@@ -7,8 +7,18 @@
     "avatar": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
     "bg": "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
     "mbg": "",
-    "bgStyle": "",
-    "subTitle": "This is kasuie's personal homepage.",
+    "bgStyle": "snow",
+    "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
+    "subTitleConfig": {
+        "typing": true,
+        "loopTyping": true,
+        "shadow": true,
+        "typingCursor": true,
+        "showFrom": true
+    },
+    "socialConfig": {
+        "autoAnimate": true
+    },
     "footer": "© 2020 - 2024 By KASUIE",
     "primaryColor": "#229fff",
     "links": [

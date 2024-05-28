@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 23:47:06
+ * @LastEditTime: 2024-05-28 11:52:12
  * @Description:
  */
 import type { Config } from 'tailwindcss';
@@ -16,6 +16,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        "mio-pulse": {
+          '0%': { opacity: "100" },
+          '50%': { opacity: '0' },
+          '100%': { opacity: '100' }
+        },
+      },
       transitionTimingFunction: {
         'mio-tooltip': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       },
