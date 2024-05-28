@@ -1,4 +1,4 @@
-FROM node:20 AS base
+FROM node AS base
 
 FROM base AS deps
 
