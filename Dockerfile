@@ -1,4 +1,4 @@
-FROM node AS base
+FROM node:22-alpine AS base
 
 FROM base AS deps
 
@@ -16,8 +16,7 @@ WORKDIR /remio-home
 
 COPY --from=deps /remio-home/ .
 
-RUN npm install -g pnpm
-RUN pnpm run build
+RUN npm install -g pnpm && pnpm run build
 
 FROM base AS runner
 WORKDIR /remio-home
