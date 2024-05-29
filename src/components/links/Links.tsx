@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-27 10:04:28
+ * @LastEditTime: 2024-05-29 17:18:18
  * @Description:
  */
 'use client';
@@ -17,11 +17,13 @@ import { Site, SitesConfig } from '@/config/config';
 export function Links({
   staticSites,
   modalSites,
+  primaryColor,
   sitesConfig = {
     hoverScale: true,
     hoverBlur: true
   }
 }: {
+  primaryColor?: string;
   staticSites: Array<Site>;
   modalSites: Array<Site>;
   sitesConfig?: SitesConfig;
@@ -31,9 +33,9 @@ export function Links({
   const itemContent = (item: Site, animate: boolean = true) => {
     return (
       <>
-        {animate && (
+        {/* {animate && (
           <div className="absolute left-[20px] right-0 top-24 z-[-1] h-[25rem] w-[25rem] rotate-[-36deg] rounded-full bg-[#3651cf26] duration-500 group-hover/main:left-[-20px] group-hover/main:top-[-20px]"></div>
-        )}
+        )} */}
         {item.icon && (
           <div className="p-[5px]">
             <Image
@@ -61,11 +63,12 @@ export function Links({
   };
 
   const linkItem = (item: Site, key: number, animate: boolean = true) => {
+
     const className = clsx(
       'group/main relative shadow-mio-link z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none',
       {
-        'hover:!scale-110 hover:bg-[#229fff] backdrop-blur-[7px]':
-          animate,
+        'hover:!scale-110 backdrop-blur-[7px]':
+          animate, // hover:bg-[#229fff]
         'group-hover/links:scale-90': sitesConfig.hoverScale,
         'group-hover/links:blur-[1px]': sitesConfig.hoverBlur
       }

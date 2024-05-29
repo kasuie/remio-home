@@ -2,11 +2,12 @@
  * @Author: kasuie
  * @Date: 2024-05-23 10:54:46
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-23 17:03:41
+ * @LastEditTime: 2024-05-29 17:24:26
  * @Description:
  */
 import ReactDOM from 'react-dom';
 import { clsx } from '@kasuie/utils';
+import { Cross } from "@kasuie/icon";
 
 export function Modal({
   children,
@@ -47,13 +48,13 @@ export function Modal({
       >
         <span
           className={
-            'absolute right-3 top-[10px] cursor-pointer duration-300 hover:rotate-[180deg]'
+            'absolute right-3 rotate-0 top-[10px] cursor-pointer duration-300 hover:rotate-[180deg]'
           }
           onClick={() => {
             closeModal?.();
           }}
         >
-          x{/* <CloseOutline color="#ffffff80" size={24}></CloseOutline> */}
+          <Cross  size={20} />
         </span>
         {title ? (
           <div className={'text-center text-2xl font-semibold'}>{title}</div>

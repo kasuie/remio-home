@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-28 14:45:32
+ * @LastEditTime: 2024-05-29 16:45:42
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -54,7 +54,7 @@ export default async function Home() {
         />
         <TextEffect { ...appConfig.subTitleConfig } text={subTitle}></TextEffect>
         <SocialIcons {...appConfig.socialConfig} links={links} />
-        <Links sitesConfig={appConfig.sitesConfig} staticSites={staticSites} modalSites={modalSites} />
+        <Links sitesConfig={appConfig.sitesConfig} primaryColor={appConfig.primaryColor} staticSites={staticSites} modalSites={modalSites} />
       </div>
       <MainEffect bg={bg} mbg={mbg} bgStyle={bgStyle} />
       {appConfig?.footer ? (

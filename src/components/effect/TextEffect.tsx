@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-28 16:05:14
+ * @LastEditTime: 2024-05-29 09:57:46
  * @Description:
  */
 'use client';
@@ -54,7 +54,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
   useEffect(() => {
     if (isHitokoto && text && typing && loopTyping) {
       if (subTitle && subTitle === loadingText) {
-        fetch(text)
+        fetch(text, { cache: 'no-store' })
         .then((response) => {
           return response.ok ? response?.json() : null;
         })
@@ -109,7 +109,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
     return particles;
   };
 
-  if (!subTitle && !loadingText) {
+  if (!subTitle && !loadingText && !tempText) {
     return loading ? <div className='min-h-[30px]'>...</div> : null;
   }
 

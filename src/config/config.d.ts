@@ -63,6 +63,7 @@ export interface AppConfig {
   avatar: string; // 主页头像
   bg: string; // pc背景图
   mbg: string; // 移动端背景图
+  primaryColor?: string;
   bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
   subTitleConfig?: SubTitleConfig;
