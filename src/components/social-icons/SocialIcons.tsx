@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 15:54:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-28 15:44:12
+ * @LastEditTime: 2024-05-30 10:40:14
  * @Description:
  */
 "use client"
@@ -10,6 +10,8 @@ import { Github, Twitter, QQ, Telegram, Email, Steam, Bilibili, Discord, Instarg
 import Link from 'next/link';
 import { Avatar } from '../ui/image/Avatar';
 import { clsx, isValidUrl } from '@kasuie/utils';
+import { motion } from 'framer-motion';
+import { showMotion } from '@/lib/motion';
 
 export type SocialItem = {
   icon?: string;
@@ -41,7 +43,7 @@ export const SocialIcons = ({ links, autoAnimate = true }: { links: Array<Social
   }
 
   return (
-    <div className="px-4 md:px-0">
+    <motion.div className="px-4 md:px-0" {...showMotion}>
       <ul className="relative m-0 flex flex-wrap justify-center gap-6 md:gap-9">
         {links?.map((v: SocialItem, index: number) => {
           return (
@@ -72,6 +74,6 @@ export const SocialIcons = ({ links, autoAnimate = true }: { links: Array<Social
           );
         })}
       </ul>
-    </div>
+    </motion.div>
   );
 };

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-28 17:07:03
+ * @LastEditTime: 2024-05-30 11:56:28
  * @Description:
 -->
 
@@ -149,7 +149,7 @@ docker-compose up -d remio-home
 | ----- | ------ | ---- | ------ |
 | icon  | string | 是   | 图标链接 |
 | title | string | 是   | 标题   |
-| url   | string | 否   | 链接   |
+| url   | string | 否   | 链接，`url` 为空，该元素在数组中后面的元素都会展示在弹框`modal`中 |
 | desc  | string | 否   | 描述   |
 
 #### SubTitleConfig 类型说明
@@ -186,6 +186,7 @@ docker-compose up -d remio-home
 | ----- | ------ | ---- | ------ |
 | hoverBlur | boolean | 否   | hover状态下是否模糊   |
 | hoverScale | boolean | 否   | hover状态下是否调整比例   |
+| modal | boolean | 否   | 是否显示`modal`  |
 
 
 ### 本地启动

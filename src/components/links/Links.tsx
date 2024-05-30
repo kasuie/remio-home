@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-29 17:18:18
+ * @LastEditTime: 2024-05-30 09:25:03
  * @Description:
  */
 'use client';
@@ -13,6 +13,8 @@ import Link from 'next/link';
 import { ExternalLink, DotsHorizontal } from '@kasuie/icon';
 import { clsx } from '@kasuie/utils';
 import { Site, SitesConfig } from '@/config/config';
+import { motion } from 'framer-motion';
+import { showMotion } from '@/lib/motion';
 
 export function Links({
   staticSites,
@@ -20,7 +22,8 @@ export function Links({
   primaryColor,
   sitesConfig = {
     hoverScale: true,
-    hoverBlur: true
+    hoverBlur: true,
+    modal: true,
   }
 }: {
   primaryColor?: string;
@@ -87,7 +90,7 @@ export function Links({
             {itemContent(item, animate)}
           </Link>
         ) : (
-          <div onClick={() => openModal()} className={className}>
+          <div onClick={() => sitesConfig?.modal && openModal()} className={className}>
             {itemContent(item)}
           </div>
         )}
@@ -96,9 +99,9 @@ export function Links({
   };
 
   return (
-    <div className="group/links mt-3 flex w-[95vw] flex-wrap gap-[20px_0] justify-evenly md:mt-12 md:w-[70vw]">
+    <motion.div {...showMotion} className="group/links mt-3 flex w-[95vw] flex-wrap gap-[20px_0] justify-evenly md:mt-12 md:w-[70vw]">
       {staticSites.map((v, index) => linkItem(v, index))}
-      {modalSites?.length ? (
+      {sitesConfig?.modal && modalSites?.length ? (
         <Modal
           className="w-[650px]"
           visible={isVisible}
@@ -109,6 +112,6 @@ export function Links({
           </div>
         </Modal>
       ) : null}
-    </div>
+    </motion.div>
   );
 }

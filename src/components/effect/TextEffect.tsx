@@ -2,13 +2,15 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-29 09:57:46
+ * @LastEditTime: 2024-05-30 10:55:45
  * @Description:
  */
 'use client';
 import { SubTitleConfig } from '@/config/config';
 import { clsx } from '@kasuie/utils';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { showMotion } from '@/lib/motion';
 
 export function TextEffect({ text, heart = true, showFrom = true, shadow = false, typing = false, typingGap = 10, loopTyping = false, typingCursor = true }: SubTitleConfig & { text?: string }) {
   const [heartCount, setHeartCount] = useState(0);
@@ -114,7 +116,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
   }
 
   return (
-    <div
+    <motion.div
       className={clsx(`k-words-hearts relative text-center font-[cursive] text-[20px] text-white`, {
         "min-h-[30px]": typing && !typingCursor,
         "mb-3": showFrom && typing
@@ -122,6 +124,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
       style={{
         textShadow: shadow ? "2px 2px 1px skyblue" : ""
       }}
+      {...showMotion}
     >
       <span>{subTitle}</span>
       {
@@ -140,6 +143,6 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
           "!opacity-100 !scale-100": loadingText == subTitle
         })}>《{from}》</span> : null
       }
-    </div>
+    </motion.div>
   );
 }

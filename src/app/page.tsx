@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-29 16:45:42
+ * @LastEditTime: 2024-05-30 10:55:55
  * @Description:
  */
 import { SocialIcons } from '@/components/social-icons/SocialIcons';
@@ -32,8 +32,12 @@ export default async function Home() {
     modalSites: Array<Site> = [];
 
   if (index > -1) {
-    staticSites = appConfig.sites.slice(0, index + 1);
-    modalSites = appConfig.sites.slice(index + 1, appConfig.sites.length);
+    if (!appConfig?.sitesConfig?.modal) {
+      appConfig.sites.splice(index, 1) && (staticSites = appConfig.sites);
+    } else {
+      staticSites = appConfig.sites.slice(0, index + 1);
+      modalSites = appConfig.sites.slice(index + 1, appConfig.sites.length);
+    }
   }
 
   return (
@@ -48,9 +52,10 @@ export default async function Home() {
         <Avatar
           fill
           priority
+          isShowMotion
           alt="image"
           src={appConfig.avatar}
-          warpClass="hover:top-[-10px] w-32 h-32 relative rounded-full inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]"
+          warpClass="hover:top-[-10px] w-32 h-32 relative transition-[top] rounded-full inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]"
         />
         <TextEffect { ...appConfig.subTitleConfig } text={subTitle}></TextEffect>
         <SocialIcons {...appConfig.socialConfig} links={links} />

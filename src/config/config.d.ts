@@ -22,6 +22,7 @@ export interface Site {
 export interface SitesConfig {
   hoverBlur?: boolean;
   hoverScale?: boolean;
+  modal?: boolean;
 }
 
 export interface SubTitleConfig {

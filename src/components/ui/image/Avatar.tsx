@@ -2,23 +2,27 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:21:22
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-25 14:42:57
+ * @LastEditTime: 2024-05-30 11:42:03
  * @Description:
  */
 'use client';
 import { ImageProps, Image } from './Image';
+import { motion } from 'framer-motion';
+import { showMotion } from '@/lib/motion';
 
 export type AvatarProps = {
   round?: 'full' | '50%';
   warpClass?: string;
+  isShowMotion?: boolean;
 } & ImageProps;
 
-export function Avatar({ warpClass, src, alt, ...imageProps }: AvatarProps) {
+export function Avatar({ warpClass, src, alt, isShowMotion, ...imageProps }: AvatarProps) {
   return (
-    <div
+    <motion.div
       className={warpClass}
+      {...(isShowMotion ? showMotion : {})}
     >
       <Image alt={alt || 'image'} src={src} {...imageProps} />
-    </div>
+    </motion.div>
   );
 }

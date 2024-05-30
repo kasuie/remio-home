@@ -158,6 +158,7 @@
     ],
     "sitesConfig": {
         "hoverBlur": false,
-        "hoverScale": true
+        "hoverScale": true,
+        "modal": true
     }
 }
