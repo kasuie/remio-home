@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-28 16:05:26
+ * @LastEditTime: 2024-05-30 16:21:01
  * @Description: 
  */
 export interface Link {
@@ -39,6 +39,13 @@ export interface SocialConfig {
   autoAnimate?: boolean;
 }
 
+export interface BgConfig {
+  bg: string; // pc背景图
+  mbg: string; // 移动端背景图
+  bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
+  blur?: string;
+}
+
 interface PWA {
   theme_color: string;
   background_color: string;
@@ -62,10 +69,9 @@ export interface AppConfig {
   keywords?: string; // 站点关键词
   description?: string; // 站点描述性信息
   avatar: string; // 主页头像
-  bg: string; // pc背景图
-  mbg: string; // 移动端背景图
+  bgConfig: BgConfig;
   primaryColor?: string;
-  bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
+  size?: string; // sm | md | lg 
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
   subTitleConfig?: SubTitleConfig;
   socialConfig?: SocialConfig;

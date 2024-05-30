@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 10:55:45
+ * @LastEditTime: 2024-05-30 16:00:59
  * @Description:
  */
 'use client';
@@ -112,7 +112,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
   };
 
   if (!subTitle && !loadingText && !tempText) {
-    return loading ? <div className='min-h-[30px]'>...</div> : null;
+    return loading ? <motion.div className='min-h-[30px]' {...showMotion}>...</motion.div> : null;
   }
 
   return (
