@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 16:00:59
+ * @LastEditTime: 2024-05-30 21:21:33
  * @Description:
  */
 'use client';
@@ -10,9 +10,8 @@ import { SubTitleConfig } from '@/config/config';
 import { clsx } from '@kasuie/utils';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { showMotion } from '@/lib/motion';
 
-export function TextEffect({ text, heart = true, showFrom = true, shadow = false, typing = false, typingGap = 10, loopTyping = false, typingCursor = true }: SubTitleConfig & { text?: string }) {
+export function TextEffect({ text, heart = true, showFrom = true, shadow = false, typing = false, typingGap = 10, loopTyping = false, typingCursor = true, motions = {} }: SubTitleConfig & { text?: string, motions?: object }) {
   const [heartCount, setHeartCount] = useState(0);
   const [subTitle, setSubTitle] = useState("");
   const [loading, setLoading] = useState(true);
@@ -112,7 +111,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
   };
 
   if (!subTitle && !loadingText && !tempText) {
-    return loading ? <motion.div className='min-h-[30px]' {...showMotion}>...</motion.div> : null;
+    return loading ? <motion.div className='min-h-[30px]' {...motions}>...</motion.div> : null;
   }
 
   return (
@@ -124,7 +123,7 @@ export function TextEffect({ text, heart = true, showFrom = true, shadow = false
       style={{
         textShadow: shadow ? "2px 2px 1px skyblue" : ""
       }}
-      {...showMotion}
+      {...motions}
     >
       <span>{subTitle}</span>
       {

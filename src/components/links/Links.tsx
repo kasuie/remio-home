@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 09:25:03
+ * @LastEditTime: 2024-05-30 21:22:04
  * @Description:
  */
 'use client';
@@ -14,7 +14,6 @@ import { ExternalLink, DotsHorizontal } from '@kasuie/icon';
 import { clsx } from '@kasuie/utils';
 import { Site, SitesConfig } from '@/config/config';
 import { motion } from 'framer-motion';
-import { showMotion } from '@/lib/motion';
 
 export function Links({
   staticSites,
@@ -24,12 +23,14 @@ export function Links({
     hoverScale: true,
     hoverBlur: true,
     modal: true,
-  }
+  },
+  motions = {}
 }: {
   primaryColor?: string;
   staticSites: Array<Site>;
   modalSites: Array<Site>;
   sitesConfig?: SitesConfig;
+  motions?: object;
 }) {
   const { isVisible, openModal, closeModal } = useModal();
 
@@ -99,7 +100,7 @@ export function Links({
   };
 
   return (
-    <motion.div {...showMotion} className="group/links mt-3 flex w-[95vw] flex-wrap gap-[20px_0] justify-evenly md:mt-12 md:w-[70vw]">
+    <motion.div {...motions} className="group/links mt-3 flex w-[95vw] flex-wrap gap-[20px_0] justify-evenly md:mt-12 md:w-[70vw]">
       {staticSites.map((v, index) => linkItem(v, index))}
       {sitesConfig?.modal && modalSites?.length ? (
         <Modal

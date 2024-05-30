@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 15:54:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 10:40:14
+ * @LastEditTime: 2024-05-30 21:24:19
  * @Description:
  */
 "use client"
@@ -11,16 +11,9 @@ import Link from 'next/link';
 import { Avatar } from '../ui/image/Avatar';
 import { clsx, isValidUrl } from '@kasuie/utils';
 import { motion } from 'framer-motion';
-import { showMotion } from '@/lib/motion';
+import { Link as LinkType } from '@/config/config';
 
-export type SocialItem = {
-  icon?: string;
-  title: string;
-  url?: string;
-  color?: string;
-};
-
-export const SocialIcons = ({ links, autoAnimate = true }: { links: Array<SocialItem>, autoAnimate?: boolean }) => {
+export const SocialIcons = ({ links, autoAnimate = true, motions = {} }: { links: Array<LinkType>, autoAnimate?: boolean, motions?: object }) => {
 
   const IconsMap: any = {
     github: (props: SvgProps) => <Github {...props} />,
@@ -43,9 +36,9 @@ export const SocialIcons = ({ links, autoAnimate = true }: { links: Array<Social
   }
 
   return (
-    <motion.div className="px-4 md:px-0" {...showMotion}>
+    <motion.div className="px-4 md:px-0" {...motions}>
       <ul className="relative m-0 flex flex-wrap justify-center gap-6 md:gap-9">
-        {links?.map((v: SocialItem, index: number) => {
+        {links?.map((v: LinkType, index: number) => {
           return (
             <Link
               key={index}

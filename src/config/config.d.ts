@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 16:21:01
+ * @LastEditTime: 2024-05-30 22:03:59
  * @Description: 
  */
 export interface Link {
@@ -46,6 +46,11 @@ export interface BgConfig {
   blur?: string;
 }
 
+interface LayoutConfig {
+  istTransition?: boolean; // 是否启动过渡动画
+  gapSize?: string; // sm | md | lg  组件间隔大小
+}
+
 interface PWA {
   theme_color: string;
   background_color: string;
@@ -69,9 +74,9 @@ export interface AppConfig {
   keywords?: string; // 站点关键词
   description?: string; // 站点描述性信息
   avatar: string; // 主页头像
-  bgConfig: BgConfig;
+  layoutConfig?: LayoutConfig; // 布局相关的一些配置
+  bgConfig: BgConfig; // 背景相关的一些配置
   primaryColor?: string;
-  size?: string; // sm | md | lg 
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
   subTitleConfig?: SubTitleConfig;
   socialConfig?: SocialConfig;

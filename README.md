@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 11:56:28
+ * @LastEditTime: 2024-05-30 22:14:57
  * @Description:
 -->
 
@@ -122,9 +122,8 @@ docker-compose up -d remio-home
 | keywords    | string    | 否   | 站点关键词                                                                       |
 | description | string    | 否   | 站点描述性信息                                                                    |
 | avatar      | string    | 是   | 主页头像                                                                         |
-| bg          | string    | 否   | PC背景图                                                                         |
-| mbg         | string    | 否   | 移动端背景图                                                                      |
-| bgStyle     | string    | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片     |
+| LayoutConfig | [LayoutConfig](#LayoutConfig-类型说明)  | 否   | 布局相关的一些配置                                 |
+| BgConfig    | [BgConfig](#BgConfig-类型说明)    | 否   | 背景相关的一些配置                                         |
 | subTitle    | string    | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`       |
 | footer      | string    | 否   | 底部文字                                                                         |
 | links       | [Link[]](#link-类型说明)    | 是   | 社交媒体的链接                                                   |
@@ -133,6 +132,22 @@ docker-compose up -d remio-home
 | subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否  |   次标题渲染组件配置项                         |
 | socialConfig | [SocialConfig](#SocialConfig-类型说明) | 否   | 社交媒体的链接渲染组件配置项                          |
 
+
+#### LayoutConfig 类型说明
+
+| 字段  | 类型   | 必填 | 说明   |
+| ----- | ------ | ---- | ------ |
+| bg | string | 否   | pc背景图   |
+| mbg | string | 否   | 移动端背景图   |
+| bgStyle | string | 否  | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片   |
+| blur  | string | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm` |
+
+#### BgConfig 类型说明
+
+| 字段  | 类型   | 必填 | 说明   |
+| ----- | ------ | ---- | ------ |
+| istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启 |
+| gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`md` |
 
 #### Link 类型说明
 

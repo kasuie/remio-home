@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-23 10:54:46
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 10:26:56
+ * @LastEditTime: 2024-05-30 22:11:47
  * @Description:
  */
 import ReactDOM from 'react-dom';
@@ -51,7 +51,7 @@ export function Modal({
         >
           <motion.div
             className={clsx(
-              `z-20 max-h-[60%] h-full ease-in-out min-w-[95vw] max-w-[95vw] overflow-hidden rounded-xl bg-[#16181aa8] p-[30px_10px] shadow-[0_12px_34px_6px_#0000002e] md:min-w-min md:max-w-[80%] md:p-[40px_20px_30px_20px] ${className}`,
+              `z-20 max-h-[60%] relative h-full ease-in-out min-w-[95vw] max-w-[95vw] overflow-hidden rounded-xl bg-[#16181aa8] p-[30px_10px] shadow-[0_12px_34px_6px_#0000002e] md:min-w-min md:max-w-[80%] md:p-[40px_20px_30px_20px] ${className}`,
               {
                 'scale-100': visible,
               }
