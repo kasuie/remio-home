@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-31 13:39:04
+ * @LastEditTime: 2024-06-01 12:41:23
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -54,8 +54,9 @@ export default async function Home() {
           links,
           staticSites,
           modalSites,
+          sitesConfig: appConfig?.sitesConfig,
           name: appConfig.name,
-          avatar: appConfig.avatar,
+          avatarConfig: appConfig.avatarConfig,
           primaryColor: appConfig.primaryColor,
         }}
       />

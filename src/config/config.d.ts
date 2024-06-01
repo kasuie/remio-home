@@ -2,8 +2,8 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 22:03:59
- * @Description: 
+ * @LastEditTime: 2024-06-01 15:55:29
+ * @Description:
  */
 export interface Link {
   title: string;
@@ -46,6 +46,13 @@ export interface BgConfig {
   blur?: string;
 }
 
+interface AvatarConfig {
+  src: string; // 头像资源路径
+  size?: number; // 头像尺寸
+  round?: string; // full | 3xl | xl | sm | md | lg 圆角程度
+  hoverAnimate?: string; // top 
+}
+
 interface LayoutConfig {
   istTransition?: boolean; // 是否启动过渡动画
   gapSize?: string; // sm | md | lg  组件间隔大小
@@ -73,7 +80,7 @@ export interface AppConfig {
   domain: string; // 站点链接
   keywords?: string; // 站点关键词
   description?: string; // 站点描述性信息
-  avatar: string; // 主页头像
+  avatarConfig?: AvatarConfig; // 主页头像相关配置
   layoutConfig?: LayoutConfig; // 布局相关的一些配置
   bgConfig: BgConfig; // 背景相关的一些配置
   primaryColor?: string;

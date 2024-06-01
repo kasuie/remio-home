@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 22:14:57
+ * @LastEditTime: 2024-06-01 16:20:09
  * @Description:
 -->
 
@@ -18,8 +18,7 @@ remio-home(homepage): 基于配置的个人主页
 
 预览：
 
-> ![snow](./images/snow.png)
-> ![sakura](./images/sakura.png)
+> ![snow](./images/snow.png) > ![sakura](./images/sakura.png)
 
 [演示 Demo](https://remio-home.vercel.app)
 
@@ -33,7 +32,7 @@ remio-home(homepage): 基于配置的个人主页
 docker pull kasuie/remio-home
 ```
 
-**注意：启动容器需要根据自己需要，有所不同，请自行选择**  
+**注意：启动容器需要根据自己需要，有所不同，请自行选择**
 
 **按默认启动容器**
 
@@ -42,9 +41,11 @@ docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/confi
 ```
 
 **需要支持统计分析，需要指定环境变量**
+
 ```sh
 docker run --name remio-home -p 3000:3000 -e GTAGID=value -e GTMID=value -e BAIDUID=value -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
 ```
+
 说明： `GTAGID`为[Google Analytics](https://analytics.google.com)处获取的id，`GTMID`为[Google Tag Manager](https://tagmanager.google.com)处获取的id，`BAIDUID`为[百度统计](https://tongji.baidu.com)处获取的id，如果用`GTMID` 不必再用其它两个了，根据自己需要来。
 
 如果你嫌加在命令上麻烦或者怕重启忘记id，可以考虑从文件中读取环境变量：
@@ -80,7 +81,6 @@ docker run --name remio-home -p 3004:3000 --env-file /usr/local/.env -v /usr/loc
 也可以使用`docker compose`运行，配置文件`docker-compose.yml`如下：
 
 ```yml
-
 version: "3"
 
 services:
@@ -98,10 +98,10 @@ services:
       - /usr/local/config:/remio-home/config
       - /usr/local/icons:/remio-home/public/icons
     restart: unless-stopped
-
 ```
 
 在文件`docker-compose.yml`目录下，运行命令：
+
 ```sh
 docker-compose up -d remio-home
 ```
@@ -114,76 +114,84 @@ docker-compose up -d remio-home
 
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
-| 字段        | 类型      | 必填 | 说明                                                                             |
-| ----------- | --------- | ---- | --------------------------------------------------------------------------------|
-| name        | string    | 是   | 站点标题                                                                         |
-| favicon     | string    | 否   | 站点图标                                                                         |
-| domain      | string    | 否   | 站点链接                                                                         |
-| keywords    | string    | 否   | 站点关键词                                                                       |
-| description | string    | 否   | 站点描述性信息                                                                    |
-| avatar      | string    | 是   | 主页头像                                                                         |
-| LayoutConfig | [LayoutConfig](#LayoutConfig-类型说明)  | 否   | 布局相关的一些配置                                 |
-| BgConfig    | [BgConfig](#BgConfig-类型说明)    | 否   | 背景相关的一些配置                                         |
-| subTitle    | string    | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`       |
-| footer      | string    | 否   | 底部文字                                                                         |
-| links       | [Link[]](#link-类型说明)    | 是   | 社交媒体的链接                                                   |
-| sites       | [Site[]](#site-类型说明)    | 是   | 项目或者其他站点链接                                             |
-| sitesConfig | [SitesConfig](#SitesConfig-类型说明) | 否   | sites 渲染组件配置项                                    |
-| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否  |   次标题渲染组件配置项                         |
-| socialConfig | [SocialConfig](#SocialConfig-类型说明) | 否   | 社交媒体的链接渲染组件配置项                          |
+| 字段           | 类型                                       | 必填 | 说明                                                                          |
+| -------------- | ------------------------------------------ | ---- | ----------------------------------------------------------------------------- |
+| name           | string                                     | 是   | 站点标题                                                                      |
+| favicon        | string                                     | 否   | 站点图标                                                                      |
+| domain         | string                                     | 否   | 站点链接                                                                      |
+| keywords       | string                                     | 否   | 站点关键词                                                                    |
+| description    | string                                     | 否   | 站点描述性信息                                                                |
+| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)     | 否   | 主页头像相关配置                                                              |
+| LayoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)     | 否   | 布局相关的一些配置                                                            |
+| BgConfig       | [BgConfig](#BgConfig-类型说明)             | 否   | 背景相关的一些配置                                                            |
+| subTitle       | string                                     | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c` |
+| footer         | string                                     | 否   | 底部文字                                                                      |
+| links          | [Link[]](#link-类型说明)                   | 是   | 社交媒体的链接                                                                |
+| sites          | [Site[]](#site-类型说明)                   | 是   | 项目或者其他站点链接                                                          |
+| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)       | 否   | sites 渲染组件配置项                                                          |
+| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否   | 次标题渲染组件配置项                                                          |
+| socialConfig   | [SocialConfig](#SocialConfig-类型说明)     | 否   | 社交媒体的链接渲染组件配置项                                                  |
 
+#### AvatarConfig 类型说明
+
+| 字段         | 类型   | 必填 | 说明                                                            |
+| ------------ | ------ | ---- | --------------------------------------------------------------- |
+| src          | string | 否   | 头像资源路径                                                    |
+| size         | string | 否   | 头像尺寸                                                        |
+| round        | string | 否   | 圆角程度，可选`full`,`3xl`,`xl`,`sm`,`md`和`lg`，默认`full`     |
+| hoverAnimate | string | 否   | 头像`hover` 时效果动画，可选`top` 和 `rotate`，默认为空没有动画 |
 
 #### LayoutConfig 类型说明
 
-| 字段  | 类型   | 必填 | 说明   |
-| ----- | ------ | ---- | ------ |
-| bg | string | 否   | pc背景图   |
-| mbg | string | 否   | 移动端背景图   |
-| bgStyle | string | 否  | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片   |
-| blur  | string | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm` |
+| 字段    | 类型   | 必填 | 说明                                                                               |
+| ------- | ------ | ---- | ---------------------------------------------------------------------------------- |
+| bg      | string | 否   | pc背景图                                                                           |
+| mbg     | string | 否   | 移动端背景图                                                                       |
+| bgStyle | string | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片 |
+| blur    | string | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm`                                 |
 
 #### BgConfig 类型说明
 
-| 字段  | 类型   | 必填 | 说明   |
-| ----- | ------ | ---- | ------ |
-| istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启 |
+| 字段          | 类型    | 必填 | 说明                                |
+| ------------- | ------- | ---- | ----------------------------------- |
+| istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启      |
 | gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`md` |
 
 #### Link 类型说明
 
-| 字段  | 类型   | 必填 | 说明   |
-| ----- | ------ | ---- | ------ |
-| title | string | 是   | 标题   |
-| color | string | 否   | 颜色   |
-| url   | string | 是   | 链接   |
+| 字段  | 类型   | 必填 | 说明     |
+| ----- | ------ | ---- | -------- |
+| title | string | 是   | 标题     |
+| color | string | 否   | 颜色     |
+| url   | string | 是   | 链接     |
 | icon  | string | 否   | 图标链接 |
 
 #### Site 类型说明
 
-| 字段  | 类型   | 必填 | 说明   |
-| ----- | ------ | ---- | ------ |
-| icon  | string | 是   | 图标链接 |
-| title | string | 是   | 标题   |
+| 字段  | 类型   | 必填 | 说明                                                              |
+| ----- | ------ | ---- | ----------------------------------------------------------------- |
+| icon  | string | 是   | 图标链接                                                          |
+| title | string | 是   | 标题                                                              |
 | url   | string | 否   | 链接，`url` 为空，该元素在数组中后面的元素都会展示在弹框`modal`中 |
-| desc  | string | 否   | 描述   |
+| desc  | string | 否   | 描述                                                              |
 
 #### SubTitleConfig 类型说明
 
-| 字段    | 类型   | 必填 | 说明   |
-| ------- | ------ | ---- | ------ |
-| heart  | boolean | 否   | 是否显示右上角爱心图标，默认：`true` |
-| typing  | boolean | 否   | 是否开启打字效果，默认：`false` |
-| loopTyping | boolean | 否   | 是否支持切换一言，`typing`为`true`生效，默认：`false`  |
-| shadow   | boolean | 否   | 是否显示文字阴影效果，默认：`false`   |
-| typingGap   | number | 否   | 一言间隔多久开始清除，单位秒(s)，默认为10s，最小3s |
-| typingCursor | boolean | 否   | 是否展示打字光标，`typing`为`true`生效，默认：`true`   |
-| showFrom  | boolean | 否   | 是否显示一言来源，默认：`true`   |
+| 字段         | 类型    | 必填 | 说明                                                  |
+| ------------ | ------- | ---- | ----------------------------------------------------- |
+| heart        | boolean | 否   | 是否显示右上角爱心图标，默认：`true`                  |
+| typing       | boolean | 否   | 是否开启打字效果，默认：`false`                       |
+| loopTyping   | boolean | 否   | 是否支持切换一言，`typing`为`true`生效，默认：`false` |
+| shadow       | boolean | 否   | 是否显示文字阴影效果，默认：`false`                   |
+| typingGap    | number  | 否   | 一言间隔多久开始清除，单位秒(s)，默认为10s，最小3s    |
+| typingCursor | boolean | 否   | 是否展示打字光标，`typing`为`true`生效，默认：`true`  |
+| showFrom     | boolean | 否   | 是否显示一言来源，默认：`true`                        |
 
 #### SocialConfig 类型说明
 
-| 字段  | 类型   | 必填 | 说明   |
-| ----- | ------ | ---- | ------ |
-| autoAnimate  | boolean | 否   | 是否开启涟漪动画，默认：`true` |
+| 字段        | 类型    | 必填 | 说明                           |
+| ----------- | ------- | ---- | ------------------------------ |
+| autoAnimate | boolean | 否   | 是否开启涟漪动画，默认：`true` |
 
 #### 关于icon
 
@@ -197,12 +205,11 @@ docker-compose up -d remio-home
 
 #### SitesConfig 类型说明
 
-| 字段  | 类型   | 必填 | 说明   |
-| ----- | ------ | ---- | ------ |
-| hoverBlur | boolean | 否   | hover状态下是否模糊   |
-| hoverScale | boolean | 否   | hover状态下是否调整比例   |
-| modal | boolean | 否   | 是否显示`modal`  |
-
+| 字段       | 类型    | 必填 | 说明                    |
+| ---------- | ------- | ---- | ----------------------- |
+| hoverBlur  | boolean | 否   | hover状态下是否模糊     |
+| hoverScale | boolean | 否   | hover状态下是否调整比例 |
+| modal      | boolean | 否   | 是否显示`modal`         |
 
 ### 本地启动
 
