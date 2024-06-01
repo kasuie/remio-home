@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-05-23 15:38:38
  * @Description:
  */
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from "react";
 
 const useModal = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,12 +14,12 @@ const useModal = () => {
   const closeModal = useCallback(() => setIsVisible(false), []);
 
   useEffect(() => {
-    const body: any = document.getElementsByTagName('body')[0];
+    const body: any = document.getElementsByTagName("body")[0];
     if (body) {
       if (isVisible) {
-        body.style.overflow = 'hidden';
+        body.style.overflow = "hidden";
       } else {
-        body.style.overflow = 'auto';
+        body.style.overflow = "auto";
       }
     }
   }, [isVisible]);

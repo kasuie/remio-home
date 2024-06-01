@@ -5,26 +5,26 @@
  * @LastEditTime: 2024-05-31 13:39:04
  * @Description:
  */
-import { Loader } from '@/components/ui/loader/Loader';
-import { Suspense } from 'react';
-import { getConfig } from '@/lib/config';
-import { MainEffect } from '@/components/effect/MainEffect';
-import { Site } from '@/config/config';
-import { getMotion } from '@/lib/motion';
-import { Footer } from '@/components/layout/Footer';
-import { Vertical } from '@/components/content/Vertical';
+import { Loader } from "@/components/ui/loader/Loader";
+import { Suspense } from "react";
+import { getConfig } from "@/lib/config";
+import { MainEffect } from "@/components/effect/MainEffect";
+import { Site } from "@/config/config";
+import { getMotion } from "@/lib/motion";
+import { Footer } from "@/components/layout/Footer";
+import { Vertical } from "@/components/content/Vertical";
 
 export const revalidate = 0;
 
 export default async function Home() {
+  const appConfig = await getConfig("config.json");
 
-  const appConfig = await getConfig('config.json');
-  
   const index = appConfig?.sites?.findIndex?.((v: Site) => !v.url);
   const links = appConfig?.links;
   const subTitle = appConfig?.subTitle;
   const bgConfig = appConfig?.bgConfig;
-  const { istTransition = true, gapSize = "md" } = appConfig?.layoutConfig || {};
+  const { istTransition = true, gapSize = "md" } =
+    appConfig?.layoutConfig || {};
 
   let staticSites: Array<Site> = [],
     modalSites: Array<Site> = [];
@@ -46,25 +46,33 @@ export default async function Home() {
         </Loader>
       }
     >
-      <Vertical {...{
-        gapSize,
-        istTransition,
-        subTitle,
-        links,
-        staticSites,
-        modalSites,
-        name: appConfig.name,
-        avatar: appConfig.avatar,
-        primaryColor: appConfig.primaryColor
-      }} />
+      <Vertical
+        {...{
+          gapSize,
+          istTransition,
+          subTitle,
+          links,
+          staticSites,
+          modalSites,
+          name: appConfig.name,
+          avatar: appConfig.avatar,
+          primaryColor: appConfig.primaryColor,
+        }}
+      />
       <MainEffect
         bg={bgConfig?.bg || "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp"}
-        mbg={bgConfig?.mbg || "https://kasuie.cc/api/img/bg?type=mobile&size=regular"}
+        mbg={
+          bgConfig?.mbg ||
+          "https://kasuie.cc/api/img/bg?type=mobile&size=regular"
+        }
         bgStyle={bgConfig?.bgStyle}
         blur={bgConfig?.blur || "sm"}
       />
       {appConfig?.footer ? (
-        <Footer motions={getMotion(0.1, 4, 0.2, istTransition)} text={appConfig.footer} />
+        <Footer
+          motions={getMotion(0.1, 4, 0.2, istTransition)}
+          text={appConfig.footer}
+        />
       ) : null}
     </Suspense>
   );

@@ -5,16 +5,17 @@
  * @LastEditTime: 2024-05-27 23:48:46
  * @Description:
  */
-'use client';
-import { ThemeProvider } from 'next-themes';
+"use client";
+import { ThemeProvider } from "next-themes";
 
 export function AppProviders({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  return <ThemeProvider key="themeProvider" defaultTheme="light" enableSystem>
-    {children}
-  </ThemeProvider>;
+  return (
+    <ThemeProvider key="themeProvider" defaultTheme="light" enableSystem>
+      {children}
+    </ThemeProvider>
+  );
 }

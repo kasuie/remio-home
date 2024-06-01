@@ -5,9 +5,9 @@
  * @LastEditTime: 2024-05-24 10:09:47
  * @Description:
  */
-'use client';
-import { makeBlurDataURL } from '@kasuie/utils';
-import NextImage, { ImageProps as OImageProps } from 'next/image';
+"use client";
+import { makeBlurDataURL } from "@kasuie/utils";
+import NextImage, { ImageProps as OImageProps } from "next/image";
 
 export type ImageProps = {
   alt?: string | undefined;
@@ -29,13 +29,13 @@ export const Image = ({
   return (
     <NextImage
       src={src}
-      alt={alt || 'image'}
+      alt={alt || "image"}
       width={width}
       height={height}
       unoptimized={unoptimized}
       {...(skeleton
         ? {
-            placeholder: 'blur',
+            placeholder: "blur",
             blurDataURL: makeBlurDataURL(width as number, height as number),
           }
         : {})}
@@ -45,4 +45,4 @@ export const Image = ({
   );
 };
 
-Image.displayName = 'Image';
+Image.displayName = "Image";

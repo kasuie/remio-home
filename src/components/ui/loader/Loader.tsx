@@ -5,11 +5,11 @@
  * @LastEditTime: 2024-05-22 11:42:24
  * @Description:
  */
-import { Paw } from '@kasuie/icon';
+import { Paw } from "@kasuie/icon";
 
 export const Loader = ({
-  className = '',
-  warpClass = '',
+  className = "",
+  warpClass = "",
   children,
   miao = false,
 }: {
@@ -26,14 +26,14 @@ export const Loader = ({
         <Paw
           className={`h-full w-full ${className}`}
           style={{
-            width: '300px',
-            height: '200px',
+            width: "300px",
+            height: "200px",
           }}
         />
       ) : (
         <div className={`mio-loader relative h-10 w-10 ${className}`}></div>
       )}
-      {miao && children && typeof children == 'string' ? (
+      {miao && children && typeof children == "string" ? (
         <p data-glitch={children} className="mio-glitch">
           {children}
         </p>
