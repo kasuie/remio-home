@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-01 16:20:09
+ * @LastEditTime: 2024-06-02 19:50:59
  * @Description:
 -->
 
@@ -110,7 +110,7 @@ docker-compose up -d remio-home
 
 ### 部署到Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&env=GTMID&env=GTAGID&env=BAIDUID&project-name=remio-home&repository-name=remio-home)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&project-name=remio-home&repository-name=remio-home)
 
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
@@ -141,7 +141,7 @@ docker-compose up -d remio-home
 | round        | string | 否   | 圆角程度，可选`full`,`3xl`,`xl`,`sm`,`md`和`lg`，默认`full`     |
 | hoverAnimate | string | 否   | 头像`hover` 时效果动画，可选`top` 和 `rotate`，默认为空没有动画 |
 
-#### LayoutConfig 类型说明
+#### BgConfig 类型说明
 
 | 字段    | 类型   | 必填 | 说明                                                                               |
 | ------- | ------ | ---- | ---------------------------------------------------------------------------------- |
@@ -150,7 +150,7 @@ docker-compose up -d remio-home
 | bgStyle | string | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片 |
 | blur    | string | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm`                                 |
 
-#### BgConfig 类型说明
+#### LayoutConfig 类型说明
 
 | 字段          | 类型    | 必填 | 说明                                |
 | ------------- | ------- | ---- | ----------------------------------- |

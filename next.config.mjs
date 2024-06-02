@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-26 17:19:41
+ * @LastEditTime: 2024-06-02 19:49:21
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -19,9 +19,6 @@ const withPWA = nextPWA({
 
 const nextConfig = {
   output: "standalone",
-  compiler: {
-    removeConsole: isProd,
-  },
   eslint: {
     ignoreDuringBuilds: true,
   },
