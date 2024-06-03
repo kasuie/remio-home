@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-01 15:55:29
+ * @LastEditTime: 2024-06-03 20:29:55
  * @Description:
  */
 export interface Link {
@@ -23,6 +23,8 @@ export interface SitesConfig {
   hoverBlur?: boolean;
   hoverScale?: boolean;
   modal?: boolean;
+  modalTips?: string;
+  modalTitle?: string;
 }
 
 export interface SubTitleConfig {
@@ -50,7 +52,7 @@ interface AvatarConfig {
   src: string; // 头像资源路径
   size?: number; // 头像尺寸
   round?: string; // full | 3xl | xl | sm | md | lg 圆角程度
-  hoverAnimate?: string; // top 
+  hoverAnimate?: string; // top
 }
 
 interface LayoutConfig {

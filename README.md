@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-02 19:50:59
+ * @LastEditTime: 2024-06-03 20:35:12
  * @Description:
 -->
 
@@ -210,6 +210,8 @@ docker-compose up -d remio-home
 | hoverBlur  | boolean | 否   | hover状态下是否模糊     |
 | hoverScale | boolean | 否   | hover状态下是否调整比例 |
 | modal      | boolean | 否   | 是否显示`modal`         |
+| modalTips  | string  | 否   | `modal`的提示语         |
+| modalTitle | string  | 否   | `modal`的标题           |
 
 ### 本地启动
 

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 21:22:04
+ * @LastEditTime: 2024-06-03 20:31:17
  * @Description:
  */
 "use client";
@@ -72,11 +72,12 @@ export function Links({
 
   const linkItem = (item: Site, key: number, animate: boolean = true) => {
     const className = clsx(
-      "group/main relative shadow-mio-link z-[1] m-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none",
+      "group/main relative shadow-mio-link z-[1] my-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none",
       {
         "hover:!scale-110 backdrop-blur-[7px]": animate, // hover:bg-[#229fff]
         "group-hover/links:scale-90": sitesConfig.hoverScale,
         "group-hover/links:blur-[1px]": sitesConfig.hoverBlur,
+        "mx-2": animate,
       }
     );
 
@@ -114,8 +115,14 @@ export function Links({
         <Modal
           className="w-[650px]"
           visible={isVisible}
+          title={sitesConfig?.modalTitle}
           closeModal={closeModal}
         >
+          {sitesConfig?.modalTips && (
+            <div className="relative pb-2 indent-5 text-sm before:absolute before:left-[7px] before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-[#229fff] before:content-[''] after:absolute after:left-[5px] after:top-[6px] after:h-2 after:w-2 after:rounded-full after:border after:border-[#229fff]">
+              {sitesConfig.modalTips}
+            </div>
+          )}
           <div className="flex flex-wrap justify-between">
             {modalSites.map((v, index) => linkItem(v, index, false))}
           </div>

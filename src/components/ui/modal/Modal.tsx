@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-23 10:54:46
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 22:11:47
+ * @LastEditTime: 2024-06-03 20:39:09
  * @Description:
  */
 import ReactDOM from "react-dom";
@@ -51,14 +51,13 @@ export function Modal({
         >
           <motion.div
             className={clsx(
-              `relative z-20 h-full max-h-[60%] min-w-[95vw] max-w-[95vw] overflow-hidden rounded-xl bg-[#16181aa8] p-[30px_10px] shadow-[0_12px_34px_6px_#0000002e] ease-in-out md:min-w-min md:max-w-[80%] md:p-[40px_20px_30px_20px] ${className}`,
+              `relative z-20 h-full max-h-[60%] min-w-[95vw] max-w-[95vw] overflow-hidden rounded-xl bg-[#16181aa8] p-[5px_10px_20px_10px] shadow-[0_12px_34px_6px_#0000002e] ease-in-out md:min-w-min md:max-w-[80%] md:p-[10px_20px_30px_20px] ${className}`,
               {
                 "scale-100": visible,
+                "!pt-10": !title,
               }
             )}
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
+            onClick={(e) => e?.stopPropagation()}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
@@ -75,12 +74,12 @@ export function Modal({
               <Cross size={20} />
             </span>
             {title ? (
-              <div className={"text-center text-2xl font-semibold"}>
+              <div className={"py-1 text-center text-2xl font-semibold"}>
                 {title}
               </div>
             ) : null}
             <div
-              className={`mio-scroll max-h-full min-h-40 overflow-y-auto p-[15px_5px] ${mainClass}`}
+              className={`mio-scroll max-h-full min-h-40 overflow-y-auto p-[5px] ${mainClass}`}
             >
               {children}
             </div>
