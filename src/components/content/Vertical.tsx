@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-01 16:15:30
+ * @LastEditTime: 2024-06-04 15:34:51
  * @Description:
  */
 import { clsx } from "@kasuie/utils";
@@ -13,12 +13,14 @@ import {
   Link,
   Site,
   SitesConfig,
+  SlidersConfig,
   SocialConfig,
   SubTitleConfig,
 } from "@/config/config";
 import { TextEffect } from "../effect/TextEffect";
 import { SocialIcons } from "../social-icons/SocialIcons";
 import { Links } from "../links/Links";
+import { Sliders } from "../sliders/Sliders";
 
 interface VerticalProps {
   gapSize: string;
@@ -33,6 +35,7 @@ interface VerticalProps {
   modalSites: Site[];
   primaryColor?: string;
   subTitle?: string;
+  sliders?: SlidersConfig;
 }
 export function Vertical({
   gapSize,
@@ -47,6 +50,7 @@ export function Vertical({
   modalSites,
   primaryColor,
   subTitle,
+  sliders
 }: VerticalProps) {
   return (
     <div
@@ -70,7 +74,7 @@ export function Vertical({
         warpClass={clsx(
           "relative transition-[top,transform] rotate-0 inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]",
           {
-            "rounded-full": !avatarConfig?.round ||avatarConfig?.round == "full",
+            "rounded-full": !avatarConfig?.round || avatarConfig?.round == "full",
             "rounded-3xl": avatarConfig?.round == "3xl",
             "rounded-xl": avatarConfig?.round == "xl",
             "rounded-sm": avatarConfig?.round == "sm",
@@ -98,6 +102,9 @@ export function Vertical({
         staticSites={staticSites}
         modalSites={modalSites}
       />
+      {
+        !sliders?.hidden && <Sliders motions={getMotion(0.1, 4, 0.2, istTransition)} {...sliders} />
+      }
     </div>
   );
 }

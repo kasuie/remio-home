@@ -175,5 +175,32 @@
     "modal": true,
     "modalTips": "这里大多都是初学时开发的，算是练手的，技术力不高，看起来也很不好看，算是黑历史，但也算是一段记忆的载体了，所以我想把它保存在此。",
     "modalTitle": ""
+  },
+  "sliders": {
+    "data": [
+      {
+        "title": "JavaScript",
+        "value": 10,
+        "icon": "qq"
+      },
+      {
+        "title": "html",
+        "value": 90,
+        "icon": "qq"
+      },
+      {
+        "title": "Vue",
+        "value": 100,
+        "icon": "qq"
+      },
+      {
+        "title": "react",
+        "value": 50,
+        "icon": "qq"
+      }
+    ],
+    "title": "ss",
+    "color": "linear-gradient(to right, #ffecd2 0%, #fcb69f 100%)",
+    "hidden": true
   }
 }

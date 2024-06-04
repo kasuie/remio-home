@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 11:18:12
+ * @LastEditTime: 2024-06-04 17:56:43
  * @Description:
  */
 export interface Link {
@@ -17,6 +17,13 @@ export interface Site {
   title: string;
   url?: string;
   desc?: string;
+}
+
+export interface Slider {
+  icon?: string;
+  title?: string;
+  value?: number;
+  color?: string;
 }
 
 export interface SitesConfig {
@@ -76,6 +83,13 @@ interface PWA {
   splash_pages: any;
 }
 
+interface SlidersConfig {
+  data?: Slider[];
+  title?: string;
+  hidden?: boolean;
+  color?: string;
+}
+
 export interface AppConfig {
   name: string; // 站点标题
   favicon?: string; // 站点图标
@@ -94,4 +108,5 @@ export interface AppConfig {
   links: Link[]; // 社交媒体的链接
   sites: Site[]; // 项目或者其他站点链接
   sitesConfig?: SitesConfig; // sites 渲染组件配置项
+  sliders?: SlidersConfig;
 }
