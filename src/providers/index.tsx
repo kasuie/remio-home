@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 09:39:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-01 15:54:11
+ * @LastEditTime: 2024-06-04 10:59:46
  * @Description:
  */
 "use client";
@@ -23,7 +23,7 @@ export function AppProviders({
   }
 
   return (
-    <ThemeProvider key="themeProvider" defaultTheme="light" enableSystem>
+    <ThemeProvider attribute="class" key="themeProvider" defaultTheme="light" enableSystem>
       {children}
     </ThemeProvider>
   );

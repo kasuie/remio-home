@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-03 20:29:55
+ * @LastEditTime: 2024-06-04 11:18:12
  * @Description:
  */
 export interface Link {
@@ -86,6 +86,7 @@ export interface AppConfig {
   layoutConfig?: LayoutConfig; // 布局相关的一些配置
   bgConfig: BgConfig; // 背景相关的一些配置
   primaryColor?: string;
+  theme?: string;
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
   subTitleConfig?: SubTitleConfig;
   socialConfig?: SocialConfig;

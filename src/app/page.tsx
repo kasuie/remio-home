@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-01 17:16:12
+ * @LastEditTime: 2024-06-04 11:38:12
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -13,6 +13,7 @@ import { Site } from "@/config/config";
 import { getMotion } from "@/lib/motion";
 import { Footer } from "@/components/layout/Footer";
 import { Vertical } from "@/components/content/Vertical";
+import { ThemeSwitcher } from "@/components/ui/switcher/ThemeSwitcher";
 
 export const revalidate = 0;
 
@@ -46,6 +47,7 @@ export default async function Home() {
         </Loader>
       }
     >
+      <ThemeSwitcher motions={getMotion(0.1, 5, 0.2, istTransition)} theme={appConfig?.theme} className=" absolute right-4 top-4" />
       <Vertical
         {...{
           gapSize,

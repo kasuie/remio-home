@@ -51,7 +51,7 @@ export function Vertical({
   return (
     <div
       className={clsx(
-        "rou ro flex w-full flex-col items-center justify-center pb-10",
+        "flex w-full flex-col items-center justify-center pb-10",
         {
           "gap-[30px] pt-[20vh]": gapSize == "md",
           "gap-8 pt-[25vh]": gapSize == "sm",
