@@ -2,8 +2,8 @@
  * @Author: kasuie
  * @Date: 2024-06-04 14:53:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 16:49:21
- * @Description: 
+ * @LastEditTime: 2024-06-04 21:32:43
+ * @Description:
  */
 "use client";
 
@@ -13,25 +13,53 @@ import { SlidersConfig, Slider as SliderType } from "@/config/config";
 import { Slider } from "../ui/slider/Slider";
 
 export const Sliders = ({
-    data,
-    color,
-    title,
-    motions = {},
+  data,
+  color,
+  title,
+  dotColor,
+  column = 2,
+  motions = {},
 }: SlidersConfig & {
-    motions?: object;
+  motions?: object;
 }) => {
+  if (!data?.length) return null;
 
-    if (!data?.length) return null;
-
-    return (
-        <motion.div className="backdrop-blur-[7px] w-[95vw] md:w-[67vw] mb-8 p-4" {...motions}>
-            <ul className="relative m-0 flex flex-wrap flex-col gap-2 md:gap-3">
-                {data?.map((v: SliderType, index: number) => {
-                    return (
-                        <Slider key={index} {...v} color={v.color || color}>{v.title}</Slider>
-                    );
-                })}
-            </ul>
-        </motion.div>
-    );
+  return (
+    <motion.div
+      className="mb-8 w-[95vw] rounded p-4 pb-8 shadow-mio-link backdrop-blur-[8px] lg:w-[calc(70vw-70px)] xl:w-[calc(70vw-100px)]"
+      {...motions}
+    >
+      {title && (
+        <div className="mb-2 flex flex-nowrap items-center gap-2">
+          {dotColor && (
+            <span
+              className="ml-1 h-2 w-2 rounded-full"
+              style={{
+                background: dotColor,
+              }}
+            ></span>
+          )}
+          <span className="text-sm">{title}</span>
+        </div>
+      )}
+      <ul className="relative flex flex-wrap justify-between gap-y-2 px-[2px]">
+        {data?.map((v: SliderType, index: number) => {
+          return (
+            <Slider
+              key={index}
+              warpClass={clsx("", {
+                "md:w-[49%]": column === 2,
+                "lg:w-[33%] md:w-[49%]": column === 3,
+                "xl:w-[24%] lg:w-[33%] md:w-[49%]": column >= 4,
+              })}
+              {...v}
+              color={v.color || color}
+            >
+              {v.title}
+            </Slider>
+          );
+        })}
+      </ul>
+    </motion.div>
+  );
 };

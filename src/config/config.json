@@ -8,7 +8,7 @@
     "src": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
     "size": 128,
     "round": "full",
-    "hoverAnimate": "rotate"
+    "hoverAnimate": "top"
   },
   "bgConfig": {
     "bg": "",
@@ -179,28 +179,66 @@
   "sliders": {
     "data": [
       {
-        "title": "JavaScript",
-        "value": 10,
+        "title": "JavaScript/TypeScript",
+        "value": 70,
         "icon": "qq"
       },
       {
-        "title": "html",
+        "title": "CSS/CSS3",
         "value": 90,
         "icon": "qq"
       },
       {
-        "title": "Vue",
+        "title": "React",
         "value": 100,
         "icon": "qq"
       },
       {
-        "title": "react",
+        "title": "Vue",
         "value": 50,
         "icon": "qq"
+      },
+      {
+        "title": "Next.js",
+        "value": 50
+      },
+      {
+        "title": "Nuxt.js",
+        "value": 20
+      },
+      {
+        "title": "Three.js",
+        "value": 10
+      },
+      {
+        "title": "Node.js",
+        "value": 30
+      },
+      {
+        "title": "Electron",
+        "value": 5
+      },
+      {
+        "title": "Spring Boot",
+        "value": 40
+      },
+      {
+        "title": "Linux",
+        "value": 60
+      },
+      {
+        "title": "Mysql",
+        "value": 55
+      },
+      {
+        "title": "Docker",
+        "value": 45
       }
     ],
-    "title": "ss",
-    "color": "linear-gradient(to right, #ffecd2 0%, #fcb69f 100%)",
-    "hidden": true
+    "title": "技能加点",
+    "color": "linear-gradient(to right, #ffafbd 0%, #c9ffbf 100%)",
+    "hidden": false,
+    "dotColor": "#18c964",
+    "column": 4
   }
 }

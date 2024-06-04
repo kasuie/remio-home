@@ -88,6 +88,8 @@ interface SlidersConfig {
   title?: string;
   hidden?: boolean;
   color?: string;
+  dotColor?: string;
+  column?: number;
 }
 
 export interface AppConfig {
