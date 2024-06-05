@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 21:21:33
+ * @LastEditTime: 2024-06-05 17:33:47
  * @Description:
  */
 "use client";
@@ -139,7 +139,7 @@ export function TextEffect({
   return (
     <motion.div
       className={clsx(
-        `k-words-hearts relative text-center font-[cursive] text-[20px] text-white`,
+        `k-words-hearts mx-4 sm:mx-0 relative text-center font-[cursive] text-[20px] text-white`,
         {
           "min-h-[30px]": typing && !typingCursor,
           "mb-3": showFrom && typing,

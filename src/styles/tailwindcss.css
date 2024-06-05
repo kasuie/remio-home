@@ -10,7 +10,7 @@
     }
     &::-webkit-scrollbar-thumb {
       /*滚动条里面小方块*/
-      @apply cursor-pointer rounded-lg duration-150 bg-white/45;
+      @apply cursor-pointer rounded-lg bg-white/45 duration-150;
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
     }
     &::-webkit-scrollbar-track {
@@ -24,6 +24,55 @@
     }
   }
   .mio-tooltip {
-    @apply before:ease-mio-tooltip ease-mio-tooltip pointer-events-none absolute bottom-[-20px] min-w-20 rounded-[5px] bg-black/30 px-2 py-2 text-sm leading-none text-white opacity-0 shadow-[0_10px_10px_#0000001a] transition-all duration-300 before:absolute before:left-[calc(50%-6px)] before:top-[-6px] before:h-0 before:w-0 before:border-x-[6px] before:border-b-[6px] before:border-x-transparent before:border-b-black/30 before:transition-all before:duration-300 before:content-[''];
+    @apply pointer-events-none absolute bottom-[-20px] min-w-20 rounded-[5px] bg-black/30 px-2 py-2 text-sm leading-none text-white opacity-0 shadow-[0_10px_10px_#0000001a] transition-all duration-300 ease-mio-tooltip before:absolute before:left-[calc(50%-6px)] before:top-[-6px] before:h-0 before:w-0 before:border-x-[6px] before:border-b-[6px] before:border-x-transparent before:border-b-black/30 before:transition-all before:duration-300 before:ease-mio-tooltip before:content-[''];
+  }
+  .transform-preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .rotate-z-180 {
+    transform: rotateZ(180deg);
+  }
+  .mio-flip-active {
+    transform: scale(0.95) rotateZ(2deg) rotateY(180deg);
+  }
+  .mio-rotate-border {
+    @apply before:absolute before:h-[200%] before:w-[50%] before:animate-[mio-rotation_5000ms_infinite_linear] before:bg-[linear-gradient(90deg,transparent,#ff9966,#ff9966,#ff9966,#ff9966,transparent)] before:content-[''];
+  }
+  .mio-delay-1800 {
+    animation-delay: 1800ms;
+  }
+  .mio-delay-800 {
+    animation-delay: 800ms;
+  }
+  .mio-col-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 15%;
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+  .mio-col-5 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 18%;
+    flex: 0 0 18%;
+    max-width: 18%;
+  }
+  .mio-col-3 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 32%;
+    flex: 0 0 32%;
+    max-width: 32%;
+  }
+  .mio-col-2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 47%;
+    flex: 0 0 47%;
+    max-width: 47%;
   }
 }

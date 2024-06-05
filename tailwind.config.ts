@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-28 11:52:12
+ * @LastEditTime: 2024-06-05 15:13:40
  * @Description:
  */
 import type { Config } from "tailwindcss";
@@ -22,6 +22,15 @@ const config: Config = {
           "50%": { opacity: "0" },
           "100%": { opacity: "100" },
         },
+        "mio-rotation": {
+          "0%": { transform: "rotateZ(0deg)" },
+          "100%": { transform: "rotateZ(360deg)" },
+        },
+        "mio-floating": {
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(10px)" },
+          "100%": { transform: "translateY(0px)" }
+        }
       },
       transitionTimingFunction: {
         "mio-tooltip": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",

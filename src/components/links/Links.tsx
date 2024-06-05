@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-03 20:31:17
+ * @LastEditTime: 2024-06-05 16:57:15
  * @Description:
  */
 "use client";
@@ -14,6 +14,8 @@ import { ExternalLink, DotsHorizontal } from "@kasuie/icon";
 import { clsx } from "@kasuie/utils";
 import { Site, SitesConfig } from "@/config/config";
 import { motion } from "framer-motion";
+import { FlipCard } from "../cards/FlipCard";
+import dynamic from "next/dynamic";
 
 export function Links({
   staticSites,
@@ -70,14 +72,19 @@ export function Links({
     );
   };
 
-  const linkItem = (item: Site, key: number, animate: boolean = true) => {
+  const linkItem = (item: Site, key: number, outer: boolean = true) => {
+
+    if (sitesConfig.cardStyle == "flip") {
+      return <FlipCard key={key} data={item} openModal={openModal} outer={outer} />
+    }
+
     const className = clsx(
       "group/main relative shadow-mio-link z-[1] my-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none",
       {
-        "hover:!scale-110 backdrop-blur-[7px]": animate, // hover:bg-[#229fff]
+        "hover:!scale-110 backdrop-blur-[7px]": outer, // hover:bg-[#229fff]
         "group-hover/links:scale-90": sitesConfig.hoverScale,
         "group-hover/links:blur-[1px]": sitesConfig.hoverBlur,
-        "mx-2": animate,
+        "mx-2": outer,
       }
     );
 
@@ -85,13 +92,13 @@ export function Links({
       <div
         key={key}
         className={clsx("flex cursor-pointer flex-col justify-center", {
-          "basis-72": animate,
-          "basis-full md:basis-[45%]": !animate,
+          "basis-72": outer,
+          "basis-full md:basis-[45%]": !outer,
         })}
       >
         {item?.url ? (
           <Link href={item.url} className={className} target="_blank">
-            {itemContent(item, animate)}
+            {itemContent(item, outer)}
           </Link>
         ) : (
           <div

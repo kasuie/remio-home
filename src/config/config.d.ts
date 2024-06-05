@@ -27,6 +27,7 @@ export interface Slider {
 }
 
 export interface SitesConfig {
+  cardStyle?: string;
   hoverBlur?: boolean;
   hoverScale?: boolean;
   modal?: boolean;
