@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-03 20:35:12
+ * @LastEditTime: 2024-06-05 21:59:15
  * @Description:
 -->
 
@@ -114,23 +114,25 @@ docker-compose up -d remio-home
 
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
-| 字段           | 类型                                       | 必填 | 说明                                                                          |
-| -------------- | ------------------------------------------ | ---- | ----------------------------------------------------------------------------- |
-| name           | string                                     | 是   | 站点标题                                                                      |
-| favicon        | string                                     | 否   | 站点图标                                                                      |
-| domain         | string                                     | 否   | 站点链接                                                                      |
-| keywords       | string                                     | 否   | 站点关键词                                                                    |
-| description    | string                                     | 否   | 站点描述性信息                                                                |
-| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)     | 否   | 主页头像相关配置                                                              |
-| LayoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)     | 否   | 布局相关的一些配置                                                            |
-| BgConfig       | [BgConfig](#BgConfig-类型说明)             | 否   | 背景相关的一些配置                                                            |
-| subTitle       | string                                     | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c` |
-| footer         | string                                     | 否   | 底部文字                                                                      |
-| links          | [Link[]](#link-类型说明)                   | 是   | 社交媒体的链接                                                                |
-| sites          | [Site[]](#site-类型说明)                   | 是   | 项目或者其他站点链接                                                          |
-| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)       | 否   | sites 渲染组件配置项                                                          |
-| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否   | 次标题渲染组件配置项                                                          |
-| socialConfig   | [SocialConfig](#SocialConfig-类型说明)     | 否   | 社交媒体的链接渲染组件配置项                                                  |
+| 字段           | 类型                                       | 必填 | 说明                                                                                               |
+| -------------- | ------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
+| name           | string                                     | 是   | 站点标题                                                                                           |
+| favicon        | string                                     | 否   | 站点图标                                                                                           |
+| domain         | string                                     | 否   | 站点链接                                                                                           |
+| keywords       | string                                     | 否   | 站点关键词                                                                                         |
+| description    | string                                     | 否   | 站点描述性信息                                                                                     |
+| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)     | 否   | 主页头像相关配置                                                                                   |
+| LayoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)     | 否   | 布局相关的一些配置                                                                                 |
+| BgConfig       | [BgConfig](#BgConfig-类型说明)             | 否   | 背景相关的一些配置                                                                                 |
+| theme          | string                                     | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
+| subTitle       | string                                     | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`                      |
+| footer         | string                                     | 否   | 底部文字                                                                                           |
+| links          | [Link[]](#link-类型说明)                   | 是   | 社交媒体的链接                                                                                     |
+| sites          | [Site[]](#site-类型说明)                   | 是   | 项目或者其他站点链接                                                                               |
+| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)       | 否   | sites 渲染组件配置项                                                                               |
+| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否   | 次标题渲染组件配置项                                                                               |
+| socialConfig   | [SocialConfig](#SocialConfig-类型说明)     | 否   | 社交媒体的链接渲染组件配置项                                                                       |
+| sliders        | [SlidersConfig](#SlidersConfig-类型说明)   | 否   | 技能加点组件配置项                                                                                 |
 
 #### AvatarConfig 类型说明
 
@@ -192,6 +194,26 @@ docker-compose up -d remio-home
 | 字段        | 类型    | 必填 | 说明                           |
 | ----------- | ------- | ---- | ------------------------------ |
 | autoAnimate | boolean | 否   | 是否开启涟漪动画，默认：`true` |
+
+#### SlidersConfig 类型说明
+
+| 字段     | 类型                         | 必填 | 说明                                |
+| -------- | ---------------------------- | ---- | ----------------------------------- |
+| data     | [Slider[]](#Slider-类型说明) | 否   | 数据数组                            |
+| title    | string                       | 否   | 标题，为空不展示                    |
+| hidden   | boolean                      | 否   | 是否显示该组件                      |
+| color    | string                       | 否   | 进度条自定义颜色，默认白色`#fff`    |
+| dotColor | string                       | 否   | `title`前面点的颜色，默认白色`#fff` |
+| column   | number                       | 否   | 一行展示几列，2-4的范围，默认`2`    |
+
+#### Slider 类型说明
+
+| 字段  | 类型   | 必填 | 说明                    |
+| ----- | ------ | ---- | ----------------------- |
+| title | string | 否   | 标题                    |
+| color | string | 否   | 颜色                    |
+| value | number | 否   | 技能掌握程度，0-100之间 |
+| icon  | string | 否   | 图标链接                |
 
 #### 关于icon
 

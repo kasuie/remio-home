@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-04 14:53:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 21:32:43
+ * @LastEditTime: 2024-06-05 21:28:54
  * @Description:
  */
 "use client";
@@ -26,7 +26,7 @@ export const Sliders = ({
 
   return (
     <motion.div
-      className="mb-8 w-[95vw] rounded p-4 pb-8 shadow-mio-link backdrop-blur-[8px] lg:w-[calc(70vw-70px)] xl:w-[calc(70vw-100px)]"
+      className="mb-8 w-[95vw] rounded p-4 pb-8 shadow-mio-link backdrop-blur-[8px] md:w-[65vw]"
       {...motions}
     >
       {title && (

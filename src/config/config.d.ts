@@ -30,6 +30,8 @@ export interface SitesConfig {
   cardStyle?: string;
   hoverBlur?: boolean;
   hoverScale?: boolean;
+  hoverFlip?: boolean;
+  direction?: string;
   modal?: boolean;
   modalTips?: string;
   modalTitle?: string;

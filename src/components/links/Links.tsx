@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 16:57:15
+ * @LastEditTime: 2024-06-05 21:39:58
  * @Description:
  */
 "use client";
@@ -36,9 +36,30 @@ export function Links({
 }) {
   const { isVisible, openModal, closeModal } = useModal();
 
-  const itemContent = (item: Site, animate: boolean = true) => {
+  const itemContent = (item: Site, outer: boolean = true) => {
+    if (sitesConfig.cardStyle == "flip") {
+      return (
+        <FlipCard
+          data={item}
+          outer={outer}
+          direction={sitesConfig?.direction}
+          hoverFlip={sitesConfig?.hoverFlip}
+        />
+      );
+    }
+
+    const className = clsx(
+      "group/main relative shadow-mio-link z-[1] flex h-[90px] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none",
+      {
+        "hover:!scale-110 backdrop-blur-[7px]": outer, // hover:bg-[#229fff]
+        "group-hover/links:scale-90": sitesConfig.hoverScale,
+        "group-hover/links:blur-[1px]": sitesConfig.hoverBlur,
+        // "mx-2": outer,
+      }
+    );
+
     return (
-      <>
+      <div className={className}>
         {/* {animate && (
           <div className="absolute left-[20px] right-0 top-24 z-[-1] h-[25rem] w-[25rem] rotate-[-36deg] rounded-full bg-[#3651cf26] duration-500 group-hover/main:left-[-20px] group-hover/main:top-[-20px]"></div>
         )} */}
@@ -68,42 +89,30 @@ export function Links({
             <DotsHorizontal size={14} />
           )}
         </span>
-      </>
+      </div>
     );
   };
 
   const linkItem = (item: Site, key: number, outer: boolean = true) => {
-
-    if (sitesConfig.cardStyle == "flip") {
-      return <FlipCard key={key} data={item} openModal={openModal} outer={outer} />
-    }
-
-    const className = clsx(
-      "group/main relative shadow-mio-link z-[1] my-2 flex min-h-[90px] flex-[0_50%] flex-row flex-nowrap items-center gap-[10px] overflow-hidden rounded-2xl bg-black/10 p-[10px_15px] duration-500 hover:z-10 hover:border-transparent hover:!blur-none",
-      {
-        "hover:!scale-110 backdrop-blur-[7px]": outer, // hover:bg-[#229fff]
-        "group-hover/links:scale-90": sitesConfig.hoverScale,
-        "group-hover/links:blur-[1px]": sitesConfig.hoverBlur,
-        "mx-2": outer,
-      }
-    );
-
     return (
       <div
         key={key}
-        className={clsx("flex cursor-pointer flex-col justify-center", {
-          "basis-72": outer,
-          "basis-full md:basis-[45%]": !outer,
-        })}
+        className={clsx(
+          "flex min-w-[215px] basis-11/12 cursor-pointer flex-col justify-center",
+          {
+            "sm:mio-col-2 md:mio-col-2 lg:mio-col-3 xl:mio-col-4": outer,
+            "sm:mio-col-2 basis-full": !outer,
+          }
+        )}
       >
         {item?.url ? (
-          <Link href={item.url} className={className} target="_blank">
+          <Link href={item.url} className="h-full w-full" target="_blank">
             {itemContent(item, outer)}
           </Link>
         ) : (
           <div
             onClick={() => sitesConfig?.modal && openModal()}
-            className={className}
+            className="h-full w-full"
           >
             {itemContent(item)}
           </div>
@@ -115,7 +124,7 @@ export function Links({
   return (
     <motion.div
       {...motions}
-      className="group/links mt-3 flex w-[95vw] flex-wrap justify-evenly gap-[20px_0] md:mt-12 md:w-[70vw]"
+      className="group/links mt-3 flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-12 md:w-[65vw]"
     >
       {staticSites.map((v, index) => linkItem(v, index))}
       {sitesConfig?.modal && modalSites?.length ? (
@@ -130,7 +139,7 @@ export function Links({
               {sitesConfig.modalTips}
             </div>
           )}
-          <div className="flex flex-wrap justify-between">
+          <div className="flex flex-wrap justify-between gap-y-6">
             {modalSites.map((v, index) => linkItem(v, index, false))}
           </div>
         </Modal>

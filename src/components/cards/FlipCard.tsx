@@ -2,88 +2,106 @@
  * @Author: kasuie
  * @Date: 2024-06-05 10:09:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 17:30:25
- * @Description: 
+ * @LastEditTime: 2024-06-05 21:42:31
+ * @Description:
  */
 import { Site } from "@/config/config";
 import { clsx } from "@kasuie/utils";
 import { Avatar } from "../ui/image/Avatar";
-import Link from "next/link";
 import { ExternalLink, DotsHorizontal } from "@kasuie/icon";
-import { BaseSyntheticEvent } from "react";
 
 export function FlipCard({
-    animate,
-    outer,
-    data,
-    openModal
-}: { data: Site, outer?: boolean, animate?: boolean, openModal?: Function }) {
-
-
-    const onClick = (e: BaseSyntheticEvent) => {
-        e.preventDefault();
-        if (!data?.url) return openModal?.();
-        window.open(data.url, '_blank');
-    }
-
-    return (
-        <Link
-            href={data.url || ""}
-            target="_blank"
-            onClick={onClick}
-            className="min-w-48 z-[1] group/flip h-28 overflow-visible basis-11/12 sm:mio-col-2 md:mio-col-2 lg:mio-col-3 xl:mio-col-5"
+  animate,
+  outer,
+  data,
+  direction = "col",
+  hoverFlip = true,
+}: {
+  data: Site;
+  outer?: boolean;
+  animate?: boolean;
+  direction?: string;
+  hoverFlip?: boolean;
+}) {
+  return (
+    <div
+      className={clsx(
+        "group/flip z-[1] h-[100px] min-w-48 overflow-visible rounded"
+      )}
+    >
+      <div
+        className={clsx(
+          "transform-preserve-3d relative h-full w-full rounded shadow transition-transform duration-300",
+          {
+            "group-hover/flip:rotate-y-180": outer && hoverFlip,
+          }
+        )}
+      >
+        <div
+          className={clsx(
+            "backface-hidden absolute z-[1] flex h-full w-full items-center justify-center overflow-hidden rounded backdrop-blur-[7px]",
+            {
+              "bg-black/10": outer,
+            }
+          )}
         >
-            <div className={clsx("w-full transform-preserve-3d relative h-full transition-transform duration-300 shadow rounded", {
-                "group-hover/flip:rotate-y-180": outer
-            })}>
-                <div className="z-[1] flex items-center bg-black/10 backdrop-blur-[7px] justify-center backface-hidden absolute w-full h-full rounded overflow-hidden">
-                    <div className="h-[calc(100%-2px)] w-[calc(100%-2px)] absolute flex-col flex gap-2 items-center justify-center">
-                        <Avatar warpClass="rounded-full overflow-hidden" width={28} height={28} src={data.icon || ""} alt={data.title} />
-                        <span>{data?.title}</span>
-                        {
-                            !outer && (
-                                <span className="absolute bottom-[5px] right-[7px]">
-                                    {data?.url ? (
-                                        <ExternalLink size={14} />
-                                    ) : (
-                                        <DotsHorizontal size={14} />
-                                    )}
-                                </span>
-                            )
-                        }
-                    </div>
-                </div>
-                {
-                    outer && (
-                        <div className={clsx("backface-hidden group-active/flip:mio-flip-active duration-300 absolute w-full h-full rounded overflow-hidden", {
-                            "rotate-y-180 backdrop-blur-[7px] bg-black/10": outer
-                        })}>
-                            <div className="h-[calc(100%-2px)] w-[calc(100%-2px)] flex items-center justify-center">
-                                <span>{data?.desc}</span>
-                                <span className="absolute bottom-[5px] right-[7px]">
-                                    {data?.url ? (
-                                        <ExternalLink size={14} />
-                                    ) : (
-                                        <DotsHorizontal size={14} />
-                                    )}
-                                </span>
-                            </div>
-                            {
-                                outer && (
-                                    <div className="absolute top-0 w-full h-full object-cover object-center">
-                                        <div className="w-16 h-16 absolute left-0 top-0 rounded-full bg-[#ffbb66] blur-md animate-[mio-floating_2600ms_infinite_linear]">
-                                        </div>
-                                        <div className="w-12 h-12 mio-delay-1800 absolute right-0 top-0 rounded-full bg-[#ff2233] blur-md animate-[mio-floating_2600ms_infinite_linear]">
-                                        </div>
-                                        <div className="w-6 h-6 mio-delay-800 bottom-0 right-0 rounded-full bg-[#ff8866] absolute blur-md animate-[mio-floating_2600ms_infinite_linear]">
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        </div>
-                    )
-                }
+          <div
+            className={clsx(
+              "absolute flex h-[calc(100%-2px)] w-[calc(100%-2px)] items-center justify-center gap-2",
+              {
+                "flex-row": direction == "row",
+                "flex-col": direction != "row"
+              }
+            )}
+          >
+            <Avatar
+              warpClass="rounded-full overflow-hidden"
+              width={30}
+              height={30}
+              src={data.icon || ""}
+              alt={data.title}
+            />
+            <span>{data?.title}</span>
+            {(!outer || !hoverFlip) && (
+              <span className="absolute bottom-[5px] right-[7px]">
+                {data?.url ? (
+                  <ExternalLink size={14} />
+                ) : (
+                  <DotsHorizontal size={14} />
+                )}
+              </span>
+            )}
+          </div>
+        </div>
+        {outer && hoverFlip && (
+          <div
+            className={clsx(
+              "backface-hidden group-active/flip:mio-flip-active absolute h-full w-full overflow-hidden rounded duration-300",
+              {
+                "rotate-y-180 bg-black/10 backdrop-blur-[7px]": outer,
+              }
+            )}
+          >
+            <div className="flex h-[calc(100%-2px)] w-[calc(100%-2px)] items-center justify-center">
+              <span>{data?.desc}</span>
+              <span className="absolute bottom-[5px] right-[7px]">
+                {data?.url ? (
+                  <ExternalLink size={14} />
+                ) : (
+                  <DotsHorizontal size={14} />
+                )}
+              </span>
             </div>
-        </Link>
-    );
+            {outer && (
+              <div className="absolute top-0 h-full w-full object-cover object-center">
+                <div className="absolute left-0 top-0 h-16 w-16 animate-[mio-floating_2600ms_infinite_linear] rounded-full bg-[#ffbb66] blur-md"></div>
+                <div className="mio-delay-1800 absolute right-0 top-0 h-12 w-12 animate-[mio-floating_2600ms_infinite_linear] rounded-full bg-[#ff2233] blur-md"></div>
+                <div className="mio-delay-800 absolute bottom-0 right-0 h-6 w-6 animate-[mio-floating_2600ms_infinite_linear] rounded-full bg-[#ff8866] blur-md"></div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
