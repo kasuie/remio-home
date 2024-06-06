@@ -19,7 +19,8 @@
   },
   "layoutConfig": {
     "istTransition": true,
-    "gapSize": "lg"
+    "gapSize": "lg",
+    "style": ""
   },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {

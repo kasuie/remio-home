@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 11:34:21
+ * @LastEditTime: 2024-06-06 20:37:52
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -12,10 +12,18 @@ import { MainEffect } from "@/components/effect/MainEffect";
 import { Site } from "@/config/config";
 import { getMotion } from "@/lib/motion";
 import { Footer } from "@/components/layout/Footer";
-import { Vertical } from "@/components/content/Vertical";
 import { ThemeSwitcher } from "@/components/ui/switcher/ThemeSwitcher";
+import dynamic from "next/dynamic";
 
 export const revalidate = 0;
+
+const Horizontal = dynamic(
+  async () => (await import("@/components/content/Horizontal")).Horizontal
+);
+
+const Vertical = dynamic(
+  async () => (await import("@/components/content/Vertical")).Vertical
+);
 
 export default async function Home() {
   const appConfig = await getConfig("config.json");
@@ -24,8 +32,11 @@ export default async function Home() {
   const links = appConfig?.links;
   const subTitle = appConfig?.subTitle;
   const bgConfig = appConfig?.bgConfig;
-  const { istTransition = true, gapSize = "md" } =
-    appConfig?.layoutConfig || {};
+  const {
+    istTransition = true,
+    gapSize = "md",
+    style,
+  } = appConfig?.layoutConfig || {};
 
   let staticSites: Array<Site> = [],
     modalSites: Array<Site> = [];
@@ -39,6 +50,14 @@ export default async function Home() {
     }
   }
 
+  const renderMain = (props: any) => {
+    if (style === "horizontal") {
+      return <Horizontal {...props} />;
+    } else {
+      return <Vertical {...props} />;
+    }
+  };
+
   return (
     <Suspense
       fallback={
@@ -47,24 +66,26 @@ export default async function Home() {
         </Loader>
       }
     >
-      <ThemeSwitcher motions={getMotion(0.1, 5, 0.2, istTransition)} theme={appConfig?.theme} className="fixed right-4 top-4" />
-      <Vertical
-        {...{
-          gapSize,
-          istTransition,
-          subTitle,
-          links,
-          staticSites,
-          modalSites,
-          cardOpacity: bgConfig.cardOpacity,
-          sliders: appConfig.sliders,
-          subTitleConfig: appConfig?.subTitleConfig,
-          sitesConfig: appConfig?.sitesConfig,
-          name: appConfig.name,
-          avatarConfig: appConfig.avatarConfig,
-          primaryColor: appConfig.primaryColor,
-        }}
+      <ThemeSwitcher
+        motions={getMotion(0.1, 5, 0.2, istTransition)}
+        theme={appConfig?.theme}
+        className="fixed right-4 top-4"
       />
+      {renderMain({
+        gapSize,
+        istTransition,
+        subTitle,
+        links,
+        staticSites,
+        modalSites,
+        cardOpacity: bgConfig.cardOpacity,
+        sliders: appConfig.sliders,
+        subTitleConfig: appConfig?.subTitleConfig,
+        sitesConfig: appConfig?.sitesConfig,
+        name: appConfig.name,
+        avatarConfig: appConfig.avatarConfig,
+        primaryColor: appConfig.primaryColor,
+      })}
       <MainEffect
         bg={bgConfig?.bg || "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp"}
         mbg={

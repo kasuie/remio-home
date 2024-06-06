@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 17:56:43
+ * @LastEditTime: 2024-06-06 20:16:26
  * @Description:
  */
 export interface Link {
@@ -69,6 +69,7 @@ interface AvatarConfig {
 interface LayoutConfig {
   istTransition?: boolean; // 是否启动过渡动画
   gapSize?: string; // sm | md | lg  组件间隔大小
+  style?: string;
 }
 
 interface PWA {
