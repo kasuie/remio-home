@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@kasuie/icon':
-    specifier: ^0.0.7
-    version: 0.0.7
+    specifier: ^0.0.8
+    version: 0.0.8
   '@kasuie/utils':
     specifier: ^0.0.10
     version: 0.0.10
@@ -1539,8 +1539,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@kasuie/icon@0.0.7:
-    resolution: {integrity: sha512-guqERcjK8FP5WLQpczSkp7NzwvPs6gzDWOR+4xO3nUgQiDbQ27V+C3TeelTj7mcPT5NX57/iU2I0jE0Ab6pOXQ==}
+  /@kasuie/icon@0.0.8:
+    resolution: {integrity: sha512-K5gSHvO5zdJqiS1VZ2OD1H+GrPOBtlcHeFBZmmWyzhDnkDHMZ8w1njs0fM4msdFvNhcOVLz81rjGIFdcZJ77RA==}
     engines: {pnpm: '>=8'}
     dependencies:
       react: 18.3.1

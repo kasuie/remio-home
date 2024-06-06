@@ -11,7 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@kasuie/icon": "^0.0.7",
+    "@kasuie/icon": "^0.0.8",
     "@kasuie/utils": "^0.0.10",
     "@next/third-parties": "^14.2.3",
     "framer-motion": "^11.2.9",

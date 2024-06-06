@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 15:34:51
+ * @LastEditTime: 2024-06-06 14:23:53
  * @Description:
  */
 import { clsx } from "@kasuie/utils";
@@ -74,7 +74,7 @@ export function Vertical({
         src={avatarConfig?.src || ""}
         motions={getMotion(0.1, 0, 0, istTransition)}
         warpClass={clsx(
-          "relative transition-[top,transform] rotate-0 inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]",
+          "relative z-[1] transition-[top,transform] rotate-0 inline-block overflow-hidden cursor-pointer duration-500 top-0 ease-in-out animate-[light_4s_ease-in-out_infinite]",
           {
             "rounded-full": !avatarConfig?.round || avatarConfig?.round == "full",
             "rounded-3xl": avatarConfig?.round == "3xl",

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 11:37:10
+ * @LastEditTime: 2024-06-06 14:26:31
  * @Description:
  */
 "use client";
@@ -139,7 +139,7 @@ export function Links({
   return (
     <motion.div
       {...motions}
-      className="group/links mt-3 z-[1] flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-12 md:w-[65vw]"
+      className="group/links mt-3 z-[1] flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-8 md:w-[65vw]"
     >
       {staticSites.map((v, index) => linkItem(v, index))}
       {sitesConfig?.modal && modalSites?.length ? (
