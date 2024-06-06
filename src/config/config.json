@@ -14,7 +14,8 @@
     "bg": "",
     "mbg": "",
     "bgStyle": "snow",
-    "blur": ""
+    "blur": "",
+    "cardOpacity": 0
   },
   "layoutConfig": {
     "istTransition": true,
@@ -33,7 +34,7 @@
   },
   "footer": "© 2020 - 2024 By KASUIE",
   "primaryColor": "#229fff",
-  "theme": "",
+  "theme": "switcher",
   "links": [
     {
       "title": "qq",

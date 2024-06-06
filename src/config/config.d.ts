@@ -56,6 +56,7 @@ export interface BgConfig {
   mbg: string; // 移动端背景图
   bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
   blur?: string;
+  cardOpacity?: number;
 }
 
 interface AvatarConfig {

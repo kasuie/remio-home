@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 15:13:40
+ * @LastEditTime: 2024-06-06 10:40:20
  * @Description:
  */
 import type { Config } from "tailwindcss";
@@ -39,6 +39,15 @@ const config: Config = {
         "mio-link":
           "0 2px 4px 0 rgba(136, 144, 195, 0.2), 0 5px 15px 0 rgba(37, 44, 97, 0.15)",
       },
+      colors: {
+        "mio-main": "hsl(var(--mio-background))",
+        "mio-bg": "rgba(var(--mio-bg))",
+        "mio-content": "rgba(var(--mio-text-default))",
+      },
+      textColor: {
+        "mio-text-color": "rgba(var(--mio-text-color))",
+        "mio-text-default": "hsl(var(--mio-foreground))",
+      }
     },
   },
   plugins: [],

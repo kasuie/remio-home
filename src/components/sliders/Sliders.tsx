@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-04 14:53:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 21:28:54
+ * @LastEditTime: 2024-06-06 11:25:12
  * @Description:
  */
 "use client";
@@ -17,16 +17,21 @@ export const Sliders = ({
   color,
   title,
   dotColor,
+  cardOpacity,
   column = 2,
   motions = {},
 }: SlidersConfig & {
   motions?: object;
+  cardOpacity?: number;
 }) => {
   if (!data?.length) return null;
 
   return (
     <motion.div
-      className="mb-8 w-[95vw] rounded p-4 pb-8 shadow-mio-link backdrop-blur-[8px] md:w-[65vw]"
+      style={{
+        backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`
+      }}
+      className="mb-8 w-[95vw] z-[1] rounded p-4 pb-8 shadow-mio-link backdrop-blur md:w-[65vw]"
       {...motions}
     >
       {title && (

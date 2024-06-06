@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 15:20:18
+ * @LastEditTime: 2024-06-06 11:34:21
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -47,7 +47,7 @@ export default async function Home() {
         </Loader>
       }
     >
-      <ThemeSwitcher motions={getMotion(0.1, 5, 0.2, istTransition)} theme={appConfig?.theme} className=" absolute right-4 top-4" />
+      <ThemeSwitcher motions={getMotion(0.1, 5, 0.2, istTransition)} theme={appConfig?.theme} className="fixed right-4 top-4" />
       <Vertical
         {...{
           gapSize,
@@ -56,6 +56,7 @@ export default async function Home() {
           links,
           staticSites,
           modalSites,
+          cardOpacity: bgConfig.cardOpacity,
           sliders: appConfig.sliders,
           subTitleConfig: appConfig?.subTitleConfig,
           sitesConfig: appConfig?.sitesConfig,

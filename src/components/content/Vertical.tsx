@@ -36,6 +36,7 @@ interface VerticalProps {
   primaryColor?: string;
   subTitle?: string;
   sliders?: SlidersConfig;
+  cardOpacity?: number;
 }
 export function Vertical({
   gapSize,
@@ -50,7 +51,8 @@ export function Vertical({
   modalSites,
   primaryColor,
   subTitle,
-  sliders
+  sliders,
+  cardOpacity = 0.1
 }: VerticalProps) {
   return (
     <div
@@ -101,9 +103,10 @@ export function Vertical({
         primaryColor={primaryColor}
         staticSites={staticSites}
         modalSites={modalSites}
+        cardOpacity={cardOpacity}
       />
       {
-        !sliders?.hidden && <Sliders motions={getMotion(0.1, 4, 0.2, istTransition)} {...sliders} />
+        !sliders?.hidden && <Sliders motions={getMotion(0.1, 4, 0.2, istTransition)} cardOpacity={cardOpacity} {...sliders} />
       }
     </div>
   );

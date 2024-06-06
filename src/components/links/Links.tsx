@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 21:39:58
+ * @LastEditTime: 2024-06-06 11:37:10
  * @Description:
  */
 "use client";
@@ -14,13 +14,18 @@ import { ExternalLink, DotsHorizontal } from "@kasuie/icon";
 import { clsx } from "@kasuie/utils";
 import { Site, SitesConfig } from "@/config/config";
 import { motion } from "framer-motion";
-import { FlipCard } from "../cards/FlipCard";
 import dynamic from "next/dynamic";
+import { CSSProperties } from "react";
+
+const FlipCard = dynamic(
+  async () => (await import("../cards/FlipCard")).FlipCard
+);
 
 export function Links({
   staticSites,
   modalSites,
   primaryColor,
+  cardOpacity,
   sitesConfig = {
     hoverScale: true,
     hoverBlur: true,
@@ -29,6 +34,7 @@ export function Links({
   motions = {},
 }: {
   primaryColor?: string;
+  cardOpacity?: number;
   staticSites: Array<Site>;
   modalSites: Array<Site>;
   sitesConfig?: SitesConfig;
@@ -37,11 +43,17 @@ export function Links({
   const { isVisible, openModal, closeModal } = useModal();
 
   const itemContent = (item: Site, outer: boolean = true) => {
+
+    const style: CSSProperties = outer ? {
+      backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`
+    } : {};
+
     if (sitesConfig.cardStyle == "flip") {
       return (
         <FlipCard
           data={item}
           outer={outer}
+          style={style}
           direction={sitesConfig?.direction}
           hoverFlip={sitesConfig?.hoverFlip}
         />
@@ -59,7 +71,9 @@ export function Links({
     );
 
     return (
-      <div className={className}>
+      <div
+        style={style}
+        className={className}>
         {/* {animate && (
           <div className="absolute left-[20px] right-0 top-24 z-[-1] h-[25rem] w-[25rem] rotate-[-36deg] rounded-full bg-[#3651cf26] duration-500 group-hover/main:left-[-20px] group-hover/main:top-[-20px]"></div>
         )} */}
@@ -97,6 +111,7 @@ export function Links({
     return (
       <div
         key={key}
+        title={item.title}
         className={clsx(
           "flex min-w-[215px] basis-11/12 cursor-pointer flex-col justify-center",
           {
@@ -124,7 +139,7 @@ export function Links({
   return (
     <motion.div
       {...motions}
-      className="group/links mt-3 flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-12 md:w-[65vw]"
+      className="group/links mt-3 z-[1] flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-12 md:w-[65vw]"
     >
       {staticSites.map((v, index) => linkItem(v, index))}
       {sitesConfig?.modal && modalSites?.length ? (

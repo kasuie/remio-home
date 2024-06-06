@@ -2,22 +2,25 @@
  * @Author: kasuie
  * @Date: 2024-06-05 10:09:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 21:42:31
+ * @LastEditTime: 2024-06-06 11:24:45
  * @Description:
  */
 import { Site } from "@/config/config";
 import { clsx } from "@kasuie/utils";
 import { Avatar } from "../ui/image/Avatar";
 import { ExternalLink, DotsHorizontal } from "@kasuie/icon";
+import { CSSProperties } from "react";
 
 export function FlipCard({
   animate,
+  style = {},
   outer,
   data,
   direction = "col",
   hoverFlip = true,
 }: {
   data: Site;
+  style?: CSSProperties | undefined;
   outer?: boolean;
   animate?: boolean;
   direction?: string;
@@ -26,23 +29,21 @@ export function FlipCard({
   return (
     <div
       className={clsx(
-        "group/flip z-[1] h-[100px] min-w-48 overflow-visible rounded"
+        "group/flip z-[1] h-[100px] min-w-48 overflow-visible"
       )}
     >
       <div
         className={clsx(
-          "transform-preserve-3d relative h-full w-full rounded shadow transition-transform duration-300",
+          "transform-preserve-3d relative h-full w-full shadow-mio-link transition-transform duration-300 rounded-2xl",
           {
             "group-hover/flip:rotate-y-180": outer && hoverFlip,
           }
         )}
       >
         <div
+          style={style}
           className={clsx(
-            "backface-hidden absolute z-[1] flex h-full w-full items-center justify-center overflow-hidden rounded backdrop-blur-[7px]",
-            {
-              "bg-black/10": outer,
-            }
+            "backface-hidden absolute z-[1] flex h-full w-full items-center justify-center overflow-hidden rounded-2xl backdrop-blur"
           )}
         >
           <div
@@ -75,10 +76,11 @@ export function FlipCard({
         </div>
         {outer && hoverFlip && (
           <div
+            style={style}
             className={clsx(
-              "backface-hidden group-active/flip:mio-flip-active absolute h-full w-full overflow-hidden rounded duration-300",
+              "backface-hidden group-active/flip:mio-flip-active absolute h-full w-full overflow-hidden rounded-2xl duration-300",
               {
-                "rotate-y-180 bg-black/10 backdrop-blur-[7px]": outer,
+                "rotate-y-180 backdrop-blur": outer,
               }
             )}
           >
