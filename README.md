@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-07 13:28:25
+ * @LastEditTime: 2024-06-07 18:10:57
  * @Description:
 -->
 
@@ -120,25 +120,25 @@ docker-compose up -d remio-home
 
 点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
-| 字段           | 类型                                       | 必填 | 说明                                                                                               |
-| -------------- | ------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
-| name           | string                                     | 是   | 站点标题                                                                                           |
-| favicon        | string                                     | 否   | 站点图标                                                                                           |
-| domain         | string                                     | 否   | 站点链接                                                                                           |
-| keywords       | string                                     | 否   | 站点关键词                                                                                         |
-| description    | string                                     | 否   | 站点描述性信息                                                                                     |
-| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)     | 否   | 主页头像相关配置                                                                                   |
-| LayoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)     | 否   | 布局相关的一些配置                                                                                 |
-| BgConfig       | [BgConfig](#BgConfig-类型说明)             | 否   | 背景相关的一些配置                                                                                 |
-| theme          | string                                     | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
-| subTitle       | string                                     | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`                      |
-| footer         | string                                     | 否   | 底部文字                                                                                           |
-| links          | [Link[]](#link-类型说明)                   | 是   | 社交媒体的链接                                                                                     |
-| sites          | [Site[]](#site-类型说明)                   | 是   | 项目或者其他站点链接                                                                               |
-| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)       | 否   | sites 渲染组件配置项                                                                               |
-| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明) | 否   | 次标题渲染组件配置项                                                                               |
-| socialConfig   | [SocialConfig](#SocialConfig-类型说明)     | 否   | 社交媒体的链接渲染组件配置项                                                                       |
-| sliders        | [SlidersConfig](#SlidersConfig-类型说明)   | 否   | 技能加点组件配置项                                                                                 |
+| 字段           | 类型                                          | 必填 | 说明                                                                                               |
+| -------------- | --------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------- |
+| name           | string                                        | 是   | 站点标题                                                                                           |
+| favicon        | string                                        | 否   | 站点图标                                                                                           |
+| domain         | string                                        | 否   | 站点链接                                                                                           |
+| keywords       | string                                        | 否   | 站点关键词                                                                                         |
+| description    | string                                        | 否   | 站点描述性信息                                                                                     |
+| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)        | 否   | 主页头像相关配置                                                                                   |
+| LayoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)        | 否   | 布局相关的一些配置                                                                                 |
+| BgConfig       | [BgConfig](#BgConfig-类型说明)                | 否   | 背景相关的一些配置                                                                                 |
+| theme          | string                                        | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
+| subTitle       | string                                        | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`                      |
+| footer         | string/[FooterConfig](#FooterConfig-类型说明) | 否   | 底部设置项                                                                                         |
+| links          | [Link[]](#link-类型说明)                      | 是   | 社交媒体的链接                                                                                     |
+| sites          | [Site[]](#site-类型说明)                      | 是   | 项目或者其他站点链接                                                                               |
+| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)          | 否   | sites 渲染组件配置项                                                                               |
+| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明)    | 否   | 次标题渲染组件配置项                                                                               |
+| socialConfig   | [SocialConfig](#SocialConfig-类型说明)        | 否   | 社交媒体的链接渲染组件配置项                                                                       |
+| sliders        | [SlidersConfig](#SlidersConfig-类型说明)      | 否   | 技能加点组件配置项                                                                                 |
 
 #### AvatarConfig 类型说明
 
@@ -165,6 +165,16 @@ docker-compose up -d remio-home
 | ------------- | ------- | ---- | ----------------------------------- |
 | istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启      |
 | gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`md` |
+
+#### FooterConfig 类型说明
+
+| 字段       | 类型    | 必填 | 说明                                                               |
+| ---------- | ------- | ---- | ------------------------------------------------------------------ |
+| text       | string  | 否   | 展示文字                                                           |
+| url        | string  | 否   | 展示文字的链接地址，点击可跳转                                     |
+| ICP        | string  | 否   | 备案号，填写后会链接到工信部                                       |
+| direction  | string  | 否   | 排列方式，可选`col`,`row`，`col-reverse`和`row-reverse`，默认`col` |
+| isExternal | boolean | 否   | 是否展示链接图标，默认`false`                                      |
 
 #### Link 类型说明
 

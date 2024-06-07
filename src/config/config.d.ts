@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 20:16:26
+ * @LastEditTime: 2024-06-07 18:08:55
  * @Description:
  */
 export interface Link {
@@ -97,6 +97,14 @@ interface SlidersConfig {
   column?: number;
 }
 
+interface FooterConfig {
+  text?: string;
+  url?: string;
+  ICP?: string; // https://beian.miit.gov.cn
+  direction?: string;
+  isExternal?: boolean;
+}
+
 export interface AppConfig {
   name: string; // 站点标题
   favicon?: string; // 站点图标
@@ -111,7 +119,7 @@ export interface AppConfig {
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
   subTitleConfig?: SubTitleConfig;
   socialConfig?: SocialConfig;
-  footer?: string; // 底部文字
+  footer?: string | FooterConfig; // 底部文字
   links: Link[]; // 社交媒体的链接
   sites: Site[]; // 项目或者其他站点链接
   sitesConfig?: SitesConfig; // sites 渲染组件配置项

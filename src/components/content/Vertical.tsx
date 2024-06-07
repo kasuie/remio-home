@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 14:23:53
+ * @LastEditTime: 2024-06-07 17:50:19
  * @Description:
  */
 import { clsx } from "@kasuie/utils";
@@ -57,7 +57,7 @@ export function Vertical({
   return (
     <div
       className={clsx(
-        "flex w-full flex-col items-center justify-center pb-10",
+        "flex w-full flex-col items-center justify-center pb-16",
         {
           "gap-[30px] pt-[20vh]": gapSize == "md",
           "gap-8 pt-[25vh]": gapSize == "sm",

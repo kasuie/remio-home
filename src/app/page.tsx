@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 20:37:52
+ * @LastEditTime: 2024-06-07 17:22:31
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -98,7 +98,7 @@ export default async function Home() {
       {appConfig?.footer ? (
         <Footer
           motions={getMotion(0.1, 4, 0.2, istTransition)}
-          text={appConfig.footer}
+          footer={appConfig.footer}
         />
       ) : null}
     </Suspense>
