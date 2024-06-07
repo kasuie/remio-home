@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 11:18:41
+ * @LastEditTime: 2024-06-07 13:28:25
  * @Description:
 -->
 
@@ -30,6 +30,12 @@ remio-home(homepage): 基于配置的个人主页
 
 ```sh
 docker pull kasuie/remio-home
+```
+
+如果你因为网络原因拉取不到，可考虑阿里云镜像：
+
+```sh
+docker pull registry.cn-shanghai.aliyuncs.com/remio/remio-home
 ```
 
 **注意：启动容器需要根据自己需要，有所不同，请自行选择**
@@ -228,13 +234,16 @@ docker-compose up -d remio-home
 
 #### SitesConfig 类型说明
 
-| 字段       | 类型    | 必填 | 说明                    |
-| ---------- | ------- | ---- | ----------------------- |
-| hoverBlur  | boolean | 否   | hover状态下是否模糊     |
-| hoverScale | boolean | 否   | hover状态下是否调整比例 |
-| modal      | boolean | 否   | 是否显示`modal`         |
-| modalTips  | string  | 否   | `modal`的提示语         |
-| modalTitle | string  | 否   | `modal`的标题           |
+| 字段       | 类型    | 必填 | 说明                                                                   |
+| ---------- | ------- | ---- | ---------------------------------------------------------------------- |
+| cardStyle  | string  | 否   | 站点卡片风格，可选`default`,`flip`                                     |
+| hoverBlur  | boolean | 否   | hover状态下是否模糊                                                    |
+| hoverScale | boolean | 否   | hover状态下是否调整比例                                                |
+| hoverFlip  | boolean | 否   | 卡片是否可翻转，默认`true`，`cardStyle`为`flip`生效                    |
+| direction  | string  | 否   | 卡片内容排列方式，可选`col`和`row`，默认`col`，`cardStyle`为`flip`生效 |
+| modal      | boolean | 否   | 是否显示`modal`                                                        |
+| modalTips  | string  | 否   | `modal`的提示语                                                        |
+| modalTitle | string  | 否   | `modal`的标题                                                          |
 
 ### 本地启动
 
