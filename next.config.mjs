@@ -1,11 +1,3 @@
-/*
- * @Author: kasuie
- * @Date: 2024-05-20 16:08:41
- * @LastEditors: kasuie
- * @LastEditTime: 2024-06-07 11:12:12
- * @Description:
- */
-/** @type {import('next').NextConfig} */
 import nextPWA from "next-pwa";
 
 const isProd = process.env.NODE_ENV === "production";
