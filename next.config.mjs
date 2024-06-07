@@ -1,14 +1,3 @@
-import nextPWA from "next-pwa";
-
-const isProd = process.env.NODE_ENV === "production";
-
-const withPWA = nextPWA({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: !isProd,
-});
-
 const nextConfig = {
   output: "export",
   eslint: {
@@ -41,4 +30,4 @@ const nextConfig = {
   },
 };
 
-export default withPWA(nextConfig);
+export default nextConfig;
