@@ -10,6 +10,8 @@
     "lint-staged": "lint-staged --allow-empty",
     "prepare": "husky install"
   },
+  "author": "kasuie <i@kasuie.cc>",
+  "license": "MIT",
   "dependencies": {
     "@kasuie/icon": "^0.0.8",
     "@kasuie/utils": "^0.0.10",
