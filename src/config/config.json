@@ -33,7 +33,13 @@
   "socialConfig": {
     "autoAnimate": true
   },
-  "footer": "© 2020 - 2024 By KASUIE",
+  "footer": {
+    "text": "© 2020 - 2024 By KASUIE",
+    "url": "https://kasuie.cc",
+    "ICP": "ICP备xxxxxxxx号",
+    "direction": "col-reverse",
+    "isExternal": true
+  },
   "primaryColor": "#229fff",
   "theme": "switcher",
   "links": [
@@ -190,17 +196,17 @@
       },
       {
         "title": "CSS/CSS3",
-        "value": 90,
+        "value": 70,
         "icon": "qq"
       },
       {
         "title": "React",
-        "value": 100,
+        "value": 40,
         "icon": "qq"
       },
       {
         "title": "Vue",
-        "value": 50,
+        "value": 60,
         "icon": "qq"
       },
       {
