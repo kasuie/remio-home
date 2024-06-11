@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 15:54:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 17:55:54
+ * @LastEditTime: 2024-06-11 21:36:07
  * @Description:
  */
 "use client";
@@ -32,12 +32,14 @@ export const SocialIcons = ({
   ripple = true,
   loading = false,
   motions = {},
+  initialDelay = 0,
 }: {
   links: Array<LinkType>;
   autoAnimate?: boolean;
   ripple?: boolean;
   loading?: boolean | string;
-  motions?: object;
+  motions?: any;
+  initialDelay?: number;
 }) => {
   const IconsMap: any = {
     github: (props: SvgProps) => <Github {...props} />,
@@ -67,7 +69,7 @@ export const SocialIcons = ({
             <ATransition
               key={index}
               animate={loading == "wave"}
-              delay={index * 100 + 1000}
+              delay={index * 100 + initialDelay * 1000 + 300}
               className="inline-block"
               as="li"
             >

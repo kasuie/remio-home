@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 15:01:16
+ * @LastEditTime: 2024-06-11 21:44:36
  * @Description:
  */
 export interface Link {
@@ -47,6 +47,9 @@ export interface SubTitleConfig {
   typingCursor?: boolean;
   showFrom?: boolean;
   desc?: string;
+  content?: string;
+  style?: string;
+  gapDelay?: number;
 }
 
 export interface SocialConfig {

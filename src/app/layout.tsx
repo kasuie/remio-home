@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 10:56:45
+ * @LastEditTime: 2024-06-11 22:06:21
  * @Description:
  */
 import type { Metadata } from "next";
@@ -13,6 +13,8 @@ import { getConfig } from "@/lib/config";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import "@/styles/index.css";
 import Script from "next/script";
+
+// const manrope = Manrope({ subsets: ["latin"] });
 
 const inter = Inter({ subsets: ["latin"] });
 

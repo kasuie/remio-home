@@ -2,56 +2,92 @@
  * @Author: kasuie
  * @Date: 2024-06-11 15:49:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 18:02:35
- * @Description: 
+ * @LastEditTime: 2024-06-11 21:50:56
+ * @Description:
  */
 "use client";
 
 import { useEffect, useState } from "react";
 import { TextUpView } from "../ui/transition/TextUpView";
+import { SubTitleConfig } from "@/config/config";
+import { clsx } from "@kasuie/utils";
 
-export function HoriTextEffect({ text, desc }: { text?: string, desc?: string }) {
+interface Item {
+  text: string;
+  rootAs: string | any;
+  length?: number;
+  initialDelay?: number;
+}
 
-  const [h1s, setH1s] = useState<string[]>();
+export function HoriTextEffect({
+  content,
+  desc,
+  gapDelay = 0.05,
+  loading,
+}: SubTitleConfig) {
+  const [h1s, setH1s] = useState<Item[]>();
 
-  const [ps, setPs] = useState<string[]>();
+  const [ps, setPs] = useState<Item[]>();
+
+  const [data, setData] = useState<Item[]>();
 
   useEffect(() => {
-    if (text) {
-      const arr = text?.split(";") || [];
+    if (content) {
+      const arr: Item[] =
+        content?.split(";").map((v: string) => {
+          return {
+            text: v,
+            rootAs: "h1",
+            length: v.length,
+          };
+        }) || [];
       if (arr?.length) setH1s(arr);
     }
-  }, [text])
+  }, [content]);
 
   useEffect(() => {
     if (desc) {
-      const arr = desc?.split(";") || [];
+      const arr: Item[] =
+        desc?.split(";").map((v: string) => {
+          return {
+            text: v,
+            rootAs: "p",
+            length: v.length,
+          };
+        }) || [];
       if (arr?.length) setPs(arr);
     }
-  }, [desc])
+  }, [desc]);
+
+  useEffect(() => {
+    const temp = h1s?.concat(ps || []) || [];
+    temp.reduce((prev: number, curr: Item, index: number) => {
+      temp[index].initialDelay = prev * gapDelay;
+      return (curr?.length || 0) + prev;
+    }, 0);
+    setData(temp);
+  }, [h1s, ps]);
 
   return (
-    <div>
-      {
-        h1s?.map((v: string, index: number) => {
-          return <TextUpView
-            key={v}
-            eachDelay={0.05}
+    <div className="max-w-2xl">
+      {data?.map((v: Item, i: number) => {
+        return (
+          <TextUpView
+            rootAs={v.rootAs}
+            className={clsx("", {
+              "mb-5 text-2xl": v.rootAs == "h1",
+              "text-sm opacity-80": v.rootAs == "p",
+            })}
+            key={v.text}
+            as="span"
+            appear={!!loading && !!gapDelay}
+            initialDelay={v.initialDelay}
+            eachDelay={gapDelay}
           >
-            {v}
+            {v.text}
           </TextUpView>
-        })
-      }
-      {
-        ps?.map((v: string, index: number) => {
-          return <TextUpView
-            key={v}
-            eachDelay={0.05}
-          >
-            {v}
-          </TextUpView>
-        })
-      }
+        );
+      })}
     </div>
   );
 }

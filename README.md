@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-07 18:10:57
+ * @LastEditTime: 2024-06-11 22:17:53
  * @Description:
 -->
 
@@ -208,9 +208,10 @@ docker-compose up -d remio-home
 
 #### SocialConfig 类型说明
 
-| 字段        | 类型    | 必填 | 说明                           |
-| ----------- | ------- | ---- | ------------------------------ |
-| autoAnimate | boolean | 否   | 是否开启涟漪动画，默认：`true` |
+| 字段          | 类型    | 必填 | 说明                           |
+| ------------- | ------- | ---- | ------------------------------ |
+| ~autoAnimate~ | boolean | 否   | 后续移除，改用`ripple`         |
+| ripple        | boolean | 否   | 是否开启涟漪动画，默认：`true` |
 
 #### SlidersConfig 类型说明
 

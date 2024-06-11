@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 18:10:44
+ * @LastEditTime: 2024-06-11 21:49:44
  * @Description:
  */
 "use client";
@@ -22,6 +22,7 @@ export function TextEffect({
   typingGap = 10,
   loopTyping = false,
   typingCursor = true,
+  gapDelay = 0.05,
   motions = {},
 }: SubTitleConfig & { text?: string; motions?: object }) {
   const [heartCount, setHeartCount] = useState(0);
@@ -151,7 +152,7 @@ export function TextEffect({
       }}
       {...motions}
     >
-      <TextUpView className="inline-block" appear={loading == 'wave'} eachDelay={0.05}>{subTitle}</TextUpView>
+      <TextUpView className="inline-block" appear={loading == 'wave'} eachDelay={gapDelay}>{subTitle}</TextUpView>
       {typingCursor && typing ? (
         <span className="animate-[mio-pulse_.7s_infinite]">|</span>
       ) : null}
@@ -168,7 +169,7 @@ export function TextEffect({
             opacity: 1,
             transition: {
               duration: 0.1,
-              delay: loading === "wave" ? loadingText?.length * 0.05 : 0
+              delay: loading === "wave" ? loadingText?.length * gapDelay : 0
             }
           }}
         ></motion.span>
@@ -176,8 +177,8 @@ export function TextEffect({
       {showFrom ? (
         <TextUpView
           appear={loading == 'wave'}
-          eachDelay={0.03}
-          initialDelay={loadingText?.length * 0.05}
+          eachDelay={gapDelay}
+          initialDelay={loadingText?.length * gapDelay}
           className={clsx(
             "absolute bottom-[-20px] left-0 right-0 flex scale-75 justify-center text-xs opacity-0 duration-500 ease-in-out md:bottom-[calc(-100%+12px)]",
             {

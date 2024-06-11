@@ -6,7 +6,7 @@
   "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
   "avatarConfig": {
     "src": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
-    "size": 128,
+    "size": 200,
     "round": "full",
     "hoverAnimate": "top"
   },
@@ -25,18 +25,19 @@
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
     "typing": true,
-    "loading": "wave",
-    "wave": true,
+    "loading": "wave1",
     "loopTyping": true,
     "shadow": true,
-    "typingCursor": false,
+    "typingCursor": true,
     "showFrom": true,
-    "desc": "Hexo版本博客程序"
+    "style": "desc",
+    "gapDelay": 0.05,
+    "content": "这里是kasuieの次元",
+    "desc": "呀呼~这里是kasuieの次元，kasuie是自己胡乱起的，可以叫我暖暖;目前已经毕业了，前端开发，会点点后端，目标是成为一个温柔的全栈开发🥰"
   },
   "socialConfig": {
     "autoAnimate": true,
-    "loading": "wave",
-    "wave": false,
+    "loading": "wave1",
     "ripple": true
   },
   "footer": {
