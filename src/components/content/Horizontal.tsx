@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-06 19:50:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 21:04:14
+ * @LastEditTime: 2024-06-11 14:27:42
  * @Description:
  */
 import { clsx } from "@kasuie/utils";
@@ -65,11 +65,9 @@ export function Horizontal({
         }
       )}
     >
-      <div className="flex flex-col items-start gap-16">
+      <div className="flex flex-col items-start gap-24">
         <TextEffect
           {...subTitleConfig}
-          typing={false}
-          showFrom={false}
           motions={getMotion(0.1, 1, 0.2, istTransition)}
           text={subTitle}
         />
@@ -109,8 +107,8 @@ export function Horizontal({
         staticSites={staticSites}
         modalSites={modalSites}
         cardOpacity={cardOpacity}
-      /> */}
-      {/* {!sliders?.hidden && (
+      />
+      {!sliders?.hidden && (
         <Sliders
           motions={getMotion(0.1, 4, 0.2, istTransition)}
           cardOpacity={cardOpacity}

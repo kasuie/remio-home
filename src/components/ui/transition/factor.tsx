@@ -2,13 +2,13 @@
  * @Author: kasuie
  * @Date: 2024-06-06 21:23:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 21:36:45
+ * @LastEditTime: 2024-06-11 17:28:55
  * @Description:
  */
 "use client";
 
 import { forwardRef, memo, useState } from "react";
-import { m } from "framer-motion";
+import { motion } from "framer-motion";
 import type {
   HTMLMotionProps,
   MotionProps,
@@ -24,11 +24,11 @@ import type {
 import type { BaseTransitionProps } from "./typings";
 
 // import { isHydrationEnded } from '~/components/common/HydrationEndDetector'
-import { microReboundPreset } from "@/lib/spring";
+import { microReboundPreset } from "@kasuie/utils";
 
-interface TransitionViewParams {
-  from: Target;
-  to: Target;
+export interface TransitionViewParams {
+  from?: Target;
+  to?: Target;
   initial?: Target;
   preset?: Spring;
 }
@@ -43,7 +43,7 @@ export const createTransitionView = (params: TransitionViewParams) => {
     const {
       timeout = {},
       duration = 0.5,
-
+      animate = true,
       animation = {},
       as = "div",
       delay = 0,
@@ -53,11 +53,15 @@ export const createTransitionView = (params: TransitionViewParams) => {
 
     const { enter = delay, exit = delay } = timeout;
 
-    const MotionComponent = m[as] as ForwardRefExoticComponent<
+    const MotionComponent = motion[as] as ForwardRefExoticComponent<
       HTMLMotionProps<any> & RefAttributes<HTMLElement>
     >;
 
     const [stableIsHydrationEnded] = useState(true);
+
+    if (!animate) {
+      return <MotionComponent {...rest}>{props.children}</MotionComponent>
+    }
 
     const motionProps: MotionProps = {
       initial: initial || from,
@@ -82,6 +86,7 @@ export const createTransitionView = (params: TransitionViewParams) => {
         } as TargetAndTransition["transition"],
       },
     };
+
     // if (lcpOptimization && !stableIsHydrationEnded) {
     //   motionProps.initial = to;
     //   delete motionProps.animate;
@@ -94,7 +99,7 @@ export const createTransitionView = (params: TransitionViewParams) => {
     );
   });
   TransitionView.displayName = `forwardRef(TransitionView)`;
-  const MemoedTransitionView = memo(TransitionView);
+  const MemoedTransitionView = memo(TransitionView); // 优化性能，防止不必要的重新渲染
   MemoedTransitionView.displayName = `MemoedTransitionView`;
   return MemoedTransitionView;
 };

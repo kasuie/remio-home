@@ -2,16 +2,16 @@
  * @Author: kasuie
  * @Date: 2024-05-30 10:45:37
  * @LastEditors: kasuie
- * @LastEditTime: 2024-05-30 21:40:13
+ * @LastEditTime: 2024-06-11 16:23:15
  * @Description:
  */
 export const showMotion = {
-  initial: "hidden",
-  animate: "visible",
+  initial: "initial",
+  animate: "animate",
   exit: "exit",
   variants: {
-    hidden: { opacity: 0, y: -100 },
-    visible: { opacity: 1, y: 0 },
+    initial: { opacity: 0, y: -100 },
+    animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -100 },
   },
   transition: {
@@ -30,6 +30,7 @@ export const getMotion = (
   return {
     ...showMotion,
     transition: {
+      ...showMotion.transition,
       duration: duration,
       delay: Math.max(gap * index - gap / 2, 0),
     },

@@ -2,9 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-06-06 21:24:37
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 21:24:41
+ * @LastEditTime: 2024-06-11 17:16:05
  * @Description:
  */
+import { TransitionsProps } from "@kasuie/utils";
 import type { HTMLMotionProps, m, TargetAndTransition } from "framer-motion";
 
 export interface BaseTransitionProps extends HTMLMotionProps<"div"> {
@@ -16,6 +17,10 @@ export interface BaseTransitionProps extends HTMLMotionProps<"div"> {
   };
 
   delay?: number;
+  
+  animate?: boolean
+  
+  transitionkey?: TransitionsProps;
 
   animation?: {
     enter?: TargetAndTransition["transition"];

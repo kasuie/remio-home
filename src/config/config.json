@@ -20,18 +20,24 @@
   "layoutConfig": {
     "istTransition": true,
     "gapSize": "lg",
-    "style": ""
+    "style": "horizontal1"
   },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
     "typing": true,
+    "loading": "wave",
+    "wave": true,
     "loopTyping": true,
     "shadow": true,
-    "typingCursor": true,
-    "showFrom": true
+    "typingCursor": false,
+    "showFrom": true,
+    "desc": "Hexo版本博客程序"
   },
   "socialConfig": {
-    "autoAnimate": true
+    "autoAnimate": true,
+    "loading": "wave",
+    "wave": false,
+    "ripple": true
   },
   "footer": {
     "text": "© 2020 - 2024 By KASUIE",

@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.0.8
     version: 0.0.8
   '@kasuie/utils':
-    specifier: ^0.0.10
-    version: 0.0.10
+    specifier: ^0.0.11
+    version: 0.0.11
   '@next/third-parties':
     specifier: ^14.2.3
     version: 14.2.3(next@14.2.3)(react@18.3.1)
@@ -1577,8 +1577,8 @@ packages:
       - supports-color
     dev: true
 
-  /@kasuie/utils@0.0.10:
-    resolution: {integrity: sha512-XoBwRBzVZgHJ/dNvMYjUA+N00penIfhLG2ST0UZdkVZHHjOc18k+205soBvQ8+c3JgsQF9sfgNyZzjAOpT/kRg==}
+  /@kasuie/utils@0.0.11:
+    resolution: {integrity: sha512-tt1vfc0KsiyV7yfo3EqrHKiEMfoUOdY42gLhkhRFjSwEaUBmNEqXDWuuTdkSK4gGiS2dl5+v4itwCGn+/5LTrw==}
     engines: {pnpm: '>=8'}
     dependencies:
       dayjs: 1.11.11

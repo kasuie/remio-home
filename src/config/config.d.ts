@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-07 18:08:55
+ * @LastEditTime: 2024-06-11 15:01:16
  * @Description:
  */
 export interface Link {
@@ -41,14 +41,18 @@ export interface SubTitleConfig {
   heart?: boolean;
   shadow?: boolean;
   typing?: boolean;
+  loading?: string | boolean;
   typingGap?: number | string;
   loopTyping?: boolean;
   typingCursor?: boolean;
   showFrom?: boolean;
+  desc?: string;
 }
 
 export interface SocialConfig {
+  ripple?: boolean;
   autoAnimate?: boolean;
+  loading?: string | boolean;
 }
 
 export interface BgConfig {

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-05 17:33:47
+ * @LastEditTime: 2024-06-11 18:10:44
  * @Description:
  */
 "use client";
@@ -10,6 +10,7 @@ import { SubTitleConfig } from "@/config/config";
 import { clsx } from "@kasuie/utils";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { TextUpView } from "../ui/transition/TextUpView";
 
 export function TextEffect({
   text,
@@ -17,6 +18,7 @@ export function TextEffect({
   showFrom = true,
   shadow = false,
   typing = false,
+  loading = false,
   typingGap = 10,
   loopTyping = false,
   typingCursor = true,
@@ -24,7 +26,7 @@ export function TextEffect({
 }: SubTitleConfig & { text?: string; motions?: object }) {
   const [heartCount, setHeartCount] = useState(0);
   const [subTitle, setSubTitle] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [tempText, setTempText] = useState("");
   const [loadingText, setLoadingText] = useState("");
   const [isHitokoto, setIsHitokoto] = useState(false);
@@ -48,7 +50,7 @@ export function TextEffect({
         })
         .then((res) => {
           setLoadingText(res?.hitokoto);
-          showFrom && setFrom(res?.from);
+          showFrom && setFrom(`《${res?.from}》`);
         })
         .catch((e) => console.log("error>>>", e));
     } else if (text) {
@@ -73,7 +75,7 @@ export function TextEffect({
             setTimeout(
               () => {
                 writing(subTitle.length - 1, loadingText, loadingText, false);
-                showFrom && setTimeout(() => setFrom(res?.from), 1000);
+                showFrom && setTimeout(() => setFrom(`《${res?.from}》`), 1000);
               },
               Math.max(+typingGap * 1000, 3000)
             );
@@ -129,7 +131,7 @@ export function TextEffect({
   };
 
   if (!subTitle && !loadingText && !tempText) {
-    return loading ? (
+    return isLoading ? (
       <motion.div className="min-h-[30px]" {...motions}>
         ...
       </motion.div>
@@ -139,10 +141,9 @@ export function TextEffect({
   return (
     <motion.div
       className={clsx(
-        `k-words-hearts mx-4 sm:mx-0 relative text-center font-[cursive] text-[20px] text-white`,
+        `k-words-hearts min-h-[30px] mx-4 sm:mx-0 relative text-center font-[cursive] text-[20px] text-white`,
         {
-          "min-h-[30px]": typing && !typingCursor,
-          "mb-3": showFrom && typing,
+          "mb-3": showFrom && typing
         }
       )}
       style={{
@@ -150,22 +151,33 @@ export function TextEffect({
       }}
       {...motions}
     >
-      <span>{subTitle}</span>
+      <TextUpView className="inline-block" appear={loading == 'wave'} eachDelay={0.05}>{subTitle}</TextUpView>
       {typingCursor && typing ? (
         <span className="animate-[mio-pulse_.7s_infinite]">|</span>
       ) : null}
       {heart && (
-        <span
+        <motion.span
           className={clsx(
             `absolute right-[-10px] top-[30%] h-[6px] w-[6px] rotate-[75deg] bg-[#cc2a5d] opacity-100 before:absolute before:left-0 before:top-0 before:h-full before:w-full before:translate-x-[-50%] before:rounded-[100px] before:bg-[#cc2a5d] before:content-[''] after:absolute after:left-0 after:top-0 after:h-full after:w-full after:translate-y-[-50%] after:rounded-[100px] after:bg-[#cc2a5d] after:content-['']`,
             {
               "!opacity-0": loadingText && loadingText != subTitle,
             }
           )}
-        ></span>
+          initial={{ opacity: 0.001 }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 0.1,
+              delay: loading === "wave" ? loadingText?.length * 0.05 : 0
+            }
+          }}
+        ></motion.span>
       )}
       {showFrom ? (
-        <span
+        <TextUpView
+          appear={loading == 'wave'}
+          eachDelay={0.03}
+          initialDelay={loadingText?.length * 0.05}
           className={clsx(
             "absolute bottom-[-20px] left-0 right-0 flex scale-75 justify-center text-xs opacity-0 duration-500 ease-in-out md:bottom-[calc(-100%+12px)]",
             {
@@ -173,8 +185,8 @@ export function TextEffect({
             }
           )}
         >
-          《{from}》
-        </span>
+          {from}
+        </TextUpView>
       ) : null}
     </motion.div>
   );
