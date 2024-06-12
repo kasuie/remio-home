@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:29:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 21:49:44
+ * @LastEditTime: 2024-06-12 22:01:30
  * @Description:
  */
 "use client";
@@ -142,9 +142,9 @@ export function TextEffect({
   return (
     <motion.div
       className={clsx(
-        `k-words-hearts min-h-[30px] mx-4 sm:mx-0 relative text-center font-[cursive] text-[20px] text-white`,
+        `k-words-hearts relative mx-4 min-h-[30px] text-center font-[cursive] text-[20px] text-white sm:mx-0`,
         {
-          "mb-3": showFrom && typing
+          "mb-3": showFrom && typing,
         }
       )}
       style={{
@@ -152,7 +152,13 @@ export function TextEffect({
       }}
       {...motions}
     >
-      <TextUpView className="inline-block" appear={loading == 'wave'} eachDelay={gapDelay}>{subTitle}</TextUpView>
+      <TextUpView
+        className="inline-block"
+        appear={loading == "wave" && !typing}
+        eachDelay={gapDelay}
+      >
+        {subTitle}
+      </TextUpView>
       {typingCursor && typing ? (
         <span className="animate-[mio-pulse_.7s_infinite]">|</span>
       ) : null}
@@ -169,14 +175,14 @@ export function TextEffect({
             opacity: 1,
             transition: {
               duration: 0.1,
-              delay: loading === "wave" ? loadingText?.length * gapDelay : 0
-            }
+              delay: loading === "wave" ? loadingText?.length * gapDelay : 0,
+            },
           }}
         ></motion.span>
       )}
       {showFrom ? (
         <TextUpView
-          appear={loading == 'wave'}
+          appear={loading == "wave"}
           eachDelay={gapDelay}
           initialDelay={loadingText?.length * gapDelay}
           className={clsx(

@@ -7,7 +7,7 @@
  */
 import { AppConfig } from "@/config/config";
 import { dateFormat } from "@kasuie/utils";
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 
 export const CONFIG_DIR = process.env.CONFIG_DIR
@@ -17,7 +17,7 @@ export const CONFIG_DIR = process.env.CONFIG_DIR
 export async function getConfig(fileName: string) {
   const configPath = join(CONFIG_DIR, fileName);
   console.log(
-    "path>>>",
+    "get path>>>",
     configPath,
     dateFormat(new Date(), "YYYY-MM-DD HH:mm:ss")
   );
@@ -26,5 +26,26 @@ export async function getConfig(fileName: string) {
     return JSON.parse(config) as AppConfig;
   } else {
     throw new Error(`无法找到配置文件：${configPath}，请检查~`);
+  }
+}
+
+export async function setConfig(fileName: string, appConfig: string) {
+  const configPath = join(CONFIG_DIR, fileName);
+  console.log(
+    "set path>>>",
+    configPath,
+    dateFormat(new Date(), "YYYY-MM-DD HH:mm:ss")
+  );
+  if (existsSync(configPath)) {
+    try {
+      writeFileSync(configPath, appConfig);
+      return true;
+    } catch (err) {
+      console.error(`写入失败：${err}，请检查~`);
+      return false;
+    }
+  } else {
+    console.error(`无法找到配置文件：${configPath}，请检查~`);
+    return false;
   }
 }
