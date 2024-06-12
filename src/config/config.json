@@ -6,16 +6,17 @@
   "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
   "avatarConfig": {
     "src": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
-    "size": 200,
+    "size": 150,
     "round": "full",
-    "hoverAnimate": "top"
+    "hoverAnimate": "top",
+    "style": "glint"
   },
   "bgConfig": {
     "bg": "",
     "mbg": "",
     "bgStyle": "snow",
     "blur": "",
-    "cardOpacity": 0
+    "cardOpacity": 0.1
   },
   "layoutConfig": {
     "istTransition": true,
@@ -25,19 +26,19 @@
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
     "typing": true,
-    "loading": "wave1",
+    "loading": "wave",
     "loopTyping": true,
     "shadow": true,
     "typingCursor": true,
     "showFrom": true,
     "style": "desc",
     "gapDelay": 0.05,
-    "content": "这里是kasuieの次元",
-    "desc": "呀呼~这里是kasuieの次元，kasuie是自己胡乱起的，可以叫我暖暖;目前已经毕业了，前端开发，会点点后端，目标是成为一个温柔的全栈开发🥰"
+    "content": "这里是kasuieの主页，可以叫我kasuie",
+    "desc": "kasuie是自己胡乱起的，也可以叫我暖暖;目前已经毕业了，在职前端，社畜了，会点点后端，目标是成为一个温柔的全栈开发🥰"
   },
   "socialConfig": {
     "autoAnimate": true,
-    "loading": "wave1",
+    "loading": "wave",
     "ripple": true
   },
   "footer": {
@@ -185,7 +186,8 @@
     }
   ],
   "sitesConfig": {
-    "cardStyle": "flip",
+    "hidden": false,
+    "cardStyle": "",
     "hoverBlur": true,
     "hoverScale": true,
     "hoverFlip": true,

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 21:44:36
+ * @LastEditTime: 2024-06-12 14:14:04
  * @Description:
  */
 export interface Link {
@@ -27,6 +27,7 @@ export interface Slider {
 }
 
 export interface SitesConfig {
+  hidden?: boolean;
   cardStyle?: string;
   hoverBlur?: boolean;
   hoverScale?: boolean;
@@ -71,6 +72,7 @@ interface AvatarConfig {
   size?: number; // 头像尺寸
   round?: string; // full | 3xl | xl | sm | md | lg 圆角程度
   hoverAnimate?: string; // top
+  style?: string; // glint
 }
 
 interface LayoutConfig {

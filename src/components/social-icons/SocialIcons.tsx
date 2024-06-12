@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 15:54:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 21:36:07
+ * @LastEditTime: 2024-06-12 17:52:45
  * @Description:
  */
 "use client";
@@ -96,9 +96,7 @@ export const SocialIcons = ({
                     src={v.icon}
                     width={18}
                     height={18}
-                    style={{
-                      borderRadius: "50%",
-                    }}
+                    className={"rounded-full"}
                   />
                 ) : (
                   renderIcon(v.icon, v.color)

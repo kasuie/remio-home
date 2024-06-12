@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 22:17:53
+ * @LastEditTime: 2024-06-12 17:50:25
  * @Description:
 -->
 
@@ -148,6 +148,7 @@ docker-compose up -d remio-home
 | size         | string | 否   | 头像尺寸                                                        |
 | round        | string | 否   | 圆角程度，可选`full`,`3xl`,`xl`,`sm`,`md`和`lg`，默认`full`     |
 | hoverAnimate | string | 否   | 头像`hover` 时效果动画，可选`top` 和 `rotate`，默认为空没有动画 |
+| style        | string | 否   | 头像效果动画，可选`glint` 和 `wave`，默认为空没有动画           |
 
 #### BgConfig 类型说明
 
@@ -161,10 +162,11 @@ docker-compose up -d remio-home
 
 #### LayoutConfig 类型说明
 
-| 字段          | 类型    | 必填 | 说明                                |
-| ------------- | ------- | ---- | ----------------------------------- |
-| istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启      |
-| gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`md` |
+| 字段          | 类型    | 必填 | 说明                                                  |
+| ------------- | ------- | ---- | ----------------------------------------------------- |
+| istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启                        |
+| gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`md`                   |
+| style         | string  | 否   | 布局风格，可选`horizontal`,`vertical`，默认`vertical` |
 
 #### FooterConfig 类型说明
 
@@ -196,22 +198,28 @@ docker-compose up -d remio-home
 
 #### SubTitleConfig 类型说明
 
-| 字段         | 类型    | 必填 | 说明                                                  |
-| ------------ | ------- | ---- | ----------------------------------------------------- |
-| heart        | boolean | 否   | 是否显示右上角爱心图标，默认：`true`                  |
-| typing       | boolean | 否   | 是否开启打字效果，默认：`false`                       |
-| loopTyping   | boolean | 否   | 是否支持切换一言，`typing`为`true`生效，默认：`false` |
-| shadow       | boolean | 否   | 是否显示文字阴影效果，默认：`false`                   |
-| typingGap    | number  | 否   | 一言间隔多久开始清除，单位秒(s)，默认为10s，最小3s    |
-| typingCursor | boolean | 否   | 是否展示打字光标，`typing`为`true`生效，默认：`true`  |
-| showFrom     | boolean | 否   | 是否显示一言来源，默认：`true`                        |
+| 字段         | 类型           | 必填 | 说明                                                                                         |
+| ------------ | -------------- | ---- | -------------------------------------------------------------------------------------------- |
+| heart        | boolean        | 否   | 是否显示右上角爱心图标，默认：`true`                                                         |
+| typing       | boolean        | 否   | 是否开启打字效果，默认：`false`                                                              |
+| loading      | string/boolean | 否   | 出现动画效果，可选`wave`，默认为空没有动画                                                   |
+| loopTyping   | boolean        | 否   | 是否支持切换一言，`typing`为`true`生效，默认：`false`                                        |
+| shadow       | boolean        | 否   | 是否显示文字阴影效果，默认：`false`                                                          |
+| typingGap    | number         | 否   | 一言间隔多久开始清除，单位秒(s)，默认为10s，最小3s                                           |
+| typingCursor | boolean        | 否   | 是否展示打字光标，`typing`为`true`生效，默认：`true`                                         |
+| showFrom     | boolean        | 否   | 是否显示一言来源，默认：`true`                                                               |
+| style        | string         | 否   | `layoutConfig.style` 为 `horizontal` 生效，样式风格，可选，`desc`,`default`，默认：`default` |
+| desc         | string         | 否   | `subTitleConfig.style` 为 `desc` 生效，描述，如果需要分行展示以`;`分隔，下同                 |
+| content      | string         | 否   | `subTitleConfig.style` 为 `desc` 生效，详细描述内容                                          |
+| gapDelay     | number         | 否   | 文字出现间隔，单位秒，默认`0.05`秒                                                           |
 
 #### SocialConfig 类型说明
 
-| 字段          | 类型    | 必填 | 说明                           |
-| ------------- | ------- | ---- | ------------------------------ |
-| ~autoAnimate~ | boolean | 否   | 后续移除，改用`ripple`         |
-| ripple        | boolean | 否   | 是否开启涟漪动画，默认：`true` |
+| 字段          | 类型           | 必填 | 说明                                       |
+| ------------- | -------------- | ---- | ------------------------------------------ |
+| ~autoAnimate~ | boolean        | 否   | 后续移除，改用`ripple`                     |
+| ripple        | boolean        | 否   | 是否开启涟漪动画，默认：`true`             |
+| loading       | string/boolean | 否   | 出现动画效果，可选`wave`，默认为空没有动画 |
 
 #### SlidersConfig 类型说明
 

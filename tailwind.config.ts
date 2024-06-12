@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 10:40:20
+ * @LastEditTime: 2024-06-12 16:46:05
  * @Description:
  */
 import type { Config } from "tailwindcss";
@@ -29,8 +29,13 @@ const config: Config = {
         "mio-floating": {
           "0%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(10px)" },
-          "100%": { transform: "translateY(0px)" }
-        }
+          "100%": { transform: "translateY(0px)" },
+        },
+        "mio-ping": {
+          "0%": { transform: "scale(1)", opacity: "0.16" },
+          "50%": { transform: "scale(1.4)", opacity: "0.1" },
+          "100%": { transform: "scale(1.8)", opacity: "0" },
+        },
       },
       transitionTimingFunction: {
         "mio-tooltip": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
@@ -47,7 +52,7 @@ const config: Config = {
       textColor: {
         "mio-text-color": "rgba(var(--mio-text-color))",
         "mio-text-default": "hsl(var(--mio-foreground))",
-      }
+      },
     },
   },
   plugins: [],

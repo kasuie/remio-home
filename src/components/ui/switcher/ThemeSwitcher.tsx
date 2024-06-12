@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-04 10:29:21
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 11:37:26
+ * @LastEditTime: 2024-06-12 17:28:03
  * @Description: 
  */
 'use client';
@@ -35,7 +35,7 @@ export const ThemeSwitcher = ({ className = "relative", size = 8, theme, motions
     if (theme != "switcher") return null
     
     return (
-        <motion.label {...motions} className={`inline-flex cursor-pointer items-center ${className}`}>
+        <motion.label {...motions} className={`inline-flex z-10 cursor-pointer items-center ${className}`}>
             <input
                 className="peer sr-only"
                 checked={checked}

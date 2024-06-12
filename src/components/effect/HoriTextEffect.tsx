@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-11 15:49:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 21:50:56
+ * @LastEditTime: 2024-06-12 17:23:28
  * @Description:
  */
 "use client";
@@ -75,8 +75,8 @@ export function HoriTextEffect({
           <TextUpView
             rootAs={v.rootAs}
             className={clsx("", {
-              "mb-5 text-2xl": v.rootAs == "h1",
-              "text-sm opacity-80": v.rootAs == "p",
+              "mb-6 text-2xl leading-relaxed md:text-3xl md:leading-loose": v.rootAs == "h1",
+              "text-sm opacity-80 leading-relaxed": v.rootAs == "p",
             })}
             key={v.text}
             as="span"
