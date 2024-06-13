@@ -81,4 +81,10 @@
     flex: 0 0 47%;
     max-width: 47%;
   }
+  .mio-col-2-full {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 49%;
+    flex: 0 0 49%;
+    max-width: 49%;
+  }
 }

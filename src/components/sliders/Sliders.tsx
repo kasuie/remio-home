@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-04 14:53:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 11:25:12
+ * @LastEditTime: 2024-06-13 19:15:30
  * @Description:
  */
 "use client";
@@ -29,9 +29,9 @@ export const Sliders = ({
   return (
     <motion.div
       style={{
-        backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`
+        backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`,
       }}
-      className="mb-8 w-[95vw] z-[1] rounded p-4 pb-8 shadow-mio-link backdrop-blur md:w-[65vw]"
+      className="z-[1] mb-8 w-[95vw] rounded p-4 pb-8 text-white/90 shadow-mio-link backdrop-blur md:w-[65vw]"
       {...motions}
     >
       {title && (

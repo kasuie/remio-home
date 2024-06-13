@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-30 21:28:45
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-07 18:11:55
+ * @LastEditTime: 2024-06-13 19:16:27
  * @Description:
  */
 "use client";
@@ -17,7 +17,7 @@ export function Footer({ footer, motions }: { footer?: string | FooterConfig; mo
   return (
     <motion.footer
       {...motions}
-      className="absolute bottom-2 left-1/2 !translate-x-[-50%] cursor-pointer select-none whitespace-nowrap text-sm"
+      className="absolute text-white/90 bottom-2 left-1/2 !translate-x-[-50%] cursor-pointer select-none whitespace-nowrap text-sm"
     >
       {
         typeof footer === "string" ? footer : (

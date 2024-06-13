@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 16:19:59
+ * @LastEditTime: 2024-06-13 20:30:03
  * @Description:
  */
 interface RuleItem {
@@ -14,7 +14,7 @@ interface RuleItem {
   field: string;
 }
 
-export const mainRules: RuleItem[] = [
+const mainRules: RuleItem[] = [
   {
     field: "favicon",
     isRequired: false,
@@ -66,3 +66,89 @@ export const mainRules: RuleItem[] = [
     ],
   },
 ];
+
+const avatarRules: RuleItem[] = [
+  {
+    field: "src",
+    isRequired: false,
+    label: "头像资源路径",
+  },
+  {
+    field: "size",
+    isRequired: true,
+    label: "头像尺寸",
+  },
+  {
+    controlKey: "select",
+    field: "round",
+    isRequired: false,
+    label: "圆角程度",
+    items: [
+      { label: "100%", value: "full" },
+      { label: "24px", value: "3xl" },
+      { label: "12px", value: "xl" },
+      { label: "8px", value: "lg" },
+      { label: "6px", value: "md" },
+      { label: "2px", value: "sm" },
+    ],
+  },
+  {
+    controlKey: "radio",
+    field: "style",
+    isRequired: false,
+    label: "头像动画",
+    items: [
+      { label: "无动画", value: "none" },
+      { label: "边框闪烁", value: "glint" },
+      { label: "涟漪动画", value: "wave" },
+    ],
+  },
+  {
+    controlKey: "radio",
+    field: "hoverAnimate",
+    isRequired: false,
+    label: "头像hover动画",
+    items: [
+      { label: "无动画", value: "none" },
+      { label: "上移", value: "top" },
+      { label: "旋转", value: "rotate" },
+    ],
+  },
+];
+
+const layoutRules: RuleItem[] = [
+  {
+    controlKey: "select",
+    field: "gapSize",
+    isRequired: false,
+    label: "布局组件间隔",
+    items: [
+      { label: "组件间隙48px", value: "lg" },
+      { label: "组件间隙32px", value: "md" },
+      { label: "组件间隙30px", value: "sm" },
+    ],
+  },
+  {
+    controlKey: "select",
+    field: "style",
+    isRequired: false,
+    label: "布局风格",
+    items: [
+      { label: "horizontal", value: "horizontal" },
+      { label: "vertical", value: "vertical" },
+    ],
+  },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [{ label: "渲染过渡动画", value: "istTransition" }],
+  },
+];
+
+export const AppRules = [
+  { title: "主要设置", rules: mainRules },
+  { title: "头像设置", rules: avatarRules },
+  { title: "布局设置", rules: layoutRules },
+] 

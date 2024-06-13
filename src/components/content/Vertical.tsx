@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 15:40:05
+ * @LastEditTime: 2024-06-13 20:02:07
  * @Description:
  */
 import { clsx } from "@kasuie/utils";
@@ -52,15 +52,15 @@ export function Vertical({
   primaryColor,
   subTitle,
   sliders,
-  cardOpacity = 0.1
+  cardOpacity = 0.1,
 }: VerticalProps) {
   return (
     <div
       className={clsx(
         "flex w-full flex-col items-center justify-center pb-16",
         {
-          "gap-[30px] pt-[20vh]": gapSize == "md",
-          "gap-8 pt-[25vh]": gapSize == "sm",
+          "gap-[30px] pt-[20vh]": gapSize == "sm",
+          "gap-8 pt-[25vh]": gapSize == "md",
           "gap-12 pt-[15vh]": gapSize == "lg",
         }
       )}
@@ -73,7 +73,7 @@ export function Vertical({
         motions={getMotion(0.1, 0, 0, istTransition)}
         animateStyle={avatarConfig?.style}
         {...avatarConfig}
-        style={''}
+        style={""}
       />
       <TextEffect
         {...subTitleConfig}
@@ -85,8 +85,8 @@ export function Vertical({
         motions={getMotion(0.1, 2, 0.2, istTransition)}
         links={links}
       />
-      {
-        !sitesConfig?.hidden && <Links
+      {!sitesConfig?.hidden && (
+        <Links
           sitesConfig={sitesConfig}
           motions={getMotion(0.1, 3, 0.2, istTransition)}
           primaryColor={primaryColor}
@@ -94,10 +94,14 @@ export function Vertical({
           modalSites={modalSites}
           cardOpacity={cardOpacity}
         />
-      }
-      {
-        !sliders?.hidden && <Sliders motions={getMotion(0.1, 4, 0.2, istTransition)} cardOpacity={cardOpacity} {...sliders} />
-      }
+      )}
+      {!sliders?.hidden && (
+        <Sliders
+          motions={getMotion(0.1, 4, 0.2, istTransition)}
+          cardOpacity={cardOpacity}
+          {...sliders}
+        />
+      )}
     </div>
   );
 }

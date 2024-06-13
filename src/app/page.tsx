@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 14:36:49
+ * @LastEditTime: 2024-06-13 20:36:09
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -48,6 +48,8 @@ export default async function Home() {
       staticSites = appConfig.sites.slice(0, index + 1);
       modalSites = appConfig.sites.slice(index + 1, appConfig.sites.length);
     }
+  } else {
+    staticSites = appConfig.sites;
   }
 
   const renderMain = (props: any) => {
