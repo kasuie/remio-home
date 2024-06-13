@@ -2,17 +2,19 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 16:46:05
+ * @LastEditTime: 2024-06-13 10:28:27
  * @Description:
  */
 import type { Config } from "tailwindcss";
+const {nextui} = require("@nextui-org/theme");
 
 const config: Config = {
-  darkMode: "class",
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './node_modules/@nextui-org/theme/dist/components/(checkbox|tabs|skeleton|select|radio|input|slider|chip).js',
   ],
   theme: {
     extend: {
@@ -55,6 +57,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [nextui({ prefix: 'mio'})],
 };
 export default config;

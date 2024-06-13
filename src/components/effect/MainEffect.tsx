@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 11:08:14
+ * @LastEditTime: 2024-06-13 10:40:00
  * @Description:
  */
 "use client";
@@ -15,7 +15,7 @@ export function MainEffect({ bg, mbg, bgStyle, blur }: BgConfig) {
   }
 
   const className = clsx(
-    "absolute z-[-1] brightness-50 dark:brightness-[.25] blur-sm h-full w-full top-0 left-0 bg-cover bg-fixed bg-center bg-no-repeat",
+    "absolute z-0 brightness-50 dark:brightness-[.25] blur-sm h-full w-full top-0 left-0 bg-cover bg-fixed bg-center bg-no-repeat",
     {
       "blur-none": blur == "none",
       "blur-sm": blur == "sm",

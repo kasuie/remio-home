@@ -2,18 +2,22 @@
  * @Author: kasuie
  * @Date: 2024-05-24 09:39:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-04 10:59:46
+ * @LastEditTime: 2024-06-13 10:21:54
  * @Description:
  */
 "use client";
 import { isClientSide } from "@kasuie/utils";
 import { ThemeProvider } from "next-themes";
+import { useRouter } from 'next/navigation';
+import { NextUIProvider } from '@nextui-org/system';
 
 export function AppProviders({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+
   if (isClientSide) {
     console.log(
       "\n %c Remio-home By kasuie %c https://kasuie.cc",
@@ -23,8 +27,10 @@ export function AppProviders({
   }
 
   return (
-    <ThemeProvider attribute="class" key="themeProvider" defaultTheme="light" enableSystem>
-      {children}
-    </ThemeProvider>
+    <NextUIProvider navigate={router.push}>
+      <ThemeProvider attribute="class" key="themeProvider" defaultTheme="light" enableSystem>
+        {children}
+      </ThemeProvider>
+    </NextUIProvider>
   );
 }

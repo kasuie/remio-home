@@ -133,7 +133,7 @@ export function TextEffect({
 
   if (!subTitle && !loadingText && !tempText) {
     return isLoading ? (
-      <motion.div className="min-h-[30px]" {...motions}>
+      <motion.div className="min-h-[30px] z-[1]" {...motions}>
         ...
       </motion.div>
     ) : null;
@@ -142,7 +142,7 @@ export function TextEffect({
   return (
     <motion.div
       className={clsx(
-        `k-words-hearts relative mx-4 min-h-[30px] text-center font-[cursive] text-[20px] text-white sm:mx-0`,
+        `k-words-hearts z-[1] relative mx-4 min-h-[30px] text-center font-[cursive] text-[20px] text-white sm:mx-0`,
         {
           "mb-3": showFrom && typing,
         }

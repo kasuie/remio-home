@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 15:54:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 17:52:45
+ * @LastEditTime: 2024-06-13 10:41:01
  * @Description:
  */
 "use client";
@@ -62,7 +62,7 @@ export const SocialIcons = ({
   };
 
   return (
-    <motion.div className="px-4 md:px-0" {...motions}>
+    <motion.div className="px-4 z-[1] md:px-0" {...motions}>
       <ul className="relative m-0 flex flex-wrap justify-center gap-6 md:gap-9">
         {links?.map((v: LinkType, index: number) => {
           return (
