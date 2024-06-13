@@ -21,14 +21,14 @@
   "layoutConfig": {
     "istTransition": true,
     "gapSize": "lg",
-    "style": "horizontal1"
+    "style": ""
   },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
     "typing": true,
     "loading": "wave",
     "loopTyping": true,
-    "shadow": true,
+    "shadow": false,
     "typingCursor": true,
     "showFrom": true,
     "style": "desc",
