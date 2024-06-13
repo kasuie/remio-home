@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 17:50:25
+ * @LastEditTime: 2024-06-13 23:40:55
  * @Description:
 -->
 
@@ -128,8 +128,8 @@ docker-compose up -d remio-home
 | keywords       | string                                        | 否   | 站点关键词                                                                                         |
 | description    | string                                        | 否   | 站点描述性信息                                                                                     |
 | avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)        | 否   | 主页头像相关配置                                                                                   |
-| LayoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)        | 否   | 布局相关的一些配置                                                                                 |
-| BgConfig       | [BgConfig](#BgConfig-类型说明)                | 否   | 背景相关的一些配置                                                                                 |
+| layoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)        | 否   | 布局相关的一些配置                                                                                 |
+| bgConfig       | [BgConfig](#BgConfig-类型说明)                | 否   | 背景相关的一些配置                                                                                 |
 | theme          | string                                        | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
 | subTitle       | string                                        | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`                      |
 | footer         | string/[FooterConfig](#FooterConfig-类型说明) | 否   | 底部设置项                                                                                         |
@@ -145,7 +145,7 @@ docker-compose up -d remio-home
 | 字段         | 类型   | 必填 | 说明                                                            |
 | ------------ | ------ | ---- | --------------------------------------------------------------- |
 | src          | string | 否   | 头像资源路径                                                    |
-| size         | string | 否   | 头像尺寸                                                        |
+| size         | number | 否   | 头像尺寸                                                        |
 | round        | string | 否   | 圆角程度，可选`full`,`3xl`,`xl`,`sm`,`md`和`lg`，默认`full`     |
 | hoverAnimate | string | 否   | 头像`hover` 时效果动画，可选`top` 和 `rotate`，默认为空没有动画 |
 | style        | string | 否   | 头像效果动画，可选`glint` 和 `wave`，默认为空没有动画           |
