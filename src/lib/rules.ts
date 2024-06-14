@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 23:08:58
+ * @LastEditTime: 2024-06-14 14:38:29
  * @Description:
  */
 export interface RuleItem {
@@ -67,6 +67,10 @@ const avatarRules: RuleItem[] = [
     field: "size",
     isRequired: true,
     label: "头像尺寸",
+    controlProps: {
+      type: "number",
+      min: 0,
+    },
   },
   {
     controlKey: "select",
@@ -269,6 +273,7 @@ const sitesRules: RuleItem[] = [
     isRequired: false,
     label: "启用效果",
     items: [
+      { label: "隐藏该组件", value: "hidden" },
       { label: "hover状态模糊", value: "hoverBlur" },
       { label: "hover状态伸缩", value: "hoverScale" },
       { label: "卡片是否可翻转", value: "hoverFlip" },

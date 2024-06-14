@@ -2,18 +2,18 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 23:24:56
+ * @LastEditTime: 2024-06-14 15:26:15
  * @Description:
  */
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Input } from "../input/Input";
 import { Radio } from "../radio/Radio";
 import { Select } from "../select/Select";
 import { Checkbox } from "../checkbox/Checkbox";
 import { RuleItem } from "@/lib/rules";
 
-interface FormObj {
+export interface FormObj {
   [key: string]: any;
 }
 
@@ -32,6 +32,7 @@ export const Form = ({
     },
   },
   transform = true,
+  onMerge,
 }: {
   className?: string;
   title?: string;
@@ -39,48 +40,75 @@ export const Form = ({
   form?: FormObj;
   controlProps?: FormObj;
   transform?: boolean;
+  onMerge?: Function;
 }) => {
   const [formData, setFormData] = useState<FormObj>();
+  const [resetData, setResetData] = useState<FormObj>();
+  const [hasBooleans, setHasBooleans] = useState<Boolean>(false);
 
   useEffect(() => {
     if (rules?.length && form) {
-      const object = rules.reduce((prev, curr) => {
+      const object = rules.reduce((prev: FormObj, curr) => {
         let value =
           typeof form[curr.field] != "undefined" && form[curr.field] != ""
             ? form[curr.field]
             : curr.default;
         if (curr.field.includes("$boolean")) {
+          setHasBooleans(true);
           const booleans = curr.items?.reduce((iprev, icurr) => {
-            const ivalue =
-              typeof form[icurr.value] != "undefined"
-                ? form[icurr.value]
-                : value?.includes(icurr.value);
+            const ivalue = form[icurr.value]
             if (ivalue) {
               if (Array.isArray(value)) {
                 !value.includes(icurr.value) && value.push(icurr.value);
               } else {
                 value = [icurr.value];
               }
+            } else if(typeof ivalue === "undefined") {
+                return { ...iprev, [icurr.value]: value?.includes(icurr.value) || false };
+            } else if (Array.isArray(value)) {
+              value = value.filter(v => v != icurr.value);
             }
             return { ...iprev, [icurr.value]: ivalue };
           }, {});
           return {
             ...prev,
             ...booleans,
+            "$fields": prev && prev["$fields"] ? [...prev["$fields"], ...Object.keys(booleans)] : Object.keys(booleans),
             [curr.field]: value,
           };
         } else {
           return {
             ...prev,
-            [curr.field]: value,
+            [curr.field]: value || null,
           };
         }
       }, {});
       setFormData(object);
+      setResetData(object);
     } else if (form) {
       setFormData(form);
+      setResetData(form);
     }
   }, [rules, form]);
+
+  useEffect(() => {
+    const result = Object.assign({}, formData);
+    if (formData) {
+      if (transform && hasBooleans) {
+        const fields = result["$fields"];
+        delete result["$fields"];
+        Object.keys(result)?.forEach((key) => {
+          if (key.includes("$boolean") && fields) {
+            fields?.map((v: string) => {
+              result[v] = result[key]?.includes(v) || false;
+            });
+            delete result[key];
+          }
+        });
+      }
+      onMerge?.(result);
+    }
+  }, [formData])
 
   const onSubmit = () => {
     if (transform && formData) {
@@ -180,7 +208,7 @@ export const Form = ({
                       onValueChange={(val: string) => {
                         setFormData({
                           ...formData,
-                          [field]: val,
+                          [field]: props?.type == "number" ? +val : val,
                         });
                       }}
                     />
