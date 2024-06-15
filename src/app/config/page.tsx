@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:46:02
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 18:29:15
+ * @LastEditTime: 2024-06-15 22:25:27
  * @Description:
  */
 import { MainEffect } from "@/components/effect/MainEffect";
@@ -12,6 +12,8 @@ import { Verify } from "@/components/verify/Verify";
 import { getConfig } from "@/lib/config";
 import { toHsl } from "@kasuie/utils";
 import { Suspense } from "react";
+
+export const revalidate = 0;
 
 export default async function Config({
   searchParams,
