@@ -6,14 +6,17 @@ settings:
 
 dependencies:
   '@kasuie/icon':
-    specifier: ^0.0.8
-    version: 0.0.8
+    specifier: ^0.0.9
+    version: 0.0.9
   '@kasuie/utils':
-    specifier: ^0.0.11
-    version: 0.0.11
+    specifier: ^0.0.13
+    version: 0.0.13
   '@next/third-parties':
     specifier: ^14.2.3
     version: 14.2.3(next@14.2.3)(react@18.3.1)
+  '@nextui-org/accordion':
+    specifier: ^2.0.34
+    version: 2.0.34(@nextui-org/system@2.2.1)(@nextui-org/theme@2.2.5)(framer-motion@11.2.9)(react-dom@18.3.1)(react@18.3.1)
   '@nextui-org/checkbox':
     specifier: ^2.1.1
     version: 2.1.1(@nextui-org/system@2.2.1)(@nextui-org/theme@2.2.5)(react-dom@18.3.1)(react@18.3.1)
@@ -32,6 +35,9 @@ dependencies:
   '@nextui-org/theme':
     specifier: ^2.2.5
     version: 2.2.5(tailwindcss@3.4.3)
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   framer-motion:
     specifier: ^11.2.9
     version: 11.2.9(react-dom@18.3.1)(react@18.3.1)
@@ -61,6 +67,9 @@ devDependencies:
   '@kasuie/prettier':
     specifier: ^0.1.9
     version: 0.1.9
+  '@types/crypto-js':
+    specifier: ^4.2.2
+    version: 4.2.2
   '@types/node':
     specifier: ^20
     version: 20.12.12
@@ -1614,8 +1623,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@kasuie/icon@0.0.8:
-    resolution: {integrity: sha512-K5gSHvO5zdJqiS1VZ2OD1H+GrPOBtlcHeFBZmmWyzhDnkDHMZ8w1njs0fM4msdFvNhcOVLz81rjGIFdcZJ77RA==}
+  /@kasuie/icon@0.0.9:
+    resolution: {integrity: sha512-m1jJBk0xrKnGIknXdvTUUSB/qECK5ONFnrLtDtUPh0pbtq9DWow1tRKNVk3zlJoSXaZDEBvTUe15nqeyk1LPUQ==}
     engines: {pnpm: '>=8'}
     dependencies:
       react: 18.3.1
@@ -1652,8 +1661,8 @@ packages:
       - supports-color
     dev: true
 
-  /@kasuie/utils@0.0.11:
-    resolution: {integrity: sha512-tt1vfc0KsiyV7yfo3EqrHKiEMfoUOdY42gLhkhRFjSwEaUBmNEqXDWuuTdkSK4gGiS2dl5+v4itwCGn+/5LTrw==}
+  /@kasuie/utils@0.0.13:
+    resolution: {integrity: sha512-R5CTQWKuZi+hyJ2uTea9sdMg0+YQ7BCy3WDSpZAT7W9ajW4GTku/UUwSnJlKAllmUCtObY7RN4xthkkyHCMsRw==}
     engines: {pnpm: '>=8'}
     dependencies:
       dayjs: 1.11.11
@@ -1759,6 +1768,36 @@ packages:
       next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
       third-party-capital: 1.0.20
+    dev: false
+
+  /@nextui-org/accordion@2.0.34(@nextui-org/system@2.2.1)(@nextui-org/theme@2.2.5)(framer-motion@11.2.9)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-wC4hVbLwNl462yIwILufDl9562Vb97a2htiF+2QdaY3Vfrll8Mnl98vpdRu+ZB4bV3MhBumuyaB+TlVDojFI+A==}
+    peerDependencies:
+      '@nextui-org/system': '>=2.0.0'
+      '@nextui-org/theme': '>=2.1.0'
+      framer-motion: '>=10.17.0'
+      react: '>=18'
+      react-dom: '>=18'
+    dependencies:
+      '@nextui-org/aria-utils': 2.0.20(@nextui-org/theme@2.2.5)(framer-motion@11.2.9)(react-dom@18.3.1)(react@18.3.1)
+      '@nextui-org/divider': 2.0.28(@nextui-org/theme@2.2.5)(react-dom@18.3.1)(react@18.3.1)
+      '@nextui-org/framer-utils': 2.0.20(@nextui-org/theme@2.2.5)(framer-motion@11.2.9)(react-dom@18.3.1)(react@18.3.1)
+      '@nextui-org/react-utils': 2.0.13(react@18.3.1)
+      '@nextui-org/shared-icons': 2.0.7(react@18.3.1)
+      '@nextui-org/shared-utils': 2.0.5
+      '@nextui-org/system': 2.2.1(@nextui-org/theme@2.2.5)(framer-motion@11.2.9)(react-dom@18.3.1)(react@18.3.1)
+      '@nextui-org/theme': 2.2.5(tailwindcss@3.4.3)
+      '@nextui-org/use-aria-accordion': 2.0.5(react-dom@18.3.1)(react@18.3.1)
+      '@react-aria/button': 3.9.3(react@18.3.1)
+      '@react-aria/focus': 3.16.2(react@18.3.1)
+      '@react-aria/interactions': 3.21.1(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
+      '@react-stately/tree': 3.7.6(react@18.3.1)
+      '@react-types/accordion': 3.0.0-alpha.19(react@18.3.1)
+      '@react-types/shared': 3.23.1(react@18.3.1)
+      framer-motion: 11.2.9(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /@nextui-org/aria-utils@2.0.20(@nextui-org/theme@2.2.5)(framer-motion@11.2.9)(react-dom@18.3.1)(react@18.3.1):
@@ -2144,6 +2183,23 @@ packages:
       tailwind-merge: 1.14.0
       tailwind-variants: 0.1.20(tailwindcss@3.4.3)
       tailwindcss: 3.4.3
+    dev: false
+
+  /@nextui-org/use-aria-accordion@2.0.5(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-EDUHQH4LE08ulrUEWZajvMJkRDsnB17iHc2ZdZFAiQSstVRjudTUkHABmvd6uazRFqMRyc4xK7WfXPQnk7VySA==}
+    peerDependencies:
+      react: '>=18'
+    dependencies:
+      '@react-aria/button': 3.9.3(react@18.3.1)
+      '@react-aria/focus': 3.16.2(react@18.3.1)
+      '@react-aria/selection': 3.17.5(react-dom@18.3.1)(react@18.3.1)
+      '@react-aria/utils': 3.24.1(react@18.3.1)
+      '@react-stately/tree': 3.7.6(react@18.3.1)
+      '@react-types/accordion': 3.0.0-alpha.19(react@18.3.1)
+      '@react-types/shared': 3.23.1(react@18.3.1)
+      react: 18.3.1
+    transitivePeerDependencies:
+      - react-dom
     dev: false
 
   /@nextui-org/use-aria-button@2.0.8(react@18.3.1):
@@ -2770,6 +2826,19 @@ packages:
       react: 18.3.1
     dev: false
 
+  /@react-stately/tree@3.7.6(react@18.3.1):
+    resolution: {integrity: sha512-y8KvEoZX6+YvqjNCVGS3zA/BKw4D3XrUtUKIDme3gu5Mn6z97u+hUXKdXVCniZR7yvV3fHAIXwE5V2K8Oit4aw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-stately/collections': 3.10.7(react@18.3.1)
+      '@react-stately/selection': 3.15.1(react@18.3.1)
+      '@react-stately/utils': 3.10.1(react@18.3.1)
+      '@react-types/shared': 3.23.1(react@18.3.1)
+      '@swc/helpers': 0.5.5
+      react: 18.3.1
+    dev: false
+
   /@react-stately/tree@3.8.1(react@18.3.1):
     resolution: {integrity: sha512-LOdkkruJWch3W89h4B/bXhfr0t0t1aRfEp+IMrrwdRAl23NaPqwl5ILHs4Xu5XDHqqhg8co73pHrJwUyiTWEjw==}
     peerDependencies:
@@ -2798,6 +2867,15 @@ packages:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
     dependencies:
       '@swc/helpers': 0.5.5
+      react: 18.3.1
+    dev: false
+
+  /@react-types/accordion@3.0.0-alpha.19(react@18.3.1):
+    resolution: {integrity: sha512-WJaitKz56zRKUwBqDM4OOKtmIdD0lr5nruWoM2IlGRO50WUzSFmAy/1aFiodAVZbun1v5IxbjST6/qSV4jPqug==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-types/shared': 3.23.1(react@18.3.1)
       react: 18.3.1
     dev: false
 
@@ -3019,6 +3097,10 @@ packages:
     resolution: {integrity: sha512-loB369iXNmAZglwWATL+WRe+CRMmmBPtpolYzIebFaX4YA3x+BEfLqhUAV9WanycKI3TG1IMr5bMJDajDKLlUQ==}
     dependencies:
       '@types/node': 20.12.12
+    dev: true
+
+  /@types/crypto-js@4.2.2:
+    resolution: {integrity: sha512-sDOLlVbHhXpAUAL0YHDUUwDZf3iN4Bwi4W6a0W0b+QcAezUbRtH4FVb+9J4h+XFPW7l/gQ9F8qC7P+Ec4k8QVQ==}
     dev: true
 
   /@types/eslint-scope@3.7.7:
@@ -3962,6 +4044,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}

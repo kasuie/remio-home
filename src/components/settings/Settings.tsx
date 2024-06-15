@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:52:57
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-14 15:27:54
+ * @LastEditTime: 2024-06-15 20:22:33
  * @Description:
  */
 "use client";
@@ -10,8 +10,9 @@ import { motion } from "framer-motion";
 import { AppConfig } from "@/config/config";
 import { AppRules } from "@/lib/rules";
 import { Form, FormObj } from "../ui/form/Form";
-import { memo, useCallback, useState } from "react";
+import { memo, useState } from "react";
 import { Button } from "../ui/button/Button";
+import { Accordion, AccordionItem } from "@nextui-org/accordion";
 
 const MemoizedForm = memo(Form);
 
@@ -22,44 +23,67 @@ export const Settings = ({
   config: AppConfig;
   cardOpacity?: number;
 }) => {
-
   const [result, setResult] = useState<FormObj>(config);
   const [loading, setLoading] = useState(false);
 
   const onMerge = (data: FormObj, field?: string) => {
     setResult({
       ...result,
-      ...(field ? { [field]: data } : data)
-    })
+      ...(field ? { [field]: data } : data),
+    });
   };
 
   return (
-    <motion.div
-      style={{
-        backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`,
-      }}
-      className="z-[1] flex flex-col items-center gap-4 max-h-[85vh] w-[95vw] overflow-hidden rounded p-4 shadow-mio-link backdrop-blur md:w-[65vw]"
-    >
-      <div className="mio-scroll flex flex-col gap-8 w-full overflow-y-auto p-3">
+    <motion.div className="flex h-[85vh] w-[95vw] flex-col items-center gap-4 overflow-hidden rounded p-4 text-[hsl(var(--mio-foreground)/1)] shadow-mio-link backdrop-blur-lg md:w-[65vw]">
+      <Accordion
+        showDivider
+        className="mio-scroll flex w-full flex-col overflow-y-auto px-2"
+        selectionMode="multiple"
+      >
         {AppRules?.map(({ title, rules, field }) => {
           const form = field ? (config as any)[field as any] : config;
-          return <MemoizedForm key={title} title={title} onMerge={(data: FormObj) => onMerge(data, field)} rules={rules} form={form} />;
+          return (
+            <AccordionItem
+              key={title}
+              aria-label={title}
+              title={
+                <span className="flex flex-nowrap items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[var(--primary-color)]"></span>
+                  <span className="font-semibold">{title}</span>
+                </span>
+              }
+            >
+              <MemoizedForm
+                key={title}
+                title={title}
+                onMerge={(data: FormObj) => onMerge(data, field)}
+                rules={rules}
+                form={form}
+              />
+            </AccordionItem>
+          );
         })}
-      </div>
+      </Accordion>
       <div>
-        <Button loading={loading} className=" rounded-2xl" onClick={() => {
-          console.log(result, "result");
-          setLoading(true)
-          // fetch("/api/config", {
-          //   method: "POST",
-          //   body: JSON.stringify({
-          //     ...result,
-          //   }),
-          // }).then(async (res) => {
-          //   console.log(await res.json());
-          //   setLoading(false)
-          // });
-        }}>保存</Button>
+        <Button
+          loading={loading}
+          className="rounded-2xl"
+          onClick={() => {
+            console.log(result, "result");
+            setLoading(true);
+            // fetch("/api/config", {
+            //   method: "POST",
+            //   body: JSON.stringify({
+            //     ...result,
+            //   }),
+            // }).then(async (res) => {
+            //   console.log(await res.json());
+            //   setLoading(false)
+            // });
+          }}
+        >
+          保存
+        </Button>
       </div>
     </motion.div>
   );

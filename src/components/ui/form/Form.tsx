@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-14 15:26:15
+ * @LastEditTime: 2024-06-15 22:04:07
  * @Description:
  */
 "use client";
@@ -12,6 +12,7 @@ import { Radio } from "../radio/Radio";
 import { Select } from "../select/Select";
 import { Checkbox } from "../checkbox/Checkbox";
 import { RuleItem } from "@/lib/rules";
+import { FormList } from "./FormList";
 
 export interface FormObj {
   [key: string]: any;
@@ -24,11 +25,15 @@ export const Form = ({
   form,
   controlProps = {
     size: "sm",
-    variant: "flat",
-    color: "success",
+    variant: "underlined",
+    color: "primary",
     classNames: {
-      label: "text-mio-text-color",
-      description: "text-mio-text-color/80 indent-1",
+      label: "text-[hsl(var(--mio-foreground)/0.8)]",
+      description: "text-[hsl(var(--mio-foreground)/0.6)] indent-1",
+      popoverContent: "bg-black/80",
+      listbox: "text-white/90",
+      value: "text-[hsl(var(--mio-primary)/1)]",
+      input: "text-[hsl(var(--mio-primary)/1)]",
     },
   },
   transform = true,
@@ -55,25 +60,31 @@ export const Form = ({
             : curr.default;
         if (curr.field.includes("$boolean")) {
           setHasBooleans(true);
-          const booleans = curr.items?.reduce((iprev, icurr) => {
-            const ivalue = form[icurr.value]
+          const booleans: any = curr.items?.reduce((iprev, icurr) => {
+            const ivalue = form[icurr.value];
             if (ivalue) {
               if (Array.isArray(value)) {
                 !value.includes(icurr.value) && value.push(icurr.value);
               } else {
                 value = [icurr.value];
               }
-            } else if(typeof ivalue === "undefined") {
-                return { ...iprev, [icurr.value]: value?.includes(icurr.value) || false };
+            } else if (typeof ivalue === "undefined") {
+              return {
+                ...iprev,
+                [icurr.value]: value?.includes(icurr.value) || false,
+              };
             } else if (Array.isArray(value)) {
-              value = value.filter(v => v != icurr.value);
+              value = value.filter((v) => v != icurr.value);
             }
             return { ...iprev, [icurr.value]: ivalue };
           }, {});
           return {
             ...prev,
             ...booleans,
-            "$fields": prev && prev["$fields"] ? [...prev["$fields"], ...Object.keys(booleans)] : Object.keys(booleans),
+            $fields:
+              prev && prev["$fields"]
+                ? [...prev["$fields"], ...Object.keys(booleans)]
+                : Object.keys(booleans),
             [curr.field]: value,
           };
         } else {
@@ -108,7 +119,7 @@ export const Form = ({
       }
       onMerge?.(result);
     }
-  }, [formData])
+  }, [formData]);
 
   const onSubmit = () => {
     if (transform && formData) {
@@ -123,101 +134,98 @@ export const Form = ({
   };
 
   return (
-    <div>
-      {title && (
-        <div className="mb-2 flex flex-nowrap items-center gap-2">
-          <span className="ml-1 h-2 w-2 rounded-full bg-black dark:bg-white"></span>
-          <span className=" text-base font-semibold">{title}</span>
-        </div>
-      )}
-      <div className="flex flex-wrap justify-between gap-y-4">
-        {formData &&
-          rules?.map(
-            (
-              {
-                field,
-                controlKey,
-                items,
-                desc,
-                controlProps: _props,
-                ...others
-              },
-              index
-            ) => {
-              const props = {
-                ...others,
-                ...controlProps,
-                ..._props,
-                description: desc,
-                className: "md:mio-col-2-full",
-              };
-              switch (controlKey) {
-                case "select":
-                  return (
-                    <Select
-                      {...props}
-                      key={field}
-                      selectedKeys={formData[field] ? [formData[field]] : []}
-                      items={items}
-                      onSelectionChange={(val: any) => {
-                        if (!val || !val["currentKey"]) return;
-                        setFormData({
-                          ...formData,
-                          [field]: val["currentKey"],
-                        });
-                      }}
-                    />
-                  );
-                case "checkbox":
-                  const value = formData[field] || [];
-                  return (
-                    <Checkbox
-                      {...props}
-                      key={field}
-                      value={value}
-                      items={items}
-                      onValueChange={(val: string[]) => {
-                        setFormData({
-                          ...formData,
-                          [field]: val,
-                        });
-                      }}
-                    />
-                  );
-                case "radio":
-                  return (
-                    <Radio
-                      key={field}
-                      value={formData[field]}
-                      items={items}
-                      {...props}
-                      onValueChange={(val: string) => {
-                        setFormData({
-                          ...formData,
-                          [field]: val,
-                        });
-                      }}
-                    />
-                  );
-                default:
-                  return (
-                    <Input
-                      key={field}
-                      value={formData[field] || ""}
-                      {...props}
-                      onValueChange={(val: string) => {
-                        setFormData({
-                          ...formData,
-                          [field]: props?.type == "number" ? +val : val,
-                        });
-                      }}
-                    />
-                  );
-              }
+    <div className="flex flex-wrap justify-between gap-y-4">
+      {formData &&
+        rules?.map(
+          (
+            { field, controlKey, items, desc, controlProps: _props, ...others },
+            index
+          ) => {
+            const props = {
+              ...others,
+              ...controlProps,
+              ..._props,
+              description: desc,
+              className: "md:mio-col-2-full",
+            };
+            switch (controlKey) {
+              case "select":
+                return (
+                  <Select
+                    {...props}
+                    key={field}
+                    selectedKeys={formData[field] ? [formData[field]] : []}
+                    items={items}
+                    onSelectionChange={(val: any) => {
+                      if (!val || !val["currentKey"]) return;
+                      setFormData({
+                        ...formData,
+                        [field]: val["currentKey"],
+                      });
+                    }}
+                  />
+                );
+              case "checkbox":
+                const value = formData[field] || [];
+                return (
+                  <Checkbox
+                    {...props}
+                    key={field}
+                    value={value}
+                    items={items}
+                    onValueChange={(val: string[]) => {
+                      setFormData({
+                        ...formData,
+                        [field]: val,
+                      });
+                    }}
+                  />
+                );
+              case "radio":
+                return (
+                  <Radio
+                    key={field}
+                    value={formData[field]}
+                    items={items}
+                    {...props}
+                    onValueChange={(val: string) => {
+                      setFormData({
+                        ...formData,
+                        [field]: val,
+                      });
+                    }}
+                  />
+                );
+              case "list":
+                return (
+                  <FormList
+                    key={field}
+                    title={props.label}
+                    controlProps={{
+                      ...controlProps,
+                      ..._props
+                    }}
+                    rules={items}
+                    data={formData[field]}
+                  />
+                );
+              default:
+                return (
+                  <Input
+                    key={field}
+                    value={formData[field] || ""}
+                    {...props}
+                    onValueChange={(val: string) => {
+                      setFormData({
+                        ...formData,
+                        [field]: props?.type == "number" ? +val : val,
+                      });
+                    }}
+                  />
+                );
             }
-          )}
-      </div>
-      {/* <button onClick={onSubmit}>保存</button> */}
+          }
+        )}
     </div>
   );
 };

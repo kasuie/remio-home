@@ -1,45 +1,45 @@
 :root {
-    --mio-main: 255, 255, 255;
-  
-    --mio-bg: 249, 249, 249;
-    --mio-out-bg: 255, 255, 255;
-    --mio-header-bg: 255, 255, 255;
-    --mio-aside-bg: 240, 242, 244;
-  
-    --mio-text-color: 51, 51, 51;
-    --mio-text-default: 0, 0, 0;
-  
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-  
-    --mio-message-success: #2bde3f;
-    --mio-message-info: #1d72f3;
-    --mio-message-warning: #ffc007;
-    --mio-message-error: #ff4555;
+  --mio-main: 255, 255, 255;
+
+  --mio-bg: 249, 249, 249;
+  --mio-out-bg: 255, 255, 255;
+  --mio-header-bg: 255, 255, 255;
+  --mio-aside-bg: 240, 242, 244;
+
+  --mio-text-color: 51, 51, 51;
+  --mio-text-default: 0, 0, 0;
+
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  /* #18ef30 #1c77ff #ffc007 #f13443*/
+  --mio-message-success: 24, 239, 48;
+  --mio-message-info: 28, 119, 255;
+  --mio-message-warning: 255, 192, 7;
+  --mio-message-error: 241, 52, 67;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark,
+  [data-theme="dark"] {
+    /*dark*/
+    color-scheme: dark;
+    --mio-main: 0, 0, 0;
+
+    --mio-bg: 27, 29, 31;
+    --mio-out-bg: 44, 46, 47;
+    --mio-header-bg: 34, 36, 37;
+    --mio-aside-bg: 44, 46, 47;
+
+    --mio-text-color: 198, 201, 207;
+    --mio-text-default: 255, 255, 255;
+
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+
+    --mio-message-success: 24, 239, 48;
+    --mio-message-info: 28, 119, 255;
+    --mio-message-warning: 255, 192, 7;
+    --mio-message-error: 241, 52, 67;
   }
-  
-  @media (prefers-color-scheme: dark) {
-    .dark,
-    [data-theme="dark"] {
-      /*dark*/
-      color-scheme: dark;
-      --mio-main: 0, 0, 0;
-  
-      --mio-bg: 27, 29, 31;
-      --mio-out-bg: 44, 46, 47;
-      --mio-header-bg: 34, 36, 37;
-      --mio-aside-bg: 44, 46, 47;
-  
-      --mio-text-color: 198, 201, 207;
-      --mio-text-default: 255, 255, 255;
-  
-      --background-start-rgb: 0, 0, 0;
-      --background-end-rgb: 0, 0, 0;
-  
-      --mio-message-success: #2bde3f;
-      --mio-message-info: #1d72f3;
-      --mio-message-warning: #ffc007;
-      --mio-message-error: #ff4555;
-    }
-  }
-  
+}

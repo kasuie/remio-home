@@ -22,6 +22,12 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.mio-hidden {
+  opacity: 0 !important;
+  transition: all ease-in-out 0.3s;
+  transform: translateY(10px) !important;
+}
+
 @keyframes light {
   0% {
     box-shadow: 0 0 4px #50afda;

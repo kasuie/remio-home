@@ -2,15 +2,23 @@
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-14 14:38:29
+ * @LastEditTime: 2024-06-15 22:05:11
  * @Description:
  */
+export interface ItemsItem {
+  label: string;
+  value: string;
+  controlKey?: string;
+  desc?: string;
+  controlProps?: any;
+}
+
 export interface RuleItem {
   controlKey?: string;
   isRequired?: boolean;
   label?: string;
   placeholder?: string;
-  items?: Array<any>;
+  items?: Array<ItemsItem>;
   field: string;
   desc?: string;
   controlProps?: any;
@@ -54,6 +62,30 @@ const mainRules: RuleItem[] = [
     field: "subTitle",
     isRequired: false,
     label: "站点次标题",
+  },
+  {
+    controlKey: "list",
+    field: "links",
+    isRequired: false,
+    label: "社媒链接",
+    items: [
+      { label: "标题", value: "title", controlKey: "input" },
+      { label: "颜色", value: "color", controlKey: "input" },
+      { label: "链接", value: "url", controlKey: "input" },
+      { label: "图标链接", value: "icon", controlKey: "input" },
+    ],
+  },
+  {
+    controlKey: "list",
+    field: "sites",
+    isRequired: false,
+    label: "站点链接",
+    items: [
+      { label: "标题", value: "title", controlKey: "input" },
+      { label: "描述", value: "desc", controlKey: "input" },
+      { label: "链接", value: "url", controlKey: "input" },
+      { label: "图标链接", value: "icon", controlKey: "input" },
+    ],
   },
 ];
 
@@ -188,6 +220,7 @@ const bgRules: RuleItem[] = [
       type: "number",
       max: 1,
       min: 0,
+      step: "0.05",
     },
     default: 0.1,
   },
@@ -303,6 +336,7 @@ const subTitleRules: RuleItem[] = [
     controlProps: {
       type: "number",
       min: 3,
+      step: "0.5",
     },
     default: 10,
   },
@@ -336,6 +370,7 @@ const subTitleRules: RuleItem[] = [
     label: "单个文字出现间隔",
     controlProps: {
       type: "number",
+      step: "0.01",
     },
     default: 0.05,
     desc: "单位秒(s)，默认0.05s，搭配loading属性定义动画",
@@ -348,9 +383,9 @@ const subTitleRules: RuleItem[] = [
     items: [
       { label: "爱心图标", value: "heart" },
       { label: "打字效果", value: "typing" },
-      { label: "打字循环", value: "loopTyping", tips: "开启打字效果生效" },
+      { label: "打字循环", value: "loopTyping", desc: "开启打字效果生效" },
       { label: "文字阴影", value: "shadow" },
-      { label: "打字光标", value: "typingCursor", tips: "开启打字效果生效" },
+      { label: "打字光标", value: "typingCursor", desc: "开启打字效果生效" },
       { label: "显示来源", value: "showFrom" },
     ],
     default: ["heart", "typingCursor", "showFrom"],
@@ -416,6 +451,27 @@ const slidersRules: RuleItem[] = [
     isRequired: false,
     label: "启用效果/功能",
     items: [{ label: "隐藏该组件", value: "hidden" }],
+  },
+  {
+    controlKey: "list",
+    field: "data",
+    isRequired: false,
+    label: "技能数据",
+    items: [
+      { label: "标题", value: "title", controlKey: "input" },
+      { label: "颜色", value: "color", controlKey: "input" },
+      {
+        label: "掌握程度",
+        value: "value",
+        controlKey: "input",
+        controlProps: {
+          type: "number",
+          min: 0,
+          max: 100,
+        },
+      },
+      { label: "图标链接", value: "icon", controlKey: "input" },
+    ],
   },
 ];
 
