@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-02 19:49:21
+ * @LastEditTime: 2024-06-17 00:51:02
  * @Description:
  */
 /** @type {import('next').NextConfig} */
@@ -29,6 +29,17 @@ const nextConfig = {
       };
     }
     return config;
+  },
+  async rewrites() {
+    const ret = [
+      {
+        source: "/apis/:path*",
+        destination: "http://localhost:8001/:path*",
+      },
+    ];
+    return {
+      beforeFiles: ret,
+    };
   },
   images: {
     minimumCacheTTL: 60,
