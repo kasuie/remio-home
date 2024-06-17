@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-15 10:30:25
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 18:46:12
+ * @LastEditTime: 2024-06-17 14:37:33
  * @Description:
  */
 "use client";
@@ -42,12 +42,13 @@ export const Verify = () => {
             "placeholder:text-white/70",
             "group-data-[has-value=true]:text-white/90",
           ],
+          clearButton: "text-white/70",
           innerWrapper: "bg-transparent",
           inputWrapper: [
-            "bg-black/40",
-            "hover:bg-black/70",
-            "data-[hover=true]:bg-black/50",
-            "group-data-[focus=true]:bg-black/40",
+            "!bg-black/40",
+            "!hover:bg-black/70",
+            "!data-[hover=true]:bg-black/50",
+            "!group-data-[focus=true]:bg-black/40",
             "!cursor-text",
           ],
         }}

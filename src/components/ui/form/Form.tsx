@@ -121,18 +121,6 @@ export const Form = ({
     }
   }, [formData]);
 
-  const onSubmit = () => {
-    if (transform && formData) {
-      const keys = Object.keys(formData)?.filter?.((v) =>
-        v.includes("$boolean")
-      );
-      keys.map((key) => {
-        formData[key]?.map((v: string) => (formData[v] = true));
-      });
-    }
-    console.log(formData);
-  };
-
   return (
     <div className="flex flex-wrap justify-between gap-y-4">
       {formData &&
