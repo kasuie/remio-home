@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 23:40:55
+ * @LastEditTime: 2024-06-18 11:46:20
  * @Description:
 -->
 
@@ -229,7 +229,6 @@ docker-compose up -d remio-home
 | title    | string                       | 否   | 标题，为空不展示                    |
 | hidden   | boolean                      | 否   | 是否显示该组件                      |
 | color    | string                       | 否   | 进度条自定义颜色，默认白色`#fff`    |
-| dotColor | string                       | 否   | `title`前面点的颜色，默认白色`#fff` |
 | column   | number                       | 否   | 一行展示几列，2-4的范围，默认`2`    |
 
 #### Slider 类型说明

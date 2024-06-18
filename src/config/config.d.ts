@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 14:14:04
+ * @LastEditTime: 2024-06-18 11:37:36
  * @Description:
  */
 export interface Link {
@@ -102,7 +102,6 @@ interface SlidersConfig {
   title?: string;
   hidden?: boolean;
   color?: string;
-  dotColor?: string;
   column?: number;
 }
 

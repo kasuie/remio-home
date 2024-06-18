@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@kasuie/http':
-    specifier: ^0.0.1
-    version: 0.0.1
+    specifier: ^0.0.6
+    version: 0.0.6
   '@kasuie/icon':
     specifier: ^0.0.9
     version: 0.0.9
@@ -1626,8 +1626,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@kasuie/http@0.0.1:
-    resolution: {integrity: sha512-N6S/j/nlSZLa0pdif/W/G0m0sgotk6KaLzqQFhOEA+n/Ohh4km9EJHz4YWqPqu4RGONrIUppB7vzVpPLkJ4j8g==}
+  /@kasuie/http@0.0.6:
+    resolution: {integrity: sha512-q6cdyZuc4qW6krIwggn+Xc0pjCrzr/ocIiLKQdC2HztfiVUyEHK3VF87Zv4rm5TsbmVaF3jyETnV+NT6bkaMSA==}
     engines: {pnpm: '>=8'}
     dev: false
 

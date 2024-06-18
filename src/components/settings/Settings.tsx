@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:52:57
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 20:50:03
+ * @LastEditTime: 2024-06-19 00:01:49
  * @Description:
  */
 "use client";
@@ -70,20 +70,18 @@ export const Settings = ({
           loading={loading}
           className="rounded-2xl"
           onClick={() => {
-            console.log(result, "result");
+            console.log(result, JSON.stringify(result, null, 2), "result");
             setLoading(true);
-            fetch.get("/api/config", {}, {}).then((res) => {
+            fetch.get("/api/config").then((res) => {
               console.log(res, "res>>>");
             });
-            // fetch("/api/config", {
-            //   method: "POST",
-            //   body: JSON.stringify({
-            //     ...result,
-            //   }),
-            // }).then(async (res) => {
-            //   console.log(await res.json());
-            //   setLoading(false)
-            // });
+            // fetch
+            //   .post("/api/config", result)
+            //   .then((res) => {
+            //     console.log(res, "data");
+            //     setLoading(false);
+            //   })
+            //   .finally(() => setLoading(false));
           }}
         >
           保存

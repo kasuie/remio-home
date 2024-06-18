@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 22:04:07
+ * @LastEditTime: 2024-06-18 10:46:07
  * @Description:
  */
 "use client";
@@ -121,18 +121,6 @@ export const Form = ({
     }
   }, [formData]);
 
-  const onSubmit = () => {
-    if (transform && formData) {
-      const keys = Object.keys(formData)?.filter?.((v) =>
-        v.includes("$boolean")
-      );
-      keys.map((key) => {
-        formData[key]?.map((v: string) => (formData[v] = true));
-      });
-    }
-    console.log(formData);
-  };
-
   return (
     <div className="flex flex-wrap justify-between gap-y-4">
       {formData &&
@@ -207,6 +195,14 @@ export const Form = ({
                     }}
                     rules={items}
                     data={formData[field]}
+                    onChange={(index: number, colField: string, value: string) => {
+                      const newFormData = [...formData[field]];
+                      newFormData[index][colField] = value;
+                      setFormData({
+                        ...formData,
+                        [field]: newFormData
+                      });
+                    }}
                   />
                 );
               default:

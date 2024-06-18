@@ -2,9 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 20:02:07
+ * @LastEditTime: 2024-06-18 11:39:28
  * @Description:
  */
+import { HTMLAttributes } from "react";
 import { clsx } from "@kasuie/utils";
 import { Avatar } from "../ui/image/Avatar";
 import { getMotion } from "@/lib/motion";
@@ -21,8 +22,7 @@ import { TextEffect } from "../effect/TextEffect";
 import { SocialIcons } from "../social-icons/SocialIcons";
 import { Links } from "../links/Links";
 import { Sliders } from "../sliders/Sliders";
-
-interface VerticalProps {
+interface VerticalProps extends HTMLAttributes<HTMLDivElement> {
   gapSize: string;
   name: string;
   avatarConfig?: AvatarConfig;
@@ -38,6 +38,7 @@ interface VerticalProps {
   sliders?: SlidersConfig;
   cardOpacity?: number;
 }
+
 export function Vertical({
   gapSize,
   name,
@@ -53,6 +54,8 @@ export function Vertical({
   subTitle,
   sliders,
   cardOpacity = 0.1,
+  className,
+  ...others
 }: VerticalProps) {
   return (
     <div
@@ -62,8 +65,10 @@ export function Vertical({
           "gap-[30px] pt-[20vh]": gapSize == "sm",
           "gap-8 pt-[25vh]": gapSize == "md",
           "gap-12 pt-[15vh]": gapSize == "lg",
+          [`${className}`]: className
         }
       )}
+      {...others}
     >
       <Avatar
         priority
