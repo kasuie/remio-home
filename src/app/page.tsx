@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 20:36:09
+ * @LastEditTime: 2024-06-18 11:34:14
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -37,6 +37,12 @@ export default async function Home() {
     gapSize = "md",
     style,
   } = appConfig?.layoutConfig || {};
+
+  const primaryColor = appConfig?.primaryColor || "#229fff";
+
+  const varStyle: any = {
+    "--primary-color": primaryColor
+  };
 
   let staticSites: Array<Site> = [],
     modalSites: Array<Site> = [];
@@ -80,6 +86,7 @@ export default async function Home() {
         links,
         staticSites,
         modalSites,
+        style: varStyle,
         socialConfig: appConfig.socialConfig,
         cardOpacity: bgConfig.cardOpacity,
         sliders: appConfig.sliders,

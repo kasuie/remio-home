@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-15 20:58:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-17 15:04:06
+ * @LastEditTime: 2024-06-18 10:47:09
  * @Description:
  */
 "use client";
@@ -19,6 +19,7 @@ interface FormListProps {
   rules?: Array<ItemsItem>;
   controlProps?: FormObj;
   title?: string;
+  onChange?: Function;
 }
 
 export const FormList = ({
@@ -27,6 +28,7 @@ export const FormList = ({
   rules,
   controlProps,
   title,
+  onChange,
   ...props
 }: FormListProps) => {
 
@@ -66,8 +68,7 @@ export const FormList = ({
             value={row[field] || ""}
             {...props}
             onValueChange={(val: string) => {
-              row[field] = val;
-              console.log(data, field, row);
+              onChange?.(index, field, val);
             }}
           />
         );

@@ -8,8 +8,8 @@
     "src": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
     "size": 150,
     "round": "full",
-    "hoverAnimate": "top",
-    "style": "glint"
+    "style": "glint",
+    "hoverAnimate": "top"
   },
   "bgConfig": {
     "bg": "",
@@ -258,7 +258,6 @@
     "title": "技能加点",
     "color": "linear-gradient(to right, #ffafbd 0%, #c9ffbf 100%)",
     "hidden": false,
-    "dotColor": "#18c964",
     "column": 4
   }
 }

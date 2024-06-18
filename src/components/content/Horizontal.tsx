@@ -2,9 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-06-06 19:50:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 17:25:40
+ * @LastEditTime: 2024-06-18 11:33:48
  * @Description:
  */
+import { HTMLAttributes } from "react";
 import { clsx } from "@kasuie/utils";
 import { Avatar } from "../ui/image/Avatar";
 import { getMotion } from "@/lib/motion";
@@ -32,7 +33,7 @@ const HoriTextEffect = dynamic(
     (await import("@/components/effect/HoriTextEffect")).HoriTextEffect
 );
 
-interface HorizontalProps {
+interface HorizontalProps extends HTMLAttributes<HTMLDivElement> {
   gapSize: string;
   name: string;
   avatarConfig?: AvatarConfig;
@@ -63,6 +64,8 @@ export function Horizontal({
   subTitle,
   sliders,
   cardOpacity = 0.1,
+  className,
+  ...others
 }: HorizontalProps) {
   const renderSubTitle = ({ style, ...props }: any) => {
     switch (style) {
@@ -81,8 +84,10 @@ export function Horizontal({
           "gap-[30px]": gapSize == "md",
           "gap-8": gapSize == "sm",
           "gap-12": gapSize == "lg",
+          [`${className}`]: className
         }
       )}
+      {...others}
     >
       <div className="flex [@media(max-width:768px)]:pt-12 relative min-h-screen w-full flex-col-reverse flex-wrap items-center justify-between gap-10 md:gap-20 md:flex-row">
         <div className="flex flex-1 [@media(max-width:768px)]:text-center [@media(max-width:768px)]:items-center flex-col items-start gap-8 md:gap-20">

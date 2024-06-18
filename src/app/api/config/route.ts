@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-25 21:20:01
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 13:42:40
+ * @LastEditTime: 2024-06-18 11:04:04
  * @Description:
  */
 import { getConfig, setConfig } from "@/lib/config";
@@ -31,8 +31,8 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   const accessToken = req.cookies.get("accessToken");
-  if (accessToken) {
-    const password = Decrypt(accessToken, process.env.PASSWORD);
+  if (accessToken?.value) {
+    const password = Decrypt(accessToken.value, process.env.PASSWORD);
     if (password === process.env.PASSWORD) {
       const data = await req.json();
       const result = await setConfig(

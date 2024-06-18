@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 14:26:31
+ * @LastEditTime: 2024-06-18 11:42:32
  * @Description:
  */
 "use client";
@@ -96,7 +96,7 @@ export function Links({
             <p className="pt-[10px] text-[15px] text-white/70">{item.desc}</p>
           )}
         </div>
-        <span className="absolute bottom-[5px] right-[7px]">
+        <span className="absolute bottom-[5px] text-white/70 right-[7px]">
           {item?.url ? (
             <ExternalLink size={14} />
           ) : (
