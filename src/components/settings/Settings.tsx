@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:52:57
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 20:22:33
+ * @LastEditTime: 2024-06-18 20:50:03
  * @Description:
  */
 "use client";
@@ -12,6 +12,7 @@ import { AppRules } from "@/lib/rules";
 import { Form, FormObj } from "../ui/form/Form";
 import { memo, useState } from "react";
 import { Button } from "../ui/button/Button";
+import { fetch } from "@kasuie/http";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 
 const MemoizedForm = memo(Form);
@@ -71,6 +72,9 @@ export const Settings = ({
           onClick={() => {
             console.log(result, "result");
             setLoading(true);
+            fetch.get("/api/config", {}, {}).then((res) => {
+              console.log(res, "res>>>");
+            });
             // fetch("/api/config", {
             //   method: "POST",
             //   body: JSON.stringify({

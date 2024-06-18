@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@kasuie/http':
+    specifier: ^0.0.1
+    version: 0.0.1
   '@kasuie/icon':
     specifier: ^0.0.9
     version: 0.0.9
@@ -1622,6 +1625,11 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@kasuie/http@0.0.1:
+    resolution: {integrity: sha512-N6S/j/nlSZLa0pdif/W/G0m0sgotk6KaLzqQFhOEA+n/Ohh4km9EJHz4YWqPqu4RGONrIUppB7vzVpPLkJ4j8g==}
+    engines: {pnpm: '>=8'}
+    dev: false
 
   /@kasuie/icon@0.0.9:
     resolution: {integrity: sha512-m1jJBk0xrKnGIknXdvTUUSB/qECK5ONFnrLtDtUPh0pbtq9DWow1tRKNVk3zlJoSXaZDEBvTUe15nqeyk1LPUQ==}
