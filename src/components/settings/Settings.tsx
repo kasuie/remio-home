@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:52:57
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 00:01:49
+ * @LastEditTime: 2024-06-19 15:46:12
  * @Description:
  */
 "use client";
@@ -12,7 +12,9 @@ import { AppRules } from "@/lib/rules";
 import { Form, FormObj } from "../ui/form/Form";
 import { memo, useState } from "react";
 import { Button } from "../ui/button/Button";
-import { fetch } from "@kasuie/http";
+import fetch from "@/lib/fetch";
+import { useRouter } from "next/navigation";
+import message from "@/components/message";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 
 const MemoizedForm = memo(Form);
@@ -26,6 +28,7 @@ export const Settings = ({
 }) => {
   const [result, setResult] = useState<FormObj>(config);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onMerge = (data: FormObj, field?: string) => {
     setResult({
@@ -70,18 +73,19 @@ export const Settings = ({
           loading={loading}
           className="rounded-2xl"
           onClick={() => {
-            console.log(result, JSON.stringify(result, null, 2), "result");
             setLoading(true);
-            fetch.get("/api/config").then((res) => {
-              console.log(res, "res>>>");
-            });
-            // fetch
-            //   .post("/api/config", result)
-            //   .then((res) => {
-            //     console.log(res, "data");
-            //     setLoading(false);
-            //   })
-            //   .finally(() => setLoading(false));
+            fetch
+              .post("/api/config", result)
+              .then((res) => {
+                if (res.success) {
+                  message.success("保存成功~");
+                  router.refresh();
+                } else {
+                  message.error(res.message || "操作失败！")
+                }
+              })
+              .catch(_ => message.error("操作失败！"))
+              .finally(() => setLoading(false));
           }}
         >
           保存

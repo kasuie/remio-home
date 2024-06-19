@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 11:34:14
+ * @LastEditTime: 2024-06-19 16:38:20
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -34,7 +34,7 @@ export default async function Home() {
   const bgConfig = appConfig?.bgConfig;
   const {
     istTransition = true,
-    gapSize = "md",
+    gapSize = "sm",
     style,
   } = appConfig?.layoutConfig || {};
 

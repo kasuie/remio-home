@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-15 10:30:25
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-17 14:37:33
+ * @LastEditTime: 2024-06-19 15:45:09
  * @Description:
  */
 "use client";
@@ -14,6 +14,7 @@ import { Encrypt } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import message from "../message";
 import { LockClosed } from "@kasuie/icon";
+import fetch from "@/lib/fetch";
 
 export const Verify = () => {
   const [checkCode, setCheckCode] = useState<string>();
@@ -63,22 +64,18 @@ export const Verify = () => {
         onClick={() => {
           if (!checkCode) return message.warning("密码不能为空~");
           setLoading(true);
-          fetch("/api/verify", {
-            method: "POST",
-            body: JSON.stringify({
-              checkCode: Encrypt(checkCode),
-            }),
-          }).then(async (res) => {
-            const data = await res.json();
-            console.log(data);
-            if (data?.success) {
+          fetch.post("/api/verify", {
+            checkCode: Encrypt(checkCode),
+          }).then((res) => {
+            if (res.success) {
               message.success("操作成功");
               router.refresh();
             } else {
               message.error("操作失败");
             }
-            setLoading(false);
-          });
+          })
+            .catch(_ => message.error("操作失败！"))
+            .finally(() => setLoading(false));;
         }}
       >
         提交

@@ -2,19 +2,20 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-11 09:36:29
+ * @LastEditTime: 2024-06-19 16:19:24
  * @Description:
  */
 import { AppConfig } from "@/config/config";
 import { dateFormat } from "@kasuie/utils";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
+import { defaultAppConfig } from "./rules";
 
 export const CONFIG_DIR = process.env.CONFIG_DIR
   ? process.env.CONFIG_DIR
   : join(process.cwd(), "src", "config");
 
-export async function getConfig(fileName: string) {
+export async function getConfig(fileName: string, throwError: boolean = false) {
   const configPath = join(CONFIG_DIR, fileName);
   console.log(
     "get path>>>",
@@ -25,7 +26,11 @@ export async function getConfig(fileName: string) {
     const config = await readFileSync(configPath, "utf-8");
     return JSON.parse(config) as AppConfig;
   } else {
-    throw new Error(`无法找到配置文件：${configPath}，请检查~`);
+    if (throwError) {
+      throw new Error(`无法找到配置文件：${configPath}，请检查~`);
+    } else {
+      return defaultAppConfig;
+    }
   }
 }
 

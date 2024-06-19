@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 11:46:20
+ * @LastEditTime: 2024-06-19 16:50:18
  * @Description:
 -->
 
@@ -78,6 +78,16 @@ docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/confi
 
 > 有一点需要注意，如果遇到 `icons` 目录上传了文件，但是没有生效，可能需要重启一下容器，首次上传`favicon192.png`的时候可能会出现。
 
+**需要在线查看以及编辑配置文件，请设置PASSWORD环境变量**
+
+```sh
+docker run --name remio-home -p 3000:3000 -e PASSWORD=your_password -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
+```
+
+注意，在线编辑仅支持`docker`部署，理论上自己服务器都可以，但是vercel部署没办法持久化配置文件，所以每一次重新部署，都会重置配置。
+
+添加密码后，可以在自己部署在线地址后面加上`/config`进行访问，首次输入刚刚环境变量设置的密码验证通过后可以进行查看编辑配置。
+
 **如果你都需要自定义**
 
 ```sh
@@ -100,6 +110,7 @@ services:
       - GTMID=value # Google Tag Manager
       - GTAGID=value # Google Analytics
       - BAIDUID=value # 百度统计
+      - PASWORD=your password # 密码，用于在线访问和编辑配置
     volumes:
       - /usr/local/config:/remio-home/config
       - /usr/local/icons:/remio-home/public/icons

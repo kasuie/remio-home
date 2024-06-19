@@ -116,7 +116,7 @@ interface FooterConfig {
 export interface AppConfig {
   name: string; // 站点标题
   favicon?: string; // 站点图标
-  domain: string; // 站点链接
+  domain?: string; // 站点链接
   keywords?: string; // 站点关键词
   description?: string; // 站点描述性信息
   avatarConfig?: AvatarConfig; // 主页头像相关配置
