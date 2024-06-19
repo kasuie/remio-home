@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 16:50:18
+ * @LastEditTime: 2024-06-19 16:52:24
  * @Description:
 -->
 
@@ -176,7 +176,7 @@ docker-compose up -d remio-home
 | 字段          | 类型    | 必填 | 说明                                                  |
 | ------------- | ------- | ---- | ----------------------------------------------------- |
 | istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启                        |
-| gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`md`                   |
+| gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`sm`                   |
 | style         | string  | 否   | 布局风格，可选`horizontal`,`vertical`，默认`vertical` |
 
 #### FooterConfig 类型说明
