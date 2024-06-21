@@ -27,8 +27,7 @@ RUN adduser --system --uid 1001 nextjs
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-ENV NODE_ENV production
-ENV CONFIG_DIR=/remio-home/config
+ENV CONFIG_DIR=/remio-home/config NODE_ENV=production REMIO_DOCKER=1
 
 COPY --from=builder /remio-home/public ./public
 COPY --from=builder --chown=nextjs:nodejs /remio-home/.next/standalone ./
