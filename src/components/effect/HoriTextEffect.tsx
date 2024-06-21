@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-11 15:49:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 10:41:46
+ * @LastEditTime: 2024-06-21 21:57:20
  * @Description:
  */
 "use client";
@@ -69,7 +69,7 @@ export function HoriTextEffect({
   }, [h1s, ps]);
 
   return (
-    <div className="max-w-2xl z-[1]">
+    <div className="max-w-2xl z-[1] text-white">
       {data?.map((v: Item, i: number) => {
         return (
           <TextUpView

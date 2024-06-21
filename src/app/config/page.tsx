@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:46:02
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 22:25:27
+ * @LastEditTime: 2024-06-21 22:25:46
  * @Description:
  */
 import { MainEffect } from "@/components/effect/MainEffect";
@@ -47,14 +47,8 @@ export default async function Config({
         {!verify ? <Settings config={appConfig} /> : <Verify />}
       </div>
       <MainEffect
-        bg={
-          appConfig.bgConfig?.bg ||
-          "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp"
-        }
-        mbg={
-          appConfig.bgConfig?.mbg ||
-          "https://kasuie.cc/api/img/bg?type=mobile&size=regular"
-        }
+        bg={appConfig.bgConfig?.bg}
+        mbg={appConfig.bgConfig?.mbg}
         bgStyle={appConfig.bgConfig?.bgStyle}
         blur={appConfig.bgConfig?.blur || "sm"}
       />

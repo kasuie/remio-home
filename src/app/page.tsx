@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 16:38:20
+ * @LastEditTime: 2024-06-21 22:15:48
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -41,7 +41,7 @@ export default async function Home() {
   const primaryColor = appConfig?.primaryColor || "#229fff";
 
   const varStyle: any = {
-    "--primary-color": primaryColor
+    "--primary-color": primaryColor,
   };
 
   let staticSites: Array<Site> = [],
@@ -97,11 +97,8 @@ export default async function Home() {
         primaryColor: appConfig.primaryColor,
       })}
       <MainEffect
-        bg={bgConfig?.bg || "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp"}
-        mbg={
-          bgConfig?.mbg ||
-          "https://kasuie.cc/api/img/bg?type=mobile&size=regular"
-        }
+        bg={bgConfig?.bg}
+        mbg={bgConfig?.mbg}
         bgStyle={bgConfig?.bgStyle}
         blur={bgConfig?.blur || "sm"}
       />

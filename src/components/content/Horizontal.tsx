@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-06 19:50:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 11:33:48
+ * @LastEditTime: 2024-06-21 21:55:29
  * @Description:
  */
 import { HTMLAttributes } from "react";
@@ -111,9 +111,9 @@ export function Horizontal({
           animateStyle={avatarConfig?.style}
           {...avatarConfig}
           style={''}
-          className="[@media(max-width:768px)]:w-2/5 [@media(max-width:768px)]:mx-auto"
+          className="[@media(max-width:768px)]:mx-auto"
         />
-        <p className="absolute flex justify-center right-0 left-0 bottom-6 animate-bounce"><DoubleArrow className="rotate-90" /></p>
+        <p className="absolute z-10 text-white flex justify-center right-0 left-0 bottom-6 animate-bounce"><DoubleArrow className="rotate-90" /></p>
       </div>
       {
         (!sitesConfig?.hidden || !sliders?.hidden) && (
