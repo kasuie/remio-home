@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-22 21:47:41
+ * @LastEditTime: 2024-06-23 00:44:44
  * @Description:
  */
 "use client";
@@ -128,7 +128,7 @@ export function MainEffect({
         preload="auto"
         src={src}
         loop
-        // muted
+        muted={false}
         autoPlay
         {...variant}
         transition={{
@@ -151,10 +151,14 @@ export function MainEffect({
       <motion.div
         key={url}
         className={clsx(classNames, {
-          "animate-[mio-bg-top_6s_linear_reverse_infinite]": key % 4 == 0 && autoAnimate,
-          "animate-[mio-bg-bottom_6s_linear_reverse_infinite]": key % 4 == 1 && autoAnimate,
-          "animate-[mio-bg-right_6s_linear_reverse_infinite]": key % 4 == 2 && autoAnimate,
-          "animate-[mio-bg-left_6s_linear_reverse_infinite]": key % 4 == 3 && autoAnimate,
+          "animate-[mio-bg-top_6s_linear_reverse_infinite]":
+            key % 4 == 0 && autoAnimate,
+          "animate-[mio-bg-bottom_6s_linear_reverse_infinite]":
+            key % 4 == 1 && autoAnimate,
+          "animate-[mio-bg-right_6s_linear_reverse_infinite]":
+            key % 4 == 2 && autoAnimate,
+          "animate-[mio-bg-left_6s_linear_reverse_infinite]":
+            key % 4 == 3 && autoAnimate,
         })}
         style={{
           backgroundImage: `url(${url})`,
