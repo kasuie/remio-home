@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-23 00:44:44
+ * @LastEditTime: 2024-06-23 00:54:05
  * @Description:
  */
 "use client";
@@ -128,7 +128,7 @@ export function MainEffect({
         preload="auto"
         src={src}
         loop
-        muted={false}
+        muted
         autoPlay
         {...variant}
         transition={{
