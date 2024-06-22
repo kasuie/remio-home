@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-22 22:46:19
+ * @LastEditTime: 2024-06-22 23:17:16
  * @Description:
 -->
 
@@ -18,7 +18,7 @@ remio-home(homepage): 基于配置的个人主页
 
 预览：
 
-> ![snow](./images/snow.png) ![sakura](./images/sakura.png)
+> ![snow](./images/snow.png) ![desc](./images/desc.png)
 
 [演示 Demo](https://index.remio.cc)
 
@@ -31,7 +31,7 @@ remio-home(homepage): 基于配置的个人主页
 ```sh
 docker pull kasuie/remio-home
 
-# 如果因为网络原因拉取不到，可考虑阿里云镜像
+# 如果因为网络原因拉取不到，可考虑阿里云镜像，运行下面这个
 
 docker pull registry.cn-shanghai.aliyuncs.com/remio/remio-home
 ```
@@ -82,21 +82,21 @@ docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-h
 
 - 自定义
 
-在你挂载的配置目录里（`/usr/local/config`）新建`config.json`文件，然后可以在线编辑，在线上地址后面加上`/config`进行访问，首次输入刚刚环境变量设置的密码验证通过后可以进行查看编辑配置。
+在当前目录下，刷新一下，应该会有一个你挂载的配置目录（`/config`），修改一下该目录的权限为`777`,这样才能进行在线配置修改：`sudo chmod  -R 777 ./config`.
 
-> 在线编辑如果保存错误，可能需要修改一下`config.json`文件权限为可写。
+然后进入该目录新建`config.json`文件，就可以在线编辑了，在线上地址后面加上`/config`进行访问，首次输入刚刚环境变量设置的密码验证通过后可以进行查看编辑配置。
 
-一种是在你挂载的配置目录里（`/usr/local/config`）新建`config.json`文件，在里面填写你站点的配置信息。
+当然你也可以在服务器上编辑`config.json`文件里，直接填写你站点的配置信息。
 
 可参考仓库里 `/src/config/config.json` 进行修改，下方有参数说明可进行查看。
 
-- 自定义pwa图标
+- pwa支持及自定义图标
 
 需要你在挂载目录`/usr/local/icons`至少上传一张命名为 `favicon192.png` 的图片，不然`pwa`不会生效。另外为了还应包含`favicon64.png `,`favicon128.png`和`favicon512.png`，这三种不是必须，但是不上传控制台会有报错，后续看情况可能会调整所需尺寸的张数。
 
-以上配置修改后不需要重启项目，在页面刷新一下就能看到效果了。
+以上配置（除了首次上传`favicon192.png`）修改后不需要重启项目，在页面刷新一下就能看到效果了。
 
-> 有一点需要注意，如果遇到 `icons` 目录上传了文件，但是pwa没有生效，可能需要重启一下容器，首次上传`favicon192.png`的时候可能会出现。
+> 首次上传`favicon192.png`的时候可能会出现，pwa没有生效，可能需要重启一下容器，运行`docker-compose restart`。
 
 - docker compose 启动
 
