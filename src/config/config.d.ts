@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-21 22:16:44
+ * @LastEditTime: 2024-06-22 19:10:50
  * @Description:
  */
 export interface Link {
@@ -58,13 +58,26 @@ export interface SocialConfig {
   autoAnimate?: boolean;
   loading?: string | boolean;
 }
-
 export interface BgConfig {
   bg?: string; // pc背景图
   mbg?: string; // 移动端背景图
   bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
   blur?: string;
   cardOpacity?: number;
+  carousel?: boolean;
+  carouselGap?: number;
+  transitionTime?: number;
+  transitionStyle?:
+    | "default"
+    | "toBottom"
+    | "toTop"
+    | "toLeft"
+    | "toRight"
+    | "toIn"
+    | "toOut"
+    | "toInOut"
+    | "toOutIn";
+  autoAnimate?: boolean;
 }
 
 interface AvatarConfig {

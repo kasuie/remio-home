@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 16:44:45
+ * @LastEditTime: 2024-06-22 21:01:59
  * @Description:
  */
 export interface ItemsItem {
@@ -225,6 +225,53 @@ const bgRules: RuleItem[] = [
       step: "0.05",
     },
     default: 0.1,
+  },
+  {
+    field: "carouselGap",
+    isRequired: false,
+    label: "图片轮播间隔时间",
+    desc: "单位s(秒)，默认5s，最小3s",
+    controlProps: {
+      type: "number",
+      min: 3,
+    },
+    default: 5,
+  },
+  {
+    controlKey: "select",
+    field: "transitionStyle",
+    isRequired: false,
+    label: "图片轮播过渡动画",
+    items: [
+      { label: "默认", value: "default" },
+      { label: "向下", value: "toBottom" },
+      { label: "向上", value: "toTop" },
+      { label: "向左", value: "toLeft" },
+      { label: "向右", value: "toRight" },
+      { label: "由远及近", value: "toIn" },
+      { label: "远近混合", value: "toInOut" },
+    ],
+    default: "default",
+  },
+  {
+    field: "transitionTime",
+    isRequired: false,
+    label: "图片轮播过渡时间",
+    desc: "单位s(秒)，默认0.7s",
+    controlProps: {
+      type: "number",
+    },
+    default: 0.7,
+  },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [
+      { label: "图片轮播", value: "carousel" },
+      { label: "背景图动画", value: "autoAnimate" },
+    ],
   },
 ];
 
@@ -507,6 +554,11 @@ export const defaultAppConfig: AppConfig = {
     bgStyle: "snow",
     blur: "",
     cardOpacity: 0.1,
+    carousel: true,
+    carouselGap: 5,
+    transitionTime: 0.7,
+    transitionStyle: "default",
+    autoAnimate: false,
   },
   subTitle: "https://v1.hitokoto.cn?c=a&c=b&c=c",
   links: [
