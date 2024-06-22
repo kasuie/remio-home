@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-22 20:47:37
+ * @LastEditTime: 2024-06-22 21:47:41
  * @Description:
  */
 "use client";
@@ -100,7 +100,7 @@ export function MainEffect({
   }, [autoAnimate, transitionStyle]);
 
   const isVideo = (url: string) => {
-    const lowerCaseUrl = url.toLowerCase();
+    const lowerCaseUrl = url?.toLowerCase();
     return videoExtensions.some((extension) =>
       lowerCaseUrl.endsWith(extension)
     );

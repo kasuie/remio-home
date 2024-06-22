@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 16:52:24
+ * @LastEditTime: 2024-06-22 22:46:19
  * @Description:
 -->
 
@@ -18,118 +18,125 @@ remio-home(homepage): 基于配置的个人主页
 
 预览：
 
-> ![snow](./images/snow.png) > ![sakura](./images/sakura.png)
+> ![snow](./images/snow.png) ![sakura](./images/sakura.png)
 
-[演示 Demo](https://remio-home.vercel.app)
+[演示 Demo](https://index.remio.cc)
 
 ## 部署
 
 ### 容器部署
 
-拉取镜像
+1. 拉取镜像
 
 ```sh
 docker pull kasuie/remio-home
-```
 
-如果你因为网络原因拉取不到，可考虑阿里云镜像：
+# 如果因为网络原因拉取不到，可考虑阿里云镜像
 
-```sh
 docker pull registry.cn-shanghai.aliyuncs.com/remio/remio-home
 ```
 
-**注意：启动容器需要根据自己需要，有所不同，请自行选择**
+2. 启动容器
 
-**按默认启动容器**
+> 注意：启动容器需要根据自己需要，配置有所不同，请自行选择
 
-```sh
-docker run --name remio-home -p 3000:3000 -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
+- 创建项目目录，存放环境变量和配置文件
+
+```
+# 创建目录并进入该目录
+mkdir remio-home && cd remio-home
 ```
 
-**需要支持统计分析，需要指定环境变量**
+- docker 启动
 
-```sh
-docker run --name remio-home -p 3000:3000 -e GTAGID=value -e GTMID=value -e BAIDUID=value -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
+启动前需要创建一个存放环境变量的文件，包括站点统计和站点密码，避免下次部署的时候忘记了
+
+```
+# 创建文件
+touch .env
+
+# 然后编辑环境变量，vim操作可以自行搜一下
+vim .env
+
+# 根据需要在文件内填写环境变量，一行一个，不要后面注释
+GTMID=value #Google Tag Manager
+GTAGID=value #Google Analytics
+BAIDUID=value #百度统计
+PASWORD=your_password #密码，用于在线访问和编辑配置
+
 ```
 
-说明： `GTAGID`为[Google Analytics](https://analytics.google.com)处获取的id，`GTMID`为[Google Tag Manager](https://tagmanager.google.com)处获取的id，`BAIDUID`为[百度统计](https://tongji.baidu.com)处获取的id，如果用`GTMID` 不必再用其它两个了，根据自己需要来。
+> `GTAGID`为[Google Analytics](https://analytics.google.com)处获取的id，`GTMID`为[Google Tag Manager](https://tagmanager.google.com)处获取的id，`BAIDUID`为[百度统计](https://tongji.baidu.com)处获取的id，如果用`GTMID` 不必再用其它两个了，根据自己需要来。
 
-如果你嫌加在命令上麻烦或者怕重启忘记id，可以考虑从文件中读取环境变量：
-
-```sh
-docker run --name remio-home -p 3000:3000 --env-file /usr/local/.env -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
-```
-
-将`/usr/local/.env`替换为自己环境变量的文件，文件中每行对应一个环境变量，格式为 `key=value`。
-
-**需要自定义`pwa`图标，则需多挂载一个`icons`目录**
+编写环境变量文件后，然后运行：
 
 ```sh
-docker run --name remio-home -p 3004:3000 -v /usr/local/config:/remio-home/config -v /usr/local/icons:/remio-home/public/icons -d kasuie/remio-home:latest
+# 这里映射的宿主机端口为 3004，可自行修改，部署完成后 ip 加端口就可以访问了，然后-v 后面是挂载了两个目录，一个是配置文件的存放目录，一个是 icon 的存放目录，用于自定义 pwa 图标的，挂载后自动会创建
+docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-home/config -v ./icons:/remio-home/public/icons -d kasuie/remio-home
+
+# 如果你是用的阿里云镜像，则运行下面这个
+docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-home/config -v ./icons:/remio-home/public/icons -d registry.cn-shanghai.aliyuncs.com/remio/remio-home
 ```
 
-注意 `-v` 后面冒号前是挂载宿主机目录，即 `/usr/local/config` 和 `/usr/local/icon` 是需要修改为你想要挂载的资源目录，端口和容器名可根据需要调整，其他的需要保持不变。
+运行成功之后，如果现在ip+端口打开页面，可以看到是默认配置的效果。
 
-当然首次启动成功后，还需要在你挂载的配置目录里（`/usr/local/config`）新建`config.json`文件，在里面填写你站点的配置信息，可参考仓库里 `/src/config/config.json` 进行修改，下方有参数说明可进行查看。
+- 自定义
 
-对于自定义`pwa`图标需要你在挂载目录`/usr/local/icons`至少上传一张命名为 `favicon192.png` 的图片，不然`pwa`不会生效。另外为了还应包含`favicon64.png `,`favicon128.png`和`favicon512.png`，这三种不是必须，但是不上传控制台会有报错，后续看情况可能会调整所需尺寸的张数。
+在你挂载的配置目录里（`/usr/local/config`）新建`config.json`文件，然后可以在线编辑，在线上地址后面加上`/config`进行访问，首次输入刚刚环境变量设置的密码验证通过后可以进行查看编辑配置。
+
+> 在线编辑如果保存错误，可能需要修改一下`config.json`文件权限为可写。
+
+一种是在你挂载的配置目录里（`/usr/local/config`）新建`config.json`文件，在里面填写你站点的配置信息。
+
+可参考仓库里 `/src/config/config.json` 进行修改，下方有参数说明可进行查看。
+
+- 自定义pwa图标
+
+需要你在挂载目录`/usr/local/icons`至少上传一张命名为 `favicon192.png` 的图片，不然`pwa`不会生效。另外为了还应包含`favicon64.png `,`favicon128.png`和`favicon512.png`，这三种不是必须，但是不上传控制台会有报错，后续看情况可能会调整所需尺寸的张数。
 
 以上配置修改后不需要重启项目，在页面刷新一下就能看到效果了。
 
-> 有一点需要注意，如果遇到 `icons` 目录上传了文件，但是没有生效，可能需要重启一下容器，首次上传`favicon192.png`的时候可能会出现。
+> 有一点需要注意，如果遇到 `icons` 目录上传了文件，但是pwa没有生效，可能需要重启一下容器，首次上传`favicon192.png`的时候可能会出现。
 
-**需要在线查看以及编辑配置文件，请设置PASSWORD环境变量**
+- docker compose 启动
 
-```sh
-docker run --name remio-home -p 3000:3000 -e PASSWORD=your_password -v /usr/local/config:/remio-home/config -d kasuie/remio-home:latest
-```
-
-注意，在线编辑仅支持`docker`部署，理论上自己服务器都可以，但是vercel部署没办法持久化配置文件，所以每一次重新部署，都会重置配置。
-
-添加密码后，可以在自己部署在线地址后面加上`/config`进行访问，首次输入刚刚环境变量设置的密码验证通过后可以进行查看编辑配置。
-
-**如果你都需要自定义**
-
-```sh
-docker run --name remio-home -p 3004:3000 --env-file /usr/local/.env -v /usr/local/config:/remio-home/config -v /usr/local/icons:/remio-home/public/icons -d kasuie/remio-home:latest
-```
-
-也可以使用`docker compose`运行，配置文件`docker-compose.yml`如下：
+在刚刚新建的目录下，再创建一个配置文件`docker-compose.yml`，内容如下：
 
 ```yml
 version: "3"
 
 services:
   remio-home:
-    image: kasuie/remio-home
+    image: kasuie/remio-home # 阿里云用这个：registry.cn-shanghai.aliyuncs.com/remio/remio-home
     container_name: remio-home
     ports:
-      - "3000:3000"
+      - "3004:3000"
     environment:
-      - TZ=Asia/Shanghai
       - GTMID=value # Google Tag Manager
       - GTAGID=value # Google Analytics
       - BAIDUID=value # 百度统计
       - PASWORD=your password # 密码，用于在线访问和编辑配置
     volumes:
-      - /usr/local/config:/remio-home/config
-      - /usr/local/icons:/remio-home/public/icons
+      - ./config:/remio-home/config
+      - ./icons:/remio-home/public/icons
     restart: unless-stopped
 ```
 
-在文件`docker-compose.yml`目录下，运行命令：
+然后运行命令启动：
 
 ```sh
 docker-compose up -d remio-home
 ```
 
-注意替换~
+配置也和docker启动一样，注意替换变量
 
 ### 部署到Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&project-name=remio-home&repository-name=remio-home)
+> 注意，在线编辑仅支持`docker`部署，vercel部署没办法持久化配置文件，所以每一次重新部署，都会重置配置。
 
-点击上方按钮即可，完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&env=PASSWORD&project-name=remio-home&repository-name=remio-home)
+
+点击上方按钮即可，填写必要的环境变量，点击创建完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
 | 字段           | 类型                                          | 必填 | 说明                                                                                               |
 | -------------- | --------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------- |
@@ -141,6 +148,7 @@ docker-compose up -d remio-home
 | avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)        | 否   | 主页头像相关配置                                                                                   |
 | layoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)        | 否   | 布局相关的一些配置                                                                                 |
 | bgConfig       | [BgConfig](#BgConfig-类型说明)                | 否   | 背景相关的一些配置                                                                                 |
+| primaryColor   | string                                        | 否   | 主题色，十六进制颜色值，默认`#229fff`蓝色，~暂时没啥大用~                                          |
 | theme          | string                                        | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
 | subTitle       | string                                        | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`                      |
 | footer         | string/[FooterConfig](#FooterConfig-类型说明) | 否   | 底部设置项                                                                                         |
@@ -163,13 +171,18 @@ docker-compose up -d remio-home
 
 #### BgConfig 类型说明
 
-| 字段        | 类型   | 必填 | 说明                                                                               |
-| ----------- | ------ | ---- | ---------------------------------------------------------------------------------- |
-| bg          | string | 否   | pc背景图                                                                           |
-| mbg         | string | 否   | 移动端背景图                                                                       |
-| bgStyle     | string | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片 |
-| blur        | string | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm`                                 |
-| cardOpacity | number | 否   | 卡片的透明度，`0-1`之间，默认`0.1`                                                 |
+| 字段            | 类型            | 必填 | 说明                                                                                                   |
+| --------------- | --------------- | ---- | ------------------------------------------------------------------------------------------------------ |
+| bg              | string/string[] | 否   | pc背景图                                                                                               |
+| mbg             | string/string[] | 否   | 移动端背景图                                                                                           |
+| bgStyle         | string          | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片                     |
+| blur            | string          | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm`                                                     |
+| cardOpacity     | number          | 否   | 卡片的透明度，`0-1`之间，默认`0.1`                                                                     |
+| carousel        | boolean         | 否   | 开启图片轮播，背景图片数大于1生效，默认`true`                                                          |
+| carouselGap     | number          | 否   | 图片轮播间隔时间，单位s(秒)，默认`5s`，最小`3s`                                                        |
+| transitionTime  | number          | 否   | 图片轮播过渡时间，单位s(秒)，默认`0.7s`                                                                |
+| transitionStyle | string          | 否   | 图片轮播过渡动画，可选`default`,`toBottom`,`toTop`,`toIn`,`toInOut`,`toRight`和`toLeft`，默认`default` |
+| autoAnimate     | boolean         | 否   | 背景图动画，默认`false`不开启                                                                          |
 
 #### LayoutConfig 类型说明
 
@@ -234,13 +247,13 @@ docker-compose up -d remio-home
 
 #### SlidersConfig 类型说明
 
-| 字段     | 类型                         | 必填 | 说明                                |
-| -------- | ---------------------------- | ---- | ----------------------------------- |
-| data     | [Slider[]](#Slider-类型说明) | 否   | 数据数组                            |
-| title    | string                       | 否   | 标题，为空不展示                    |
-| hidden   | boolean                      | 否   | 是否显示该组件                      |
-| color    | string                       | 否   | 进度条自定义颜色，默认白色`#fff`    |
-| column   | number                       | 否   | 一行展示几列，2-4的范围，默认`2`    |
+| 字段   | 类型                         | 必填 | 说明                             |
+| ------ | ---------------------------- | ---- | -------------------------------- |
+| data   | [Slider[]](#Slider-类型说明) | 否   | 数据数组                         |
+| title  | string                       | 否   | 标题，为空不展示                 |
+| hidden | boolean                      | 否   | 是否显示该组件                   |
+| color  | string                       | 否   | 进度条自定义颜色，默认白色`#fff` |
+| column | number                       | 否   | 一行展示几列，2-4的范围，默认`2` |
 
 #### Slider 类型说明
 
@@ -296,4 +309,4 @@ pnpm build
 
 ## 补充
 
-在你部署后，可在部署域名后面加上`/api/config`查看目前的配置信息
+在你部署后，在配置页面输入密码后，可在部署域名后面加上`/api/config`查看目前的配置信息
