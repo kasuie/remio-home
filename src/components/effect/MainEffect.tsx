@@ -2,15 +2,21 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-23 00:54:05
+ * @LastEditTime: 2024-06-24 23:08:24
  * @Description:
  */
 "use client";
 import { BgConfig } from "@/config/config";
 import { isClientSide, aSakura, clsx } from "@kasuie/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { variants } from "@/lib/motion";
+import dynamic from "next/dynamic";
+
+const MuteSwitcher = dynamic(
+  async () =>
+    (await import("@/components/ui/switcher/MuteSwitcher")).MuteSwitcher
+);
 
 export function MainEffect({
   bg,
@@ -42,6 +48,8 @@ export function MainEffect({
   const [mindex, setMindex] = useState<number>(0);
 
   const [variant, setVariant] = useState<Object>({});
+
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (bg) {
@@ -106,6 +114,26 @@ export function MainEffect({
     );
   };
 
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
+
+  const handleMuteUnmute = (muted: boolean) => {
+    console.log(muted, "checked");
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.play();
+      }
+      videoRef.current.muted = muted;
+    }
+  };
+
   const className = clsx(
     "fixed brightness-50 dark:brightness-[.25] h-full w-full top-0 left-0 bg-cover bg-fixed bg-center bg-no-repeat",
     {
@@ -122,20 +150,27 @@ export function MainEffect({
     key: number | string
   ) => {
     return (
-      <motion.video
-        key={key}
-        className={clsx(`${className} object-cover`)}
-        preload="auto"
-        src={src}
-        loop
-        muted
-        autoPlay
-        {...variant}
-        transition={{
-          duration: transitionTime || 0.7,
-          ease: "easeInOut",
-        }}
-      ></motion.video>
+      <>
+        <MuteSwitcher
+          className="fixed right-16 top-4 z-10"
+          onSwitch={handleMuteUnmute}
+        />
+        <motion.video
+          key={key}
+          ref={videoRef}
+          className={clsx(`${className} object-cover`)}
+          preload="auto"
+          src={src}
+          loop
+          muted
+          autoPlay
+          {...variant}
+          transition={{
+            duration: transitionTime || 0.7,
+            ease: "easeInOut",
+          }}
+        ></motion.video>
+      </>
     );
   };
 
@@ -173,7 +208,7 @@ export function MainEffect({
   };
 
   return (
-    <section className="relative z-0">
+    <section className="z-0">
       <AnimatePresence>
         {bgArr && renderBg(bgArr[index], false, index)}
         {mbgArr && renderBg(mbgArr[mindex], true, mindex)}

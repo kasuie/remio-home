@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 10:46:07
+ * @LastEditTime: 2024-06-24 21:06:20
  * @Description:
  */
 "use client";
@@ -195,6 +195,22 @@ export const Form = ({
                     }}
                     rules={items}
                     data={formData[field]}
+                    onProxy={(key: string, index?: number) => {
+                      if (key === "del" && typeof index != "undefined") {
+                        const newFormData = [...formData[field]];
+                        newFormData.splice(index, 1);
+                        setFormData({
+                          ...formData,
+                          [field]: newFormData
+                        });
+                      } else if (key === "add") {
+                        const newFormData = [...formData[field], {}]
+                        setFormData({
+                          ...formData,
+                          [field]: newFormData
+                        });
+                      }
+                    }}
                     onChange={(index: number, colField: string, value: string) => {
                       const newFormData = [...formData[field]];
                       newFormData[index][colField] = value;
