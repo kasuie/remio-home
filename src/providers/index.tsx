@@ -2,18 +2,25 @@
  * @Author: kasuie
  * @Date: 2024-05-24 09:39:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 15:52:12
+ * @LastEditTime: 2024-06-26 23:13:25
  * @Description:
  */
 "use client";
 import { isClientSide } from "@kasuie/utils";
 import { ThemeProvider } from "next-themes";
-import { useRouter } from 'next/navigation';
-import { NextUIProvider } from '@nextui-org/system';
+import { useRouter } from "next/navigation";
+import { NextUIProvider } from "@nextui-org/system";
+import { AppConfig } from "@/config/config";
+import StyledRegistry from "./StyleJsxProvider";
+import { createContext } from "react";
+
+export const ConfigProvider = createContext({});
 
 export function AppProviders({
+  appConfig,
   children,
 }: Readonly<{
+  appConfig?: AppConfig;
   children: React.ReactNode;
 }>) {
   const router = useRouter();
@@ -28,8 +35,15 @@ export function AppProviders({
 
   return (
     <NextUIProvider navigate={router.push}>
-      <ThemeProvider attribute="class" key="themeProvider" defaultTheme="light" enableSystem>
-        {children}
+      <ThemeProvider
+        attribute="class"
+        key="themeProvider"
+        defaultTheme="light"
+        enableSystem
+      >
+        <ConfigProvider.Provider value={{ appConfig: appConfig }}>
+          <StyledRegistry>{children}</StyledRegistry>
+        </ConfigProvider.Provider>
       </ThemeProvider>
     </NextUIProvider>
   );
