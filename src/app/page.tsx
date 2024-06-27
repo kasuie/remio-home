@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 10:35:12
+ * @LastEditTime: 2024-06-27 17:46:12
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -35,6 +35,7 @@ export default async function Home() {
     bgConfig,
     theme,
     footer,
+    globalStyle,
     ...others
   } = transformConfig(await getConfig("config.json"));
 

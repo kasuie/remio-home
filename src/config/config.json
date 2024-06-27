@@ -28,6 +28,15 @@
     "style": "",
     "istTransition": true
   },
+  "globalStyle": {
+    "fonts": [
+      {
+        "src": "/fonts/XiaolaiMonoSC-Regular.ttf",
+        "name": "XiaolaiMonoSC"
+      }
+    ],
+    "callback": "cursive,emoji"
+  },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
     "typing": true,
