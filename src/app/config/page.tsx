@@ -2,14 +2,14 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:46:02
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-21 22:25:46
+ * @LastEditTime: 2024-06-27 10:49:34
  * @Description:
  */
 import { MainEffect } from "@/components/effect/MainEffect";
 import { Settings } from "@/components/settings/Settings";
 import { Loader } from "@/components/ui/loader/Loader";
 import { Verify } from "@/components/verify/Verify";
-import { getConfig } from "@/lib/config";
+import { getConfig, transformConfig } from "@/lib/config";
 import { toHsl } from "@kasuie/utils";
 import { Suspense } from "react";
 
@@ -23,6 +23,8 @@ export default async function Config({
   const verify = Object.hasOwn(searchParams, "verify");
 
   const appConfig = await getConfig("config.json");
+
+  const { bgConfig } = transformConfig(appConfig);
 
   const primaryColor = appConfig?.primaryColor || "#229fff";
 
@@ -47,8 +49,8 @@ export default async function Config({
         {!verify ? <Settings config={appConfig} /> : <Verify />}
       </div>
       <MainEffect
-        bg={appConfig.bgConfig?.bg}
-        mbg={appConfig.bgConfig?.mbg}
+        bgArr={bgConfig.bgs}
+        mbgArr={bgConfig.mbgs}
         bgStyle={appConfig.bgConfig?.bgStyle}
         blur={appConfig.bgConfig?.blur || "sm"}
       />

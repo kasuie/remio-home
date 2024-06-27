@@ -2,10 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 16:19:24
+ * @LastEditTime: 2024-06-27 10:43:21
  * @Description:
  */
-import { AppConfig } from "@/config/config";
+import { AppConfig, Site } from "@/config/config";
 import { dateFormat } from "@kasuie/utils";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
@@ -54,3 +54,72 @@ export async function setConfig(fileName: string, appConfig: string) {
     return false;
   }
 }
+
+export const transformConfig = (appConfig: AppConfig) => {
+  const {
+    sites = [],
+    primaryColor = "#229fff",
+    layoutConfig = {},
+    sitesConfig = {},
+    keywords,
+    description,
+    favicon,
+    domain,
+    bgConfig,
+    ...others
+  } = appConfig;
+
+  /** 布局配置结构于对象中 */
+  const { istTransition = true, gapSize = "sm", style } = layoutConfig;
+
+  /** 样式变量及样式 */
+  const varStyle: Record<string, string> = {
+    "--primary-color": primaryColor,
+  };
+
+  /** 处理站点 */
+  const index = sites.findIndex((v: Site) => !v.url);
+  let staticSites: Site[] = [],
+    modalSites: Site[] = [];
+  if (index > -1) {
+    if (!sitesConfig.modal) {
+      staticSites = sites.filter((_, i) => i !== index);
+    } else {
+      staticSites = sites.slice(0, index + 1);
+      modalSites = sites.slice(index + 1);
+    }
+  } else {
+    staticSites = sites;
+  }
+
+  /** 背景处理 */
+  let bgs: string[] = [],
+    mbgs: string[] = [];
+  if (!bgConfig?.bg) {
+    bgs.push("https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp");
+  } else if (typeof bgConfig.bg === "string") {
+    bgs.push(bgConfig.bg);
+  } else if (Array.isArray(bgConfig.bg)) {
+    bgs = bgConfig.bg;
+  }
+  if (!bgConfig?.mbg) {
+    mbgs.push("https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp");
+  } else if (typeof bgConfig.mbg === "string") {
+    mbgs.push(bgConfig.mbg);
+  } else if (Array.isArray(bgConfig.mbg)) {
+    mbgs = bgConfig.mbg;
+  }
+
+  return {
+    ...others,
+    bgConfig: { ...bgConfig, bgs, mbgs },
+    sitesConfig,
+    primaryColor,
+    istTransition,
+    gapSize,
+    style,
+    varStyle,
+    staticSites,
+    modalSites,
+  };
+};

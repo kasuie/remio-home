@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-24 23:08:24
+ * @LastEditTime: 2024-06-27 10:36:06
  * @Description:
  */
 "use client";
@@ -19,8 +19,8 @@ const MuteSwitcher = dynamic(
 );
 
 export function MainEffect({
-  bg,
-  mbg,
+  bgArr,
+  mbgArr,
   bgStyle,
   blur,
   carousel = true,
@@ -28,7 +28,7 @@ export function MainEffect({
   transitionTime,
   transitionStyle = "default",
   autoAnimate,
-}: BgConfig) {
+}: BgConfig & { bgArr: string[]; mbgArr: string[] }) {
   const videoExtensions = [
     ".mp4",
     ".webm",
@@ -39,10 +39,6 @@ export function MainEffect({
     ".mkv",
   ];
 
-  const [bgArr, setBgArr] = useState<string[]>();
-
-  const [mbgArr, setMbgArr] = useState<string[]>();
-
   const [index, setIndex] = useState<number>(0);
 
   const [mindex, setMindex] = useState<number>(0);
@@ -50,22 +46,6 @@ export function MainEffect({
   const [variant, setVariant] = useState<Object>({});
 
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (bg) {
-      typeof bg === "string" ? setBgArr([bg]) : setBgArr(bg);
-    } else {
-      setBgArr(["https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp"]);
-    }
-  }, [bg]);
-
-  useEffect(() => {
-    if (mbg) {
-      typeof mbg === "string" ? setMbgArr([mbg]) : setMbgArr(mbg);
-    } else {
-      setMbgArr(["https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp"]);
-    }
-  }, [mbg]);
 
   useEffect(() => {
     if (isClientSide && bgStyle && document) {

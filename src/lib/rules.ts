@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-22 21:01:59
+ * @LastEditTime: 2024-06-27 11:20:01
  * @Description:
  */
 export interface ItemsItem {
@@ -560,7 +560,9 @@ export const defaultAppConfig: AppConfig = {
     transitionStyle: "default",
     autoAnimate: false,
   },
+  layoutConfig: {},
   subTitle: "https://v1.hitokoto.cn?c=a&c=b&c=c",
+  subTitleConfig: {},
   links: [
     {
       title: "qq",
@@ -637,6 +639,9 @@ export const defaultAppConfig: AppConfig = {
       desc: "个人喜好生成表",
     },
   ],
+  sitesConfig: {},
+  socialConfig: {},
+  sliders: {},
   footer: {
     text: "© 2020 - 2024 By KASUIE",
     url: "https://kasuie.cc",

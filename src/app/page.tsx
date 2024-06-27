@@ -2,14 +2,13 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-21 22:15:48
+ * @LastEditTime: 2024-06-27 10:35:12
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
 import { Suspense } from "react";
-import { getConfig } from "@/lib/config";
+import { getConfig, transformConfig } from "@/lib/config";
 import { MainEffect } from "@/components/effect/MainEffect";
-import { Site } from "@/config/config";
 import { getMotion } from "@/lib/motion";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeSwitcher } from "@/components/ui/switcher/ThemeSwitcher";
@@ -26,37 +25,18 @@ const Vertical = dynamic(
 );
 
 export default async function Home() {
-  const appConfig = await getConfig("config.json");
-
-  const index = appConfig?.sites?.findIndex?.((v: Site) => !v.url);
-  const links = appConfig?.links;
-  const subTitle = appConfig?.subTitle;
-  const bgConfig = appConfig?.bgConfig;
   const {
-    istTransition = true,
-    gapSize = "sm",
+    staticSites,
+    modalSites,
+    varStyle,
+    istTransition,
+    gapSize,
     style,
-  } = appConfig?.layoutConfig || {};
-
-  const primaryColor = appConfig?.primaryColor || "#229fff";
-
-  const varStyle: any = {
-    "--primary-color": primaryColor,
-  };
-
-  let staticSites: Array<Site> = [],
-    modalSites: Array<Site> = [];
-
-  if (index > -1) {
-    if (!appConfig?.sitesConfig?.modal) {
-      appConfig.sites.splice(index, 1) && (staticSites = appConfig.sites);
-    } else {
-      staticSites = appConfig.sites.slice(0, index + 1);
-      modalSites = appConfig.sites.slice(index + 1, appConfig.sites.length);
-    }
-  } else {
-    staticSites = appConfig.sites;
-  }
+    bgConfig,
+    theme,
+    footer,
+    ...others
+  } = transformConfig(await getConfig("config.json"));
 
   const renderMain = (props: any) => {
     if (style === "horizontal") {
@@ -76,36 +56,27 @@ export default async function Home() {
     >
       <ThemeSwitcher
         motions={getMotion(0.1, 5, 0.2, istTransition)}
-        theme={appConfig?.theme}
+        theme={theme}
         className="fixed right-4 top-4"
       />
       {renderMain({
+        ...others,
         gapSize,
         istTransition,
-        subTitle,
-        links,
         staticSites,
         modalSites,
         style: varStyle,
-        socialConfig: appConfig.socialConfig,
-        cardOpacity: bgConfig.cardOpacity,
-        sliders: appConfig.sliders,
-        subTitleConfig: appConfig?.subTitleConfig,
-        sitesConfig: appConfig?.sitesConfig,
-        name: appConfig.name,
-        avatarConfig: appConfig.avatarConfig,
-        primaryColor: appConfig.primaryColor,
       })}
       <MainEffect
-        bg={bgConfig?.bg}
-        mbg={bgConfig?.mbg}
+        bgArr={bgConfig.bgs}
+        mbgArr={bgConfig.mbgs}
         bgStyle={bgConfig?.bgStyle}
         blur={bgConfig?.blur || "sm"}
       />
-      {appConfig?.footer ? (
+      {footer ? (
         <Footer
           motions={getMotion(0.1, 4, 0.2, istTransition)}
-          footer={appConfig.footer}
+          footer={footer}
         />
       ) : null}
     </Suspense>
