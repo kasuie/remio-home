@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-25 21:20:01
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 11:04:04
+ * @LastEditTime: 2024-06-27 23:31:37
  * @Description:
  */
 import { getConfig, setConfig } from "@/lib/config";
@@ -41,14 +41,14 @@ export const POST = async (req: NextRequest) => {
       );
       return NextResponse.json({
         data: result,
-        success: true,
-        message: "success",
+        success: result,
+        message: result ? "success" : "server error",
       });
     } else {
       return NextResponse.json({
         data: 1,
         success: false,
-        message: "fail",
+        message: "fail，auth error",
       });
     }
   }

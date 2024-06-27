@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:21:22
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-12 17:33:46
+ * @LastEditTime: 2024-06-27 21:49:10
  * @Description:
  */
 "use client";
@@ -16,7 +16,9 @@ export type AvatarProps = {
   isShowMotion?: boolean;
   motions?: object;
   animateStyle?: string;
-} & AvatarConfig & ImageProps;
+  layoutStyle?: string;
+} & AvatarConfig &
+  ImageProps;
 
 export function Avatar({
   warpClass,
@@ -27,6 +29,7 @@ export function Avatar({
   round,
   hoverAnimate,
   animateStyle,
+  layoutStyle,
   size,
   width,
   height,
@@ -34,37 +37,46 @@ export function Avatar({
   ...imageProps
 }: AvatarProps) {
   return (
-    <motion.div className={clsx(
-      "relative z-[1] transition-[top,transform] rotate-0 inline-block cursor-pointer duration-500 top-0 ease-in-out",
-      {
-        "hover:top-[-10px]": hoverAnimate == "top",
-        "hover:!rotate-[360deg] ": hoverAnimate == "rotate",
-        "animate-[light_4s_ease-in-out_infinite]": animateStyle == "glint",
-        "rounded-full": !round || round == "full",
-        "rounded-3xl": round == "3xl",
-        "rounded-xl": round == "xl",
-        "rounded-sm": round == "sm",
-        "rounded-md": round == "md",
-        "rounded-lg": round == "lg", 
-      }
-    )} {...(isShowMotion ? motions : {})}>
-      {
-        animateStyle === "wave" && (
-          <>
-            <span className="animate-[mio-ping_2s_1s_ease-in_infinite] absolute inline-flex h-full w-full rounded-full bg-white dark:bg-black "></span>
-            <span className="animate-[mio-ping_2s_ease-in_infinite] absolute inline-flex h-full w-full rounded-full bg-white dark:bg-black"></span>
-            <span className="animate-[mio-ping_2s_ease-in_infinite] absolute inline-flex h-full w-full rounded-full bg-white dark:bg-black"></span>
-          </>
-        )
-      }
-      <Image alt={alt || "image"} src={src} width={size || width} height={size || height} className={clsx(`${className || ""} relative z-[1]`, {
-        "rounded-full": !round || round == "full",
-        "rounded-3xl": round == "3xl",
-        "rounded-xl": round == "xl",
-        "rounded-sm": round == "sm",
-        "rounded-md": round == "md",
-        "rounded-lg": round == "lg", 
-      })} {...imageProps} />
+    <motion.div
+      className={clsx(
+        "relative top-0 z-[1] inline-block rotate-0 cursor-pointer transition-[top,transform] duration-500 ease-in-out md:max-w-none",
+        {
+          "hover:top-[-10px]": hoverAnimate == "top",
+          "hover:!rotate-[360deg] ": hoverAnimate == "rotate",
+          "animate-[light_4s_ease-in-out_infinite]": animateStyle == "glint",
+          "rounded-full": !round || round == "full",
+          "rounded-3xl": round == "3xl",
+          "rounded-xl": round == "xl",
+          "rounded-sm": round == "sm",
+          "rounded-md": round == "md",
+          "rounded-lg": round == "lg",
+          "max-w-32": layoutStyle === "horizontal"
+        }
+      )}
+      {...(isShowMotion ? motions : {})}
+    >
+      {animateStyle === "wave" && (
+        <>
+          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_1s_ease-in_infinite] rounded-full bg-white dark:bg-black "></span>
+          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_ease-in_infinite] rounded-full bg-white dark:bg-black"></span>
+          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_ease-in_infinite] rounded-full bg-white dark:bg-black"></span>
+        </>
+      )}
+      <Image
+        alt={alt || "image"}
+        src={src}
+        width={size || width}
+        height={size || height}
+        className={clsx(`${className || ""} relative z-[1]`, {
+          "rounded-full": !round || round == "full",
+          "rounded-3xl": round == "3xl",
+          "rounded-xl": round == "xl",
+          "rounded-sm": round == "sm",
+          "rounded-md": round == "md",
+          "rounded-lg": round == "lg",
+        })}
+        {...imageProps}
+      />
     </motion.div>
   );
 }

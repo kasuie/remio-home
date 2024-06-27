@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 17:46:12
+ * @LastEditTime: 2024-06-27 22:50:29
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -33,7 +33,6 @@ export default async function Home() {
     gapSize,
     style,
     bgConfig,
-    theme,
     footer,
     globalStyle,
     ...others
@@ -57,8 +56,8 @@ export default async function Home() {
     >
       <ThemeSwitcher
         motions={getMotion(0.1, 5, 0.2, istTransition)}
-        theme={theme}
-        className="fixed right-4 top-4"
+        theme={globalStyle?.theme}
+        className="fixed right-2 top-2 md:right-4 md:top-4"
       />
       {renderMain({
         ...others,

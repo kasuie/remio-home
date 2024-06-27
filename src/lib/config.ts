@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 10:43:21
+ * @LastEditTime: 2024-06-28 00:25:01
  * @Description:
  */
 import { AppConfig, Site } from "@/config/config";
@@ -41,16 +41,11 @@ export async function setConfig(fileName: string, appConfig: string) {
     configPath,
     dateFormat(new Date(), "YYYY-MM-DD HH:mm:ss")
   );
-  if (existsSync(configPath)) {
-    try {
-      writeFileSync(configPath, appConfig);
-      return true;
-    } catch (err) {
-      console.error(`写入失败：${err}，请检查~`);
-      return false;
-    }
-  } else {
-    console.error(`无法找到配置文件：${configPath}，请检查~`);
+  try {
+    writeFileSync(configPath, appConfig);
+    return true;
+  } catch (err) {
+    console.error(`写入失败：${err}，请检查~`);
     return false;
   }
 }
@@ -58,7 +53,6 @@ export async function setConfig(fileName: string, appConfig: string) {
 export const transformConfig = (appConfig: AppConfig) => {
   const {
     sites = [],
-    primaryColor = "#229fff",
     layoutConfig = {},
     sitesConfig = {},
     keywords,
@@ -66,11 +60,14 @@ export const transformConfig = (appConfig: AppConfig) => {
     favicon,
     domain,
     bgConfig,
+    globalStyle,
     ...others
   } = appConfig;
 
+  const primaryColor: string = globalStyle?.primaryColor || "#229fff";
+
   /** 布局配置结构于对象中 */
-  const { istTransition = true, gapSize = "sm", style } = layoutConfig;
+  const { istTransition = true, gapSize = "md", style } = layoutConfig;
 
   /** 样式变量及样式 */
   const varStyle: Record<string, string> = {
@@ -115,6 +112,7 @@ export const transformConfig = (appConfig: AppConfig) => {
     bgConfig: { ...bgConfig, bgs, mbgs },
     sitesConfig,
     primaryColor,
+    globalStyle,
     istTransition,
     gapSize,
     style,

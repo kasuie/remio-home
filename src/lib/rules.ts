@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 11:20:01
+ * @LastEditTime: 2024-06-28 00:42:21
  * @Description:
  */
 export interface ItemsItem {
@@ -49,18 +49,6 @@ const mainRules: RuleItem[] = [
     label: "站点描述性信息",
   },
   {
-    controlKey: "radio",
-    field: "theme",
-    isRequired: false,
-    label: "主题设置",
-    items: [
-      { label: "亮色", value: "light" },
-      { label: "暗色", value: "dark" },
-      { label: "手动切换", value: "switcher" },
-    ],
-    default: ["light"],
-  },
-  {
     field: "subTitle",
     isRequired: false,
     label: "站点次标题",
@@ -87,6 +75,43 @@ const mainRules: RuleItem[] = [
       { label: "描述", value: "desc", controlKey: "input" },
       { label: "链接", value: "url", controlKey: "input" },
       { label: "图标链接", value: "icon", controlKey: "input" },
+    ],
+  },
+];
+
+const globalStyleRules: RuleItem[] = [
+  {
+    field: "primaryColor",
+    isRequired: false,
+    label: "主题颜色",
+    default: "#229fff",
+  },
+  {
+    controlKey: "radio",
+    field: "theme",
+    isRequired: false,
+    label: "主题设置",
+    items: [
+      { label: "亮色", value: "light" },
+      { label: "暗色", value: "dark" },
+      { label: "手动切换", value: "switcher" },
+    ],
+    default: ["light"],
+  },
+  {
+    field: "fallback",
+    isRequired: false,
+    label: "默认字体",
+    desc: "系统自带字体，优先级低低于自定义字体",
+  },
+  {
+    controlKey: "list",
+    field: "fonts",
+    isRequired: false,
+    label: "自定义字体",
+    items: [
+      { label: "字体名称", value: "name", controlKey: "input" },
+      { label: "字体资源路径", value: "src", controlKey: "input" },
     ],
   },
 ];
@@ -186,13 +211,13 @@ const bgRules: RuleItem[] = [
     field: "bg",
     isRequired: false,
     label: "pc背景图",
-    default: "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
+    default: "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp",
   },
   {
     field: "mbg",
     isRequired: false,
     label: "移动端背景图",
-    default: "https://kasuie.cc/api/img/bg?type=mobile&size=regular",
+    default: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
   },
   {
     field: "bgStyle",
@@ -477,12 +502,6 @@ const slidersRules: RuleItem[] = [
     default: "#fff",
   },
   {
-    field: "dotColor",
-    isRequired: false,
-    label: "标题前面点的颜色",
-    default: "#fff",
-  },
-  {
     field: "column",
     isRequired: false,
     label: "一行展示几列",
@@ -526,6 +545,7 @@ const slidersRules: RuleItem[] = [
 
 export const AppRules = [
   { title: "主要设置", rules: mainRules },
+  { title: "样式设置", rules: globalStyleRules, field: "globalStyle" },
   { title: "头像设置", rules: avatarRules, field: "avatarConfig" },
   { title: "布局设置", rules: layoutRules, field: "layoutConfig" },
   { title: "背景设置", rules: bgRules, field: "bgConfig" },
@@ -549,10 +569,10 @@ export const defaultAppConfig: AppConfig = {
     style: "glint",
   },
   bgConfig: {
-    bg: "",
-    mbg: "",
+    bg: "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp",
+    mbg: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
     bgStyle: "snow",
-    blur: "",
+    blur: "sm",
     cardOpacity: 0.1,
     carousel: true,
     carouselGap: 5,
@@ -560,9 +580,32 @@ export const defaultAppConfig: AppConfig = {
     transitionStyle: "default",
     autoAnimate: false,
   },
-  layoutConfig: {},
+  globalStyle: {
+    theme: "light",
+    primaryColor: "#229fff",
+    fallback: "",
+    fonts: [],
+  },
+  layoutConfig: {
+    gapSize: "md",
+    style: "vertical",
+    istTransition: true,
+  },
   subTitle: "https://v1.hitokoto.cn?c=a&c=b&c=c",
-  subTitleConfig: {},
+  subTitleConfig: {
+    typing: false,
+    loading: "",
+    loopTyping: false,
+    shadow: false,
+    typingCursor: true,
+    typingGap: 10,
+    heart: true,
+    showFrom: true,
+    style: "",
+    gapDelay: 0.05,
+    content: "Hello💫",
+    desc: "这里是我の主页",
+  },
   links: [
     {
       title: "qq",
@@ -639,9 +682,28 @@ export const defaultAppConfig: AppConfig = {
       desc: "个人喜好生成表",
     },
   ],
-  sitesConfig: {},
-  socialConfig: {},
-  sliders: {},
+  sitesConfig: {
+    hidden: false,
+    cardStyle: "",
+    hoverBlur: false,
+    hoverScale: false,
+    hoverFlip: true,
+    direction: "",
+    modal: false,
+    modalTips: "",
+    modalTitle: "",
+  },
+  socialConfig: {
+    loading: "default",
+    ripple: true,
+  },
+  sliders: {
+    data: [],
+    title: "技能加点",
+    color: "#fff",
+    hidden: true,
+    column: 2,
+  },
   footer: {
     text: "© 2020 - 2024 By KASUIE",
     url: "https://kasuie.cc",

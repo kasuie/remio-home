@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-24 21:06:20
+ * @LastEditTime: 2024-06-28 00:11:32
  * @Description:
  */
 "use client";
@@ -204,7 +204,7 @@ export const Form = ({
                           [field]: newFormData
                         });
                       } else if (key === "add") {
-                        const newFormData = [...formData[field], {}]
+                        const newFormData = formData[field] ? [...formData[field], {}] : [{}];
                         setFormData({
                           ...formData,
                           [field]: newFormData

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-26 23:01:20
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-26 23:40:48
+ * @LastEditTime: 2024-06-28 00:17:03
  * @Description:
  */
 "use client";
@@ -14,7 +14,7 @@ export default function StyleRegistry() {
     (useContext(ConfigProvider) as { appConfig: AppConfig }) || {};
 
   if (appConfig?.globalStyle) {
-    let { fonts, callback } = appConfig.globalStyle;
+    let { fonts, fallback } = appConfig.globalStyle;
     const arr: any = [];
     const font = fonts?.reduce((prev, curr) => {
       arr.push(curr?.name);
@@ -28,11 +28,16 @@ export default function StyleRegistry() {
             ${prev}
         `;
     }, "");
+
+    if (!arr?.length && !fallback) {
+      return null
+    }
+    
     return (
       <style jsx global>{`
         ${font}
         .mio-fonts {
-          font-family: ${arr.join(",")}, ${callback};
+          font-family: ${arr.length ? (arr.join(",") + ',' + fallback) : fallback }};
         }
       `}</style>
     );

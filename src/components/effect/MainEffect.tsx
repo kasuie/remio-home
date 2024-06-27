@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 10:36:06
+ * @LastEditTime: 2024-06-27 22:27:44
  * @Description:
  */
 "use client";
@@ -10,7 +10,7 @@ import { BgConfig } from "@/config/config";
 import { isClientSide, aSakura, clsx } from "@kasuie/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { variants } from "@/lib/motion";
+import { variants, showMotion } from "@/lib/motion";
 import dynamic from "next/dynamic";
 
 const MuteSwitcher = dynamic(
@@ -46,6 +46,8 @@ export function MainEffect({
   const [variant, setVariant] = useState<Object>({});
 
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [vPlaying, setVPlaying] = useState(false);
 
   useEffect(() => {
     if (isClientSide && bgStyle && document) {
@@ -105,7 +107,6 @@ export function MainEffect({
   };
 
   const handleMuteUnmute = (muted: boolean) => {
-    console.log(muted, "checked");
     if (videoRef.current) {
       if (videoRef.current.paused) {
         videoRef.current.play();
@@ -132,7 +133,8 @@ export function MainEffect({
     return (
       <>
         <MuteSwitcher
-          className="fixed right-16 top-4 z-10"
+          className={clsx("fixed right-12 top-2 z-10 md:right-16 md:top-4")}
+          motions={showMotion}
           onSwitch={handleMuteUnmute}
         />
         <motion.video

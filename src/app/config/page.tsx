@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:46:02
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 10:49:34
+ * @LastEditTime: 2024-06-27 22:56:02
  * @Description:
  */
 import { MainEffect } from "@/components/effect/MainEffect";
@@ -24,9 +24,7 @@ export default async function Config({
 
   const appConfig = await getConfig("config.json");
 
-  const { bgConfig } = transformConfig(appConfig);
-
-  const primaryColor = appConfig?.primaryColor || "#229fff";
+  const { bgConfig, primaryColor } = transformConfig(appConfig);
 
   const style: any = {
     "--mio-foreground": "210 5.56% 92.94%",

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-26 23:24:02
+ * @LastEditTime: 2024-06-28 00:32:24
  * @Description:
  */
 export interface Link {
@@ -17,6 +17,11 @@ export interface Site {
   title: string;
   url?: string;
   desc?: string;
+}
+
+export interface FontItem {
+  src?: string;
+  name?: string;
 }
 
 export interface Slider {
@@ -127,8 +132,10 @@ interface FooterConfig {
 }
 
 interface GlobalStyle {
-  fonts?: Array<any>;
-  callback?: string;
+  fonts?: FontItem[];
+  fallback?: string;
+  primaryColor?: string;
+  theme?: string;
 }
 
 export interface AppConfig {
@@ -141,8 +148,6 @@ export interface AppConfig {
   layoutConfig?: LayoutConfig; // 布局相关的一些配置
   bgConfig: BgConfig; // 背景相关的一些配置
   globalStyle?: GlobalStyle;
-  primaryColor?: string;
-  theme?: string;
   subTitle?: string; // 站点头像下方的次标题，可填入一言api，例：https://v1.hitokoto.cn?c=a&c=b&c=c
   subTitleConfig?: SubTitleConfig;
   socialConfig?: SocialConfig;

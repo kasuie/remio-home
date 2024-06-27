@@ -2,21 +2,24 @@
  * @Author: kasuie
  * @Date: 2024-06-24 22:12:19
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-24 23:08:34
+ * @LastEditTime: 2024-06-27 22:25:19
  * @Description:
  */
 "use client";
-import { BaseSyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { clsx } from "@kasuie/utils";
 
 export const MuteSwitcher = ({
   className = "relative",
   size = 8,
   onSwitch,
+  motions,
 }: {
   className?: string;
   size?: number;
   onSwitch?: Function;
+  motions?: object;
 }) => {
   const [checked, setChecked] = useState(false);
 
@@ -35,10 +38,10 @@ export const MuteSwitcher = ({
   };
 
   return (
-    <div className={className}>
+    <motion.div {...motions} className={className}>
       <div
         onClick={onChange}
-        className="bg-white/15 opacity-75 hover:opacity-100 relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full shadow-[2px_2px_10px_rgba(0,0,0,0.13)] transition duration-300"
+        className="relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white/15 opacity-75 shadow-[2px_2px_10px_rgba(0,0,0,0.13)] transition duration-300 hover:opacity-100"
       >
         <div
           className={clsx(
@@ -102,6 +105,6 @@ export const MuteSwitcher = ({
           </svg>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

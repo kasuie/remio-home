@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-23 00:45:47
+ * @LastEditTime: 2024-06-28 00:53:00
  * @Description:
 -->
 
@@ -71,12 +71,14 @@ PASWORD=your_password #密码，用于在线访问和编辑配置
 编写环境变量文件后，然后运行：
 
 ```sh
-# 这里映射的宿主机端口为 3004，可自行修改，部署完成后 ip 加端口就可以访问了，然后-v 后面是挂载了两个目录，一个是配置文件的存放目录，一个是 icon 的存放目录，用于自定义 pwa 图标的，挂载后自动会创建
-docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-home/config -v ./icons:/remio-home/public/icons -d kasuie/remio-home
+# 这里映射的宿主机端口为 3004，可自行修改，部署完成后 ip 加端口就可以访问了，然后-v 后面是挂载了三个目录，一个是配置文件的存放目录，一个是 icon 的存放目录，用于自定义 pwa 图标的，一个是 font 字体存放的存放目录，挂载后自动会创建目录
+docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-home/config -v ./icons:/remio-home/public/icons -v ./fonts:/remio-home/public/fonts -d kasuie/remio-home
 
 # 如果你是用的阿里云镜像，则运行下面这个
-docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-home/config -v ./icons:/remio-home/public/icons -d registry.cn-shanghai.aliyuncs.com/remio/remio-home
+docker run --name remio-home -p 3004:3000 --env-file ./.env -v ./config:/remio-home/config -v ./icons:/remio-home/public/icons -v ./fonts:/remio-home/public/fonts -d registry.cn-shanghai.aliyuncs.com/remio/remio-home
 ```
+
+> 注意挂载目录不要直接挂载到`/remio-home/public`，这样会覆盖原有的文件，所以挂载其下面的目录，成功后，可以通过自己在线地址+目录名访问目录中的文件，如果需要自定义字体，填相对路径就好
 
 运行成功之后，如果现在ip+端口打开页面，可以看到是默认配置的效果。
 
@@ -119,6 +121,7 @@ services:
     volumes:
       - ./config:/remio-home/config
       - ./icons:/remio-home/public/icons
+      - ./fonts:/remio-home/public/fonts
     restart: unless-stopped
 ```
 
@@ -138,26 +141,25 @@ docker-compose up -d remio-home
 
 点击上方按钮即可，填写必要的环境变量，点击创建完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
 
-| 字段           | 类型                                          | 必填 | 说明                                                                                               |
-| -------------- | --------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------- |
-| name           | string                                        | 是   | 站点标题                                                                                           |
-| favicon        | string                                        | 否   | 站点图标                                                                                           |
-| domain         | string                                        | 否   | 站点链接                                                                                           |
-| keywords       | string                                        | 否   | 站点关键词                                                                                         |
-| description    | string                                        | 否   | 站点描述性信息                                                                                     |
-| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)        | 否   | 主页头像相关配置                                                                                   |
-| layoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)        | 否   | 布局相关的一些配置                                                                                 |
-| bgConfig       | [BgConfig](#BgConfig-类型说明)                | 否   | 背景相关的一些配置                                                                                 |
-| primaryColor   | string                                        | 否   | 主题色，十六进制颜色值，默认`#229fff`蓝色，~暂时没啥大用~                                          |
-| theme          | string                                        | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
-| subTitle       | string                                        | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c`                      |
-| footer         | string/[FooterConfig](#FooterConfig-类型说明) | 否   | 底部设置项                                                                                         |
-| links          | [Link[]](#link-类型说明)                      | 是   | 社交媒体的链接                                                                                     |
-| sites          | [Site[]](#site-类型说明)                      | 是   | 项目或者其他站点链接                                                                               |
-| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)          | 否   | sites 渲染组件配置项                                                                               |
-| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明)    | 否   | 次标题渲染组件配置项                                                                               |
-| socialConfig   | [SocialConfig](#SocialConfig-类型说明)        | 否   | 社交媒体的链接渲染组件配置项                                                                       |
-| sliders        | [SlidersConfig](#SlidersConfig-类型说明)      | 否   | 技能加点组件配置项                                                                                 |
+| 字段           | 类型                                          | 必填 | 说明                                                                          |
+| -------------- | --------------------------------------------- | ---- | ----------------------------------------------------------------------------- |
+| name           | string                                        | 是   | 站点标题                                                                      |
+| favicon        | string                                        | 否   | 站点图标                                                                      |
+| domain         | string                                        | 否   | 站点链接                                                                      |
+| keywords       | string                                        | 否   | 站点关键词（SEO用）                                                           |
+| description    | string                                        | 否   | 站点描述性信息（SEO用）                                                       |
+| avatarConfig   | [AvatarConfig](#AvatarConfig-类型说明)        | 否   | 主页头像相关配置                                                              |
+| layoutConfig   | [LayoutConfig](#LayoutConfig-类型说明)        | 否   | 布局相关的一些配置                                                            |
+| globalStyle    | [GlobalStyle](#GlobalStyle-类型说明)          | 否   | 全局样式相关的一些配置，如字体，主题                                          |
+| bgConfig       | [BgConfig](#BgConfig-类型说明)                | 否   | 背景相关的一些配置                                                            |
+| subTitle       | string                                        | 否   | 站点头像下的次标题。可填入一言API，例如：`https://v1.hitokoto.cn?c=a&c=b&c=c` |
+| footer         | string/[FooterConfig](#FooterConfig-类型说明) | 否   | 底部设置项                                                                    |
+| links          | [Link[]](#link-类型说明)                      | 是   | 社交媒体的链接                                                                |
+| sites          | [Site[]](#site-类型说明)                      | 是   | 项目或者其他站点链接                                                          |
+| sitesConfig    | [SitesConfig](#SitesConfig-类型说明)          | 否   | sites 渲染组件配置项                                                          |
+| subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明)    | 否   | 次标题渲染组件配置项                                                          |
+| socialConfig   | [SocialConfig](#SocialConfig-类型说明)        | 否   | 社交媒体的链接渲染组件配置项                                                  |
+| sliders        | [SlidersConfig](#SlidersConfig-类型说明)      | 否   | 技能加点组件配置项                                                            |
 
 #### AvatarConfig 类型说明
 
@@ -191,6 +193,22 @@ docker-compose up -d remio-home
 | istTransition | boolean | 否   | 是否开启渲染过渡动画，默认开启                        |
 | gapSize       | string  | 否   | 布局，可选`sm`,`md`和`lg`，默认`sm`                   |
 | style         | string  | 否   | 布局风格，可选`horizontal`,`vertical`，默认`vertical` |
+
+#### GlobalStyle 类型说明
+
+| 字段         | 类型                             | 必填 | 说明                                                                                               |
+| ------------ | -------------------------------- | ---- | -------------------------------------------------------------------------------------------------- |
+| fonts        | [FontItem[]](#FontItem-类型说明) | 否   | 是否开启渲染过渡动画，默认开启                                                                     |
+| fallback     | string                           | 否   | 默认字体，优先级低于自定义字体，做字体垫片                                                         |
+| primaryColor | string                           | 否   | 主题色，十六进制颜色值，默认`#229fff`（蓝色），~没啥大用的样子~                                    |
+| theme        | string                           | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
+
+#### FontItem 类型说明
+
+| 字段 | 类型   | 必填 | 说明                       |
+| ---- | ------ | ---- | -------------------------- |
+| src  | string | 否   | 字体文件资源链接           |
+| name | string | 否   | 给该字体取个名称，最好英文 |
 
 #### FooterConfig 类型说明
 
@@ -239,11 +257,10 @@ docker-compose up -d remio-home
 
 #### SocialConfig 类型说明
 
-| 字段          | 类型           | 必填 | 说明                                       |
-| ------------- | -------------- | ---- | ------------------------------------------ |
-| ~autoAnimate~ | boolean        | 否   | 后续移除，改用`ripple`                     |
-| ripple        | boolean        | 否   | 是否开启涟漪动画，默认：`true`             |
-| loading       | string/boolean | 否   | 出现动画效果，可选`wave`，默认为空没有动画 |
+| 字段    | 类型           | 必填 | 说明                                       |
+| ------- | -------------- | ---- | ------------------------------------------ |
+| ripple  | boolean        | 否   | 是否开启涟漪动画，默认：`true`             |
+| loading | string/boolean | 否   | 出现动画效果，可选`wave`，默认为空没有动画 |
 
 #### SlidersConfig 类型说明
 

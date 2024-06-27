@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-18 11:39:28
+ * @LastEditTime: 2024-06-28 00:23:38
  * @Description:
  */
 import { HTMLAttributes } from "react";
@@ -62,10 +62,10 @@ export function Vertical({
       className={clsx(
         "flex w-full flex-col items-center justify-center pb-16",
         {
-          "gap-[30px] pt-[20vh]": gapSize == "sm",
-          "gap-8 pt-[25vh]": gapSize == "md",
+          "gap-8 pt-[20vh]": gapSize == "sm",
+          "gap-10 pt-[18vh]": gapSize == "md",
           "gap-12 pt-[15vh]": gapSize == "lg",
-          [`${className}`]: className
+          [`${className}`]: className,
         }
       )}
       {...others}
