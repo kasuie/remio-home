@@ -5,11 +5,13 @@
   "keywords": "remio,rem,mio,C.C.,KASUIEの次元,KASUIE的个人博客,KASUIE,个人主页,主页,个人记录,技术博客,个人生活",
   "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
   "avatarConfig": {
+    "hidden": false,
     "src": "https://s2.loli.net/2024/06/19/8zlOyDUnGjXeHpi.webp",
     "size": 150,
     "round": "full",
     "hoverAnimate": "top",
-    "style": "glint"
+    "style": "glint",
+    "aloneRight": false
   },
   "bgConfig": {
     "bg": ["https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp"],
@@ -31,7 +33,7 @@
   "globalStyle": {
     "fonts": [
       {
-        "src": "/fonts/XiaolaiMonoSC-Regular.ttf",
+        "src": "https://cs.kasuie.cc/fonts/XiaolaiMonoSC-Regular.ttf",
         "name": "XiaolaiMonoSC"
       }
     ],

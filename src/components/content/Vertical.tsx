@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:23:38
+ * @LastEditTime: 2024-06-28 09:34:48
  * @Description:
  */
 import { HTMLAttributes } from "react";
@@ -70,16 +70,18 @@ export function Vertical({
       )}
       {...others}
     >
-      <Avatar
-        priority
-        isShowMotion
-        alt={name}
-        src={avatarConfig?.src || ""}
-        motions={getMotion(0.1, 0, 0, istTransition)}
-        animateStyle={avatarConfig?.style}
-        {...avatarConfig}
-        style={""}
-      />
+      {!avatarConfig?.hidden && (
+        <Avatar
+          priority
+          isShowMotion
+          alt={name}
+          src={avatarConfig?.src || ""}
+          motions={getMotion(0.1, 0, 0, istTransition)}
+          animateStyle={avatarConfig?.style}
+          {...avatarConfig}
+          style={""}
+        />
+      )}
       <TextEffect
         {...subTitleConfig}
         motions={getMotion(0.1, 1, 0.2, istTransition)}

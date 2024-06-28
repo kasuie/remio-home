@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:53:00
+ * @LastEditTime: 2024-06-28 11:00:10
  * @Description:
 -->
 
@@ -139,7 +139,11 @@ docker-compose up -d remio-home
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&env=PASSWORD&project-name=remio-home&repository-name=remio-home)
 
-点击上方按钮即可，填写必要的环境变量，点击创建完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可，以下是一些参数说明：
+点击上方按钮即可，填写必要的环境变量，点击创建完成后，回到自己创建的仓库里，按需修改 `/src/config/config.json` 文件即可。
+
+自定义pwa图标和字体，在`/public`目录下，上传`/public/icons`覆盖已有的图标，字体上传到`/public/fonts`，相对路径`/fonts/xxx.ttf`就是你上传的字体文件，在配置字体资源路径的地方填写就好了。
+
+以下是一些参数说明：
 
 | 字段           | 类型                                          | 必填 | 说明                                                                          |
 | -------------- | --------------------------------------------- | ---- | ----------------------------------------------------------------------------- |
@@ -163,13 +167,15 @@ docker-compose up -d remio-home
 
 #### AvatarConfig 类型说明
 
-| 字段         | 类型   | 必填 | 说明                                                            |
-| ------------ | ------ | ---- | --------------------------------------------------------------- |
-| src          | string | 否   | 头像资源路径                                                    |
-| size         | number | 否   | 头像尺寸                                                        |
-| round        | string | 否   | 圆角程度，可选`full`,`3xl`,`xl`,`sm`,`md`和`lg`，默认`full`     |
-| hoverAnimate | string | 否   | 头像`hover` 时效果动画，可选`top` 和 `rotate`，默认为空没有动画 |
-| style        | string | 否   | 头像效果动画，可选`glint` 和 `wave`，默认为空没有动画           |
+| 字段         | 类型    | 必填 | 说明                                                                |
+| ------------ | ------- | ---- | ------------------------------------------------------------------- |
+| hidden       | boolean | 否   | 是否隐藏该组件，默认`false`                                         |
+| src          | string  | 否   | 头像资源路径                                                        |
+| size         | number  | 否   | 头像尺寸                                                            |
+| round        | string  | 否   | 圆角程度，可选`full`,`3xl`,`xl`,`sm`,`md`和`lg`，默认`full`         |
+| hoverAnimate | string  | 否   | 头像`hover` 时效果动画，可选`top` 和 `rotate`，默认为空没有动画     |
+| style        | string  | 否   | 头像效果动画，可选`glint` 和 `wave`，默认为空没有动画               |
+| aloneRight   | boolean | 否   | 头像单独在右侧，`layoutConfig.style`为`horizontal`生效，默认`false` |
 
 #### BgConfig 类型说明
 
@@ -199,7 +205,7 @@ docker-compose up -d remio-home
 | 字段         | 类型                             | 必填 | 说明                                                                                               |
 | ------------ | -------------------------------- | ---- | -------------------------------------------------------------------------------------------------- |
 | fonts        | [FontItem[]](#FontItem-类型说明) | 否   | 是否开启渲染过渡动画，默认开启                                                                     |
-| fallback     | string                           | 否   | 默认字体，优先级低于自定义字体，做字体垫片                                                         |
+| fallback     | string                           | 否   | 次要字体，优先级低于自定义字体，做字体垫片                                                         |
 | primaryColor | string                           | 否   | 主题色，十六进制颜色值，默认`#229fff`（蓝色），~没啥大用的样子~                                    |
 | theme        | string                           | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
 
@@ -268,7 +274,7 @@ docker-compose up -d remio-home
 | ------ | ---------------------------- | ---- | -------------------------------- |
 | data   | [Slider[]](#Slider-类型说明) | 否   | 数据数组                         |
 | title  | string                       | 否   | 标题，为空不展示                 |
-| hidden | boolean                      | 否   | 是否显示该组件                   |
+| hidden | boolean                      | 否   | 是否隐藏该组件                   |
 | color  | string                       | 否   | 进度条自定义颜色，默认白色`#fff` |
 | column | number                       | 否   | 一行展示几列，2-4的范围，默认`2` |
 

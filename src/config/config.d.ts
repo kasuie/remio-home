@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:32:24
+ * @LastEditTime: 2024-06-28 09:39:12
  * @Description:
  */
 export interface Link {
@@ -86,11 +86,13 @@ export interface BgConfig {
 }
 
 interface AvatarConfig {
-  src: string; // 头像资源路径
+  hidden?: boolean;
+  src?: string; // 头像资源路径
   size?: number; // 头像尺寸
   round?: string; // full | 3xl | xl | sm | md | lg 圆角程度
   hoverAnimate?: string; // top
   style?: string; // glint
+  aloneRight?: boolean;
 }
 
 interface LayoutConfig {

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-06 19:50:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 21:53:16
+ * @LastEditTime: 2024-06-28 10:38:56
  * @Description:
  */
 import { HTMLAttributes } from "react";
@@ -76,6 +76,24 @@ export function Horizontal({
     }
   };
 
+  const renderAvatar = (warpClass = "", motionKey = "toBottom") => {
+    return (
+      <Avatar
+        priority
+        isShowMotion
+        alt={name}
+        layoutStyle="horizontal"
+        src={avatarConfig?.src || ""}
+        motions={getMotion(0.1, 1, 0, istTransition, motionKey)}
+        animateStyle={avatarConfig?.style}
+        {...avatarConfig}
+        style={""}
+        warpClass={warpClass}
+        className="[@media(max-width:768px)]:mx-auto"
+      />
+    );
+  };
+
   return (
     <div
       className={clsx(
@@ -90,7 +108,18 @@ export function Horizontal({
       {...others}
     >
       <div className="relative flex min-h-screen w-full flex-col-reverse flex-wrap items-center justify-center gap-10 md:flex-row md:justify-between md:gap-20">
-        <div className="flex flex-col items-start gap-8 md:flex-1 md:gap-20 [@media(max-width:768px)]:items-center [@media(max-width:768px)]:text-center">
+        <div
+          className={clsx(
+            "flex flex-col items-start gap-8 md:flex-1 [@media(max-width:768px)]:items-center [@media(max-width:768px)]:text-center",
+            {
+              "md:gap-20": !avatarConfig?.hidden && avatarConfig?.aloneRight,
+              "md:gap-6": !avatarConfig?.hidden && !avatarConfig?.aloneRight,
+            }
+          )}
+        >
+          {!avatarConfig?.hidden &&
+            !avatarConfig?.aloneRight &&
+            renderAvatar("", "toTop")}
           {renderSubTitle(subTitleConfig)}
           <SocialIcons
             {...socialConfig}
@@ -98,22 +127,14 @@ export function Horizontal({
               `${subTitleConfig?.content || ""}${subTitleConfig?.desc || ""}`
                 .length * (subTitleConfig?.gapDelay || 0.05)
             }
+            warpClass={clsx("", {
+              "pt-12": !avatarConfig?.hidden && !avatarConfig?.aloneRight,
+            })}
             motions={getMotion(0.1, 2, 0.2, istTransition)}
             links={links}
           />
         </div>
-        <Avatar
-          priority
-          isShowMotion
-          alt={name}
-          layoutStyle="horizontal"
-          src={avatarConfig?.src || ""}
-          motions={getMotion(0.1, 0, 0, istTransition)}
-          animateStyle={avatarConfig?.style}
-          {...avatarConfig}
-          style={""}
-          className="[@media(max-width:768px)]:mx-auto"
-        />
+        {!avatarConfig?.hidden && avatarConfig?.aloneRight && renderAvatar()}
         <p className="absolute bottom-6 left-0 right-0 z-10 flex animate-bounce justify-center text-white">
           <DoubleArrow className="rotate-90" />
         </p>

@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:42:21
+ * @LastEditTime: 2024-06-28 10:59:55
  * @Description:
  */
 export interface ItemsItem {
@@ -101,8 +101,8 @@ const globalStyleRules: RuleItem[] = [
   {
     field: "fallback",
     isRequired: false,
-    label: "默认字体",
-    desc: "系统自带字体，优先级低低于自定义字体",
+    label: "次要字体",
+    desc: "系统自带字体，优先级低低于自定义字体，作字体垫片",
   },
   {
     controlKey: "list",
@@ -169,6 +169,20 @@ const avatarRules: RuleItem[] = [
       { label: "旋转", value: "rotate" },
     ],
     default: ["none"],
+  },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [
+      { label: "隐藏组件", value: "hidden" },
+      {
+        label: "头像单独在右侧",
+        value: "aloneRight",
+        desc: "layoutConfig.style为horizontal生效",
+      },
+    ],
   },
 ];
 

@@ -2,14 +2,14 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:21:22
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 21:49:10
+ * @LastEditTime: 2024-06-28 10:26:12
  * @Description:
  */
 "use client";
 import { AvatarConfig } from "@/config/config";
 import { ImageProps, Image } from "./Image";
 import { motion } from "framer-motion";
-import { clsx } from "@kasuie/utils";
+import { clsx, transitions } from "@kasuie/utils";
 
 export type AvatarProps = {
   warpClass?: string;
@@ -21,7 +21,7 @@ export type AvatarProps = {
   ImageProps;
 
 export function Avatar({
-  warpClass,
+  warpClass = "",
   src,
   alt,
   isShowMotion,
@@ -30,6 +30,7 @@ export function Avatar({
   hoverAnimate,
   animateStyle,
   layoutStyle,
+  aloneRight,
   size,
   width,
   height,
@@ -50,7 +51,8 @@ export function Avatar({
           "rounded-sm": round == "sm",
           "rounded-md": round == "md",
           "rounded-lg": round == "lg",
-          "max-w-32": layoutStyle === "horizontal"
+          "max-w-32": layoutStyle === "horizontal",
+          [`${warpClass}`]: warpClass,
         }
       )}
       {...(isShowMotion ? motions : {})}
