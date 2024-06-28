@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 11:00:10
+ * @LastEditTime: 2024-06-28 11:11:34
  * @Description:
 -->
 
@@ -204,7 +204,7 @@ docker-compose up -d remio-home
 
 | 字段         | 类型                             | 必填 | 说明                                                                                               |
 | ------------ | -------------------------------- | ---- | -------------------------------------------------------------------------------------------------- |
-| fonts        | [FontItem[]](#FontItem-类型说明) | 否   | 是否开启渲染过渡动画，默认开启                                                                     |
+| fonts        | [FontItem[]](#FontItem-类型说明) | 否   | 自定义字体数组                                                                                     |
 | fallback     | string                           | 否   | 次要字体，优先级低于自定义字体，做字体垫片                                                         |
 | primaryColor | string                           | 否   | 主题色，十六进制颜色值，默认`#229fff`（蓝色），~没啥大用的样子~                                    |
 | theme        | string                           | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
