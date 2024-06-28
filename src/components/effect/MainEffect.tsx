@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 22:27:44
+ * @LastEditTime: 2024-06-28 22:43:39
  * @Description:
  */
 "use client";
@@ -156,15 +156,35 @@ export function MainEffect({
     );
   };
 
+  const renderIframe = (
+    src: string,
+    className: string = "",
+    key: number | string
+  ) => {
+    return (
+      <iframe
+        key={key}
+        src={`${src}&danmaku=0&autoplay=1&mute=0`}
+        className={clsx(`${className} object-cover`)}
+        scrolling="no"
+        frameBorder="no"
+        allowFullScreen
+        allow="autoplay; encrypted-media; gyroscope; web-share"
+      />
+    );
+  };
+
   const renderBg = (url: string, isMbg: boolean, key: number) => {
     const classNames = clsx(className, {
       "md:hidden": isMbg,
       "[@media(max-width:768px)]:hidden": !isMbg,
     });
 
-    return url && isVideo(url) ? (
-      renderVideo(url, classNames, url)
-    ) : (
+    if (!url) return null;
+
+    if (isVideo(url)) return renderVideo(url, classNames, url);
+
+    return (
       <motion.div
         key={url}
         className={clsx(classNames, {

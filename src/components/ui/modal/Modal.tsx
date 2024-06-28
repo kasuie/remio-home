@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-23 10:54:46
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-03 20:39:09
+ * @LastEditTime: 2024-06-28 22:44:46
  * @Description:
  */
 import ReactDOM from "react-dom";
@@ -65,7 +65,7 @@ export function Modal({
           >
             <span
               className={
-                "absolute right-3 top-[10px] rotate-0 cursor-pointer duration-300 hover:rotate-[180deg]"
+                "absolute right-3 text-white/80 hover:text-white top-[10px] rotate-0 cursor-pointer duration-300 hover:rotate-[180deg]"
               }
               onClick={() => {
                 closeModal?.();

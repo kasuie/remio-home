@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-06 19:50:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 10:38:56
+ * @LastEditTime: 2024-06-28 22:10:33
  * @Description:
  */
 import { HTMLAttributes } from "react";
@@ -97,7 +97,7 @@ export function Horizontal({
   return (
     <div
       className={clsx(
-        "mx-auto flex min-h-screen w-11/12 flex-wrap items-center justify-between pb-10 md:w-[68vw]",
+        "mx-auto flex z-[1] relative min-h-screen w-11/12 flex-wrap items-center justify-between pb-10 md:w-[68vw]",
         {
           "gap-[30px]": gapSize == "md",
           "gap-8": gapSize == "sm",
