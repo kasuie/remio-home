@@ -14,8 +14,12 @@
     "aloneRight": false
   },
   "bgConfig": {
-    "bg": ["https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp"],
-    "mbg": ["https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp"],
+    "bg": [
+      "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp"
+    ],
+    "mbg": [
+      "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp"
+    ],
     "bgStyle": "snow",
     "blur": "",
     "cardOpacity": 0.1,
