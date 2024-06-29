@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-05 10:09:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 11:44:43
+ * @LastEditTime: 2024-06-29 16:46:59
  * @Description:
  */
 import { Site } from "@/config/config";
@@ -46,7 +46,7 @@ export function FlipCard({
       >
         <div
           className={clsx(
-            "transform-preserve-3d relative h-full w-full rounded-2xl shadow-mio-link transition-transform duration-500",
+            "transform-preserve-3d relative text-white h-full w-full rounded-2xl shadow-mio-link transition-transform duration-500",
             {
               "group-hover/flip:rotate-y-180": outer && hoverFlip,
               [`${contentClass}`]: contentClass,
