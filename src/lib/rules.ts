@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-29 16:01:02
+ * @LastEditTime: 2024-06-29 16:07:52
  * @Description:
  */
 export interface ItemsItem {
@@ -229,13 +229,13 @@ const bgRules: RuleItem[] = [
     transform: (val: any, input?: boolean) => {
       if (!val) return val;
       if (input) {
-        return val.join(";");
+        return Array.isArray(val) ? val.join(";") : val;
       } else {
         return val.split(";");
       }
     },
     default: "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp",
-    desc: "多张背景请以英文分号';'分隔"
+    desc: "多张背景请以英文分号';'分隔",
   },
   {
     field: "mbg",
@@ -244,13 +244,13 @@ const bgRules: RuleItem[] = [
     transform: (val: any, input?: boolean) => {
       if (!val) return val;
       if (input) {
-        return val.join(";");
+        return Array.isArray(val) ? val.join(";") : val;
       } else {
         return val.split(";");
       }
     },
     default: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
-    desc: "多张背景请以英文分号';'分隔"
+    desc: "多张背景请以英文分号';'分隔",
   },
   {
     field: "bgStyle",
