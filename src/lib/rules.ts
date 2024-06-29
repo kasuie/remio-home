@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 10:59:55
+ * @LastEditTime: 2024-06-29 16:01:02
  * @Description:
  */
 export interface ItemsItem {
@@ -20,6 +20,7 @@ export interface RuleItem {
   isRequired?: boolean;
   label?: string;
   placeholder?: string;
+  transform?: Function;
   items?: Array<ItemsItem>;
   field: string;
   desc?: string;
@@ -225,13 +226,31 @@ const bgRules: RuleItem[] = [
     field: "bg",
     isRequired: false,
     label: "pc背景图",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return val.join(";");
+      } else {
+        return val.split(";");
+      }
+    },
     default: "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp",
+    desc: "多张背景请以英文分号';'分隔"
   },
   {
     field: "mbg",
     isRequired: false,
     label: "移动端背景图",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return val.join(";");
+      } else {
+        return val.split(";");
+      }
+    },
     default: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
+    desc: "多张背景请以英文分号';'分隔"
   },
   {
     field: "bgStyle",

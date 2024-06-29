@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:52:57
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-29 14:46:33
+ * @LastEditTime: 2024-06-29 15:40:01
  * @Description:
  */
 "use client";
@@ -30,8 +30,6 @@ export const Settings = ({
   const [result, setResult] = useState<FormObj>(config);
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState("");
   const router = useRouter();
 
   const onMerge = (data: FormObj, field?: string) => {

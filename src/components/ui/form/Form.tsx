@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:11:32
+ * @LastEditTime: 2024-06-29 15:53:21
  * @Description:
  */
 "use client";
@@ -126,7 +126,7 @@ export const Form = ({
       {formData &&
         rules?.map(
           (
-            { field, controlKey, items, desc, controlProps: _props, ...others },
+            { field, transform ,controlKey, items, desc, controlProps: _props, ...others },
             index
           ) => {
             const props = {
@@ -225,12 +225,13 @@ export const Form = ({
                 return (
                   <Input
                     key={field}
-                    value={formData[field] || ""}
+                    value={transform ? (transform(formData[field], true) || "") : (formData[field] || "")}
                     {...props}
                     onValueChange={(val: string) => {
+                      const data = transform ? transform(val) : val;
                       setFormData({
                         ...formData,
-                        [field]: props?.type == "number" ? +val : val,
+                        [field]: props?.type == "number" ? +data : data,
                       });
                     }}
                   />
