@@ -2,13 +2,15 @@
  * @Author: kasuie
  * @Date: 2024-06-29 11:58:25
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-29 14:36:11
+ * @LastEditTime: 2024-06-30 11:41:52
  * @Description:
  */
 import { getConfig } from "@/lib/config";
 import { Decrypt } from "@/lib/utils";
 import { dateFormat } from "@kasuie/utils";
 import { NextRequest, NextResponse } from "next/server";
+
+export const revalidate = 0;
 
 export const GET = async (req: NextRequest) => {
   const accessToken = req.cookies.get("accessToken");
