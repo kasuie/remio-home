@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 11:11:34
+ * @LastEditTime: 2024-06-30 12:58:08
  * @Description:
 -->
 
@@ -62,7 +62,7 @@ vim .env
 GTMID=value #Google Tag Manager
 GTAGID=value #Google Analytics
 BAIDUID=value #百度统计
-PASWORD=your_password #密码，用于在线访问和编辑配置
+PASSWORD=your_password #密码，用于在线访问和编辑配置
 
 ```
 
@@ -117,7 +117,7 @@ services:
       - GTMID=value # Google Tag Manager
       - GTAGID=value # Google Analytics
       - BAIDUID=value # 百度统计
-      - PASWORD=your password # 密码，用于在线访问和编辑配置
+      - PASSWORD=your password # 密码，用于在线访问和编辑配置
     volumes:
       - ./config:/remio-home/config
       - ./icons:/remio-home/public/icons
