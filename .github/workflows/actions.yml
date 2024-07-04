@@ -41,7 +41,6 @@ jobs:
           platforms: |
             linux/arm64
             linux/amd64
-            windows/amd64
           tags: |
             ${{ secrets.DOCKERHUB_REPO }}:latest
             ${{ secrets.DOCKERHUB_REPO }}:${{github.sha}}
