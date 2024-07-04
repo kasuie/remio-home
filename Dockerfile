@@ -1,4 +1,4 @@
-FROM node:22-alpine AS base
+FROM node:latest AS base
 
 FROM base AS deps
 
