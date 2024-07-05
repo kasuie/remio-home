@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-29 15:53:21
+ * @LastEditTime: 2024-07-05 17:51:44
  * @Description:
  */
 "use client";
@@ -13,6 +13,7 @@ import { Select } from "../select/Select";
 import { Checkbox } from "../checkbox/Checkbox";
 import { RuleItem } from "@/lib/rules";
 import { FormList } from "./FormList";
+import { Textarea } from "../textarea/Textarea";
 
 export interface FormObj {
   [key: string]: any;
@@ -126,7 +127,15 @@ export const Form = ({
       {formData &&
         rules?.map(
           (
-            { field, transform ,controlKey, items, desc, controlProps: _props, ...others },
+            {
+              field,
+              transform,
+              controlKey,
+              items,
+              desc,
+              controlProps: _props,
+              ...others
+            },
             index
           ) => {
             const props = {
@@ -191,7 +200,7 @@ export const Form = ({
                     title={props.label}
                     controlProps={{
                       ...controlProps,
-                      ..._props
+                      ..._props,
                     }}
                     rules={items}
                     data={formData[field]}
@@ -201,22 +210,42 @@ export const Form = ({
                         newFormData.splice(index, 1);
                         setFormData({
                           ...formData,
-                          [field]: newFormData
+                          [field]: newFormData,
                         });
                       } else if (key === "add") {
-                        const newFormData = formData[field] ? [...formData[field], {}] : [{}];
+                        const newFormData = formData[field]
+                          ? [...formData[field], {}]
+                          : [{}];
                         setFormData({
                           ...formData,
-                          [field]: newFormData
+                          [field]: newFormData,
                         });
                       }
                     }}
-                    onChange={(index: number, colField: string, value: string) => {
+                    onChange={(
+                      index: number,
+                      colField: string,
+                      value: string
+                    ) => {
                       const newFormData = [...formData[field]];
                       newFormData[index][colField] = value;
                       setFormData({
                         ...formData,
-                        [field]: newFormData
+                        [field]: newFormData,
+                      });
+                    }}
+                  />
+                );
+              case "textarea":
+                return (
+                  <Textarea
+                    key={field}
+                    value={formData[field] || ""}
+                    {...props}
+                    onValueChange={(val: string) => {
+                      setFormData({
+                        ...formData,
+                        [field]: val,
                       });
                     }}
                   />
@@ -225,7 +254,11 @@ export const Form = ({
                 return (
                   <Input
                     key={field}
-                    value={transform ? (transform(formData[field], true) || "") : (formData[field] || "")}
+                    value={
+                      transform
+                        ? transform(formData[field], true) || ""
+                        : formData[field] || ""
+                    }
                     {...props}
                     onValueChange={(val: string) => {
                       const data = transform ? transform(val) : val;

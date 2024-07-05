@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-30 12:58:08
+ * @LastEditTime: 2024-07-05 17:29:08
  * @Description:
 -->
 
@@ -164,6 +164,7 @@ docker-compose up -d remio-home
 | subTitleConfig | [SubTitleConfig](#SubTitleConfig-类型说明)    | 否   | 次标题渲染组件配置项                                                          |
 | socialConfig   | [SocialConfig](#SocialConfig-类型说明)        | 否   | 社交媒体的链接渲染组件配置项                                                  |
 | sliders        | [SlidersConfig](#SlidersConfig-类型说明)      | 否   | 技能加点组件配置项                                                            |
+| resources      | [Resources](#Resources-类型说明)              | 否   | 加在第三方资源及添加一些自定义body                                            |
 
 #### AvatarConfig 类型说明
 
@@ -309,6 +310,14 @@ docker-compose up -d remio-home
 | modal      | boolean | 否   | 是否显示`modal`                                                        |
 | modalTips  | string  | 否   | `modal`的提示语                                                        |
 | modalTitle | string  | 否   | `modal`的标题                                                          |
+
+#### Resources 类型说明
+
+| 字段     | 类型     | 必填 | 说明                       |
+| -------- | -------- | ---- | -------------------------- |
+| css      | string[] | 否   | 引入外部css                |
+| js       | string[] | 否   | 引入外部js                 |
+| bodyHtml | string   | 否   | 自定义添加一些body内的html |
 
 ### 本地启动
 

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 09:39:12
+ * @LastEditTime: 2024-07-05 16:42:20
  * @Description:
  */
 export interface Link {
@@ -140,6 +140,12 @@ interface GlobalStyle {
   theme?: string;
 }
 
+interface Resources {
+  js?: string[];
+  css?: string[];
+  bodyHtml?: string;
+}
+
 export interface AppConfig {
   name: string; // 站点标题
   favicon?: string; // 站点图标
@@ -158,4 +164,5 @@ export interface AppConfig {
   sites: Site[]; // 项目或者其他站点链接
   sitesConfig?: SitesConfig; // sites 渲染组件配置项
   sliders?: SlidersConfig;
+  resources?: Resources;
 }

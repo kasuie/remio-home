@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-15 11:20:01
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 15:50:50
+ * @LastEditTime: 2024-07-05 15:58:50
  * @Description:
  */
 import { Decrypt } from "@/lib/utils";
@@ -28,7 +28,7 @@ export const POST = async (req: NextRequest) => {
 
     response.cookies.set("accessToken", checkCode, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
       path: "/",
       maxAge: 60 * 60 * 24 * 14,
     });

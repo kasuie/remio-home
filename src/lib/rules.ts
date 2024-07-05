@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-29 16:07:52
+ * @LastEditTime: 2024-07-05 17:48:24
  * @Description:
  */
 export interface ItemsItem {
@@ -576,6 +576,49 @@ const slidersRules: RuleItem[] = [
   },
 ];
 
+const resourcesRules: RuleItem[] = [
+  {
+    field: "css",
+    isRequired: false,
+    label: "自定义css",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return Array.isArray(val) ? val.join(";") : val;
+      } else {
+        return val.split(";");
+      }
+    },
+    default: [],
+    desc: "多个css资源请以';'分隔",
+  },
+  {
+    field: "js",
+    isRequired: false,
+    label: "自定义js",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return Array.isArray(val) ? val.join(";") : val;
+      } else {
+        return val.split(";");
+      }
+    },
+    default: [],
+    desc: "多个js资源请以';'分隔",
+  },
+  {
+    field: "bodyHtml",
+    isRequired: false,
+    label: "自定义body元素",
+    controlKey: "textarea",
+    controlProps: {
+      type: "textarea",
+    },
+    desc: "将以html文本渲染",
+  },
+];
+
 export const AppRules = [
   { title: "主要设置", rules: mainRules },
   { title: "样式设置", rules: globalStyleRules, field: "globalStyle" },
@@ -587,6 +630,7 @@ export const AppRules = [
   { title: "标题设置", rules: subTitleRules, field: "subTitleConfig" },
   { title: "社媒设置", rules: socialRules, field: "socialConfig" },
   { title: "技能设置", rules: slidersRules, field: "sliders" },
+  { title: "资源设置", rules: resourcesRules, field: "resources" },
 ];
 
 export const defaultAppConfig: AppConfig = {
@@ -743,5 +787,10 @@ export const defaultAppConfig: AppConfig = {
     ICP: "ICP备xxxxxxxx号",
     direction: "col-reverse",
     isExternal: true,
+  },
+  resources: {
+    css: [],
+    js: [],
+    bodyHtml: "",
   },
 };

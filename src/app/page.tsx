@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 22:50:29
+ * @LastEditTime: 2024-07-05 17:55:01
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -35,8 +35,11 @@ export default async function Home() {
     bgConfig,
     footer,
     globalStyle,
+    resources,
     ...others
   } = transformConfig(await getConfig("config.json"));
+
+  const { bodyHtml } = resources || {};
 
   const renderMain = (props: any) => {
     if (style === "horizontal") {
@@ -79,6 +82,13 @@ export default async function Home() {
           footer={footer}
         />
       ) : null}
+      {bodyHtml && (
+          <section
+            id="remio-bodyHtml"
+            className="relative z-20"
+            dangerouslySetInnerHTML={{ __html: bodyHtml }}
+          ></section>
+        )}
     </Suspense>
   );
 }
