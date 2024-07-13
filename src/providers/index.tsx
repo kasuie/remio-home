@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 09:39:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-07-05 17:57:43
+ * @LastEditTime: 2024-07-05 18:14:28
  * @Description:
  */
 "use client";
@@ -13,9 +13,7 @@ import { NextUIProvider } from "@nextui-org/system";
 import { AppConfig } from "@/config/config";
 import StyledRegistry from "./StyleJsxProvider";
 import { createContext } from "react";
-import DOMPurify from "dompurify";
 import Script from "next/script";
-import Head from "next/head";
 
 export const ConfigProvider = createContext({});
 
@@ -46,12 +44,14 @@ export function AppProviders({
         defaultTheme="light"
         enableSystem
       >
-        {css?.length ?
-          css?.map((v: string) => <link rel="stylesheet" key={v} href={v} />) : null}
-        {js?.length ?
-          js?.map((v: string) => (
-            <Script key={v} src={v} strategy={"afterInteractive"} />
-          )) : null}
+        {css?.length
+          ? css?.map((v: string) => <link rel="stylesheet" key={v} href={v} />)
+          : null}
+        {js?.length
+          ? js?.map((v: string) => (
+              <Script key={v} src={v} strategy={"afterInteractive"} />
+            ))
+          : null}
         <ConfigProvider.Provider value={{ appConfig: appConfig }}>
           <StyledRegistry>{children}</StyledRegistry>
         </ConfigProvider.Provider>
