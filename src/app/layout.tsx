@@ -41,6 +41,14 @@ export default async function RootLayout({
   const appConfig = await getConfig("config.json");
   return (
     <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        {process.env.BAIDU_SITE_VERIFICATION && (
+          <meta
+            name="baidu-site-verification"
+            content={process.env.BAIDU_SITE_VERIFICATION}
+          />
+        )}
+      </head>
       <body
         className={`${inter.className} mio-scroll mio-fonts overflow-y-auto`}
       >
