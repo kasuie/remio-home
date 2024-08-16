@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 09:39:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-16 15:42:13
+ * @LastEditTime: 2024-08-16 16:27:34
  * @Description:
  */
 "use client";
@@ -33,7 +33,7 @@ export function AppProviders({
   if (isClientSide) {
     console.log(
       `\n %c Remio-home${
-        ver ? "v" + ver : ""
+        ver ? " v" + ver : ""
       } By kasuie %c https://github.com/kasuie`,
       "color:#555;background:linear-gradient(to right, #a8edea 0%, #fed6e3 100%);padding:5px 0;",
       "color:#fff;background:#fff;padding:5px 10px 5px 0px;"
