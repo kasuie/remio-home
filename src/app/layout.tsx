@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-05 19:55:23
+ * @LastEditTime: 2024-08-16 15:44:12
  * @Description:
  */
 import type { Metadata } from "next";
@@ -45,7 +45,10 @@ export default async function RootLayout({
       <body
         className={`${inter.className} mio-scroll mio-fonts overflow-y-auto`}
       >
-        <AppProviders appConfig={appConfig}>
+        <AppProviders
+          appConfig={appConfig}
+          ver={process.env.VERSION || ""}
+        >
           <Layout>{children}</Layout>
           <StyleRegistry />
         </AppProviders>
