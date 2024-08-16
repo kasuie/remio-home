@@ -31,7 +31,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.ALI_DOCKER_REPO }}
+          images: |
+            ${{ secrets.DOCKERHUB_REPO }}
+            ${{ secrets.ALI_DOCKER_REPO }}
           tags: |
             type=raw,value=latest
             type=semver,pattern={{version}}
