@@ -2,13 +2,13 @@
  * @Author: kasuie
  * @Date: 2024-08-15 23:26:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 14:36:18
+ * @LastEditTime: 2024-08-18 16:04:13
  * @Description:
  */
 import { onAmap, onOio } from "@/lib/api";
 import { NextResponse } from "next/server";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 const AMAP_KEY = process.env.AMAP_KEY;
 

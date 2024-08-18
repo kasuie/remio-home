@@ -13,6 +13,11 @@ on:
         required: true
         default: true
         type: boolean
+      restart:
+        description: Redeploy
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build-and-push:
@@ -61,3 +66,18 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             VERSION=${{ steps.meta.outputs.version }}
+  pull-and-restart:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.restart }}
+    steps:
+      - name: Login Server and Start
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            cd /opt/apps/remio-home/
+            docker-compose pull remio-home && docker-compose up -d remio-home
+            docker rmi $(docker image ls ${{ secrets.DOCKERHUB_REPO }} -q) || echo "删除镜像异常"
