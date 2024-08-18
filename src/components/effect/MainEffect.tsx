@@ -24,12 +24,12 @@ export function MainEffect({
   transitionStyle = "default",
   autoAnimate,
   theme,
-  motions,
+  motions = {},
 }: BgConfig & {
   bgArr: string[];
   mbgArr: string[];
   theme?: string;
-  motions: object;
+  motions?: object;
 }) {
   const videoExtensions = [
     ".mp4",
