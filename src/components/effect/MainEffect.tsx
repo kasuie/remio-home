@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 22:43:39
+ * @LastEditTime: 2024-08-18 14:35:17
  * @Description:
  */
 "use client";
@@ -11,12 +11,7 @@ import { isClientSide, aSakura, clsx } from "@kasuie/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { variants, showMotion } from "@/lib/motion";
-import dynamic from "next/dynamic";
-
-const MuteSwitcher = dynamic(
-  async () =>
-    (await import("@/components/ui/switcher/MuteSwitcher")).MuteSwitcher
-);
+import { Controller } from "../controller/Controller";
 
 export function MainEffect({
   bgArr,
@@ -28,7 +23,14 @@ export function MainEffect({
   transitionTime,
   transitionStyle = "default",
   autoAnimate,
-}: BgConfig & { bgArr: string[]; mbgArr: string[] }) {
+  theme,
+  motions,
+}: BgConfig & {
+  bgArr: string[];
+  mbgArr: string[];
+  theme?: string;
+  motions: object;
+}) {
   const videoExtensions = [
     ".mp4",
     ".webm",
@@ -46,6 +48,8 @@ export function MainEffect({
   const [variant, setVariant] = useState<Object>({});
 
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [hasVideo, setHasVideo] = useState(false);
 
   const [vPlaying, setVPlaying] = useState(false);
 
@@ -88,6 +92,21 @@ export function MainEffect({
         : setVariant(variants[transitionStyle]);
     }
   }, [autoAnimate, transitionStyle]);
+
+  useEffect(() => {
+    if (mbgArr?.length) {
+      const index = mbgArr.findIndex((v: string) => isVideo(v));
+      if (index > -1) {
+        setHasVideo(true);
+      }
+    }
+    if (bgArr?.length) {
+      const index = bgArr.findIndex((v: string) => isVideo(v));
+      if (index > -1) {
+        setHasVideo(true);
+      }
+    }
+  }, [mbgArr, bgArr]);
 
   const isVideo = (url: string) => {
     const lowerCaseUrl = url?.toLowerCase();
@@ -132,13 +151,8 @@ export function MainEffect({
   ) => {
     return (
       <>
-        <MuteSwitcher
-          className={clsx("fixed right-12 top-2 z-10 md:right-16 md:top-4")}
-          motions={showMotion}
-          onSwitch={handleMuteUnmute}
-        />
         <motion.video
-          key={key}
+          key={`v:${key}:${src}`}
           ref={videoRef}
           className={clsx(`${className} object-cover`)}
           preload="auto"
@@ -186,7 +200,7 @@ export function MainEffect({
 
     return (
       <motion.div
-        key={url}
+        key={`${key}:${url}`}
         className={clsx(classNames, {
           "animate-[mio-bg-top_6s_linear_reverse_infinite]":
             key % 4 == 0 && autoAnimate,
@@ -217,6 +231,12 @@ export function MainEffect({
         {/* {bgArr && bgArr.map((v, i) => renderBg(v, false, i))}
         {mbgArr && mbgArr.map((v, i) => renderBg(v, true, i))} */}
       </AnimatePresence>
+      <Controller
+        theme={theme}
+        hasVideo={hasVideo}
+        motions={motions}
+        handleMuteUnmute={handleMuteUnmute}
+      />
     </section>
   );
 }

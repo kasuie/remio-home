@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-07-05 17:48:24
+ * @LastEditTime: 2024-08-18 12:31:43
  * @Description:
  */
 export interface ItemsItem {
@@ -114,6 +114,13 @@ const globalStyleRules: RuleItem[] = [
       { label: "字体名称", value: "name", controlKey: "input" },
       { label: "字体资源路径", value: "src", controlKey: "input" },
     ],
+  },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [{ label: "显示地理天气", value: "weather" }],
   },
 ];
 
@@ -662,6 +669,7 @@ export const defaultAppConfig: AppConfig = {
     primaryColor: "#229fff",
     fallback: "",
     fonts: [],
+    weather: false,
   },
   layoutConfig: {
     gapSize: "md",

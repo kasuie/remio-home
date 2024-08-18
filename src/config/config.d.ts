@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-07-05 16:42:20
+ * @LastEditTime: 2024-08-18 12:28:25
  * @Description:
  */
 export interface Link {
@@ -138,6 +138,7 @@ interface GlobalStyle {
   fallback?: string;
   primaryColor?: string;
   theme?: string;
+  weather?: boolean;
 }
 
 interface Resources {

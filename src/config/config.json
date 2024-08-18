@@ -44,7 +44,8 @@
     ],
     "fallback": "cursive,emoji",
     "primaryColor": "#0dbf56",
-    "theme": "switcher"
+    "theme": "switcher",
+    "weather": true
   },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {

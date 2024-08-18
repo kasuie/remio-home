@@ -13,9 +13,9 @@
   "author": "kasuie <i@kasuie.cc>",
   "license": "MIT",
   "dependencies": {
-    "@kasuie/http": "^0.0.11",
-    "@kasuie/icon": "^0.0.9",
-    "@kasuie/utils": "^0.0.13",
+    "@kasuie/http": "^0.0.16",
+    "@kasuie/icon": "^0.0.14",
+    "@kasuie/utils": "^0.0.14",
     "@next/third-parties": "^14.2.3",
     "@nextui-org/accordion": "^2.0.34",
     "@nextui-org/checkbox": "^2.1.1",

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-07-05 17:55:01
+ * @LastEditTime: 2024-08-18 14:34:34
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -11,8 +11,9 @@ import { getConfig, transformConfig } from "@/lib/config";
 import { MainEffect } from "@/components/effect/MainEffect";
 import { getMotion } from "@/lib/motion";
 import { Footer } from "@/components/layout/Footer";
-import { ThemeSwitcher } from "@/components/ui/switcher/ThemeSwitcher";
 import dynamic from "next/dynamic";
+import { Controller } from "@/components/controller/Controller";
+import { Weather } from "@/components/weather/Weather";
 
 export const revalidate = 0;
 
@@ -57,11 +58,7 @@ export default async function Home() {
         </Loader>
       }
     >
-      <ThemeSwitcher
-        motions={getMotion(0.1, 5, 0.2, istTransition)}
-        theme={globalStyle?.theme}
-        className="fixed right-2 top-2 md:right-4 md:top-4"
-      />
+      {globalStyle?.weather && <Weather size={18} />}
       {renderMain({
         ...others,
         gapSize,
@@ -75,6 +72,8 @@ export default async function Home() {
         mbgArr={bgConfig.mbgs}
         bgStyle={bgConfig?.bgStyle}
         blur={bgConfig?.blur || "sm"}
+        theme={globalStyle?.theme}
+        motions={getMotion(0.1, 4, 0.2, istTransition)}
       />
       {footer ? (
         <Footer
@@ -83,12 +82,12 @@ export default async function Home() {
         />
       ) : null}
       {bodyHtml && (
-          <section
-            id="remio-bodyHtml"
-            className="relative z-20"
-            dangerouslySetInnerHTML={{ __html: bodyHtml }}
-          ></section>
-        )}
+        <section
+          id="remio-bodyHtml"
+          className="relative z-20"
+          dangerouslySetInnerHTML={{ __html: bodyHtml }}
+        ></section>
+      )}
     </Suspense>
   );
 }

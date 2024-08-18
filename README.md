@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-07-05 17:29:08
+ * @LastEditTime: 2024-08-18 14:43:53
  * @Description:
 -->
 
@@ -20,7 +20,7 @@ remio-home(homepage): 基于配置的个人主页
 
 > ![snow](./images/snow.png) ![desc](./images/desc.png)
 
-[演示 Demo](https://index.remio.cc)
+[演示 Demo (国内)](https://home.kasuie.cc) [演示 Demo (国外)](https://home.remio.cc) [演示 Demo (Vercel)](https://index.remio.cc)
 
 ## 部署
 
@@ -58,11 +58,13 @@ touch .env
 # 然后编辑环境变量，vim操作可以自行搜一下
 vim .env
 
-# 根据需要在文件内填写环境变量，一行一个，不要后面注释
+# 根据需要按需在文件内填写环境变量，一行一个，不要后面注释
 GTMID=value #Google Tag Manager
 GTAGID=value #Google Analytics
 BAIDUID=value #百度统计
 PASSWORD=your_password #密码，用于在线访问和编辑配置
+BaiduSiteVerify=xxxx #百度站点验证
+AMAP_KEY=xxxx #高德地图key
 
 ```
 
@@ -118,6 +120,8 @@ services:
       - GTAGID=value # Google Analytics
       - BAIDUID=value # 百度统计
       - PASSWORD=your password # 密码，用于在线访问和编辑配置
+      - BaiduSiteVerify=verifycode #百度站点验证
+      - AMAP_KEY=xxxx #高德地图key
     volumes:
       - ./config:/remio-home/config
       - ./icons:/remio-home/public/icons
@@ -209,6 +213,7 @@ docker-compose up -d remio-home
 | fallback     | string                           | 否   | 次要字体，优先级低于自定义字体，做字体垫片                                                         |
 | primaryColor | string                           | 否   | 主题色，十六进制颜色值，默认`#229fff`（蓝色），~没啥大用的样子~                                    |
 | theme        | string                           | 否   | 主题设置，可选：`dark`,`light`,`switcher`。`switcher`为开启切换按钮，其他的为固定主题，默认`light` |
+| weather      | boolean                          | 否   | 是否显示地理天气，默认`false`不显示                                                                |
 
 #### FontItem 类型说明
 
