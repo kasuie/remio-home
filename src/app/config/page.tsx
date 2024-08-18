@@ -2,14 +2,14 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:46:02
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-27 22:56:02
+ * @LastEditTime: 2024-08-18 15:27:56
  * @Description:
  */
 import { MainEffect } from "@/components/effect/MainEffect";
 import { Settings } from "@/components/settings/Settings";
 import { Loader } from "@/components/ui/loader/Loader";
 import { Verify } from "@/components/verify/Verify";
-import { getConfig, transformConfig } from "@/lib/config";
+import { getConfig, mergeConfig, transformConfig } from "@/lib/config";
 import { toHsl } from "@kasuie/utils";
 import { Suspense } from "react";
 
@@ -44,7 +44,7 @@ export default async function Config({
         style={style}
         className="relative z-[1] flex h-screen w-full items-center justify-center"
       >
-        {!verify ? <Settings config={appConfig} /> : <Verify />}
+        {!verify ? <Settings config={mergeConfig(appConfig)} /> : <Verify />}
       </div>
       <MainEffect
         bgArr={bgConfig.bgs}

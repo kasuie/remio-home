@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:25:01
+ * @LastEditTime: 2024-08-18 15:27:33
  * @Description:
  */
 import { AppConfig, Site } from "@/config/config";
@@ -120,4 +120,8 @@ export const transformConfig = (appConfig: AppConfig) => {
     staticSites,
     modalSites,
   };
+};
+
+export const mergeConfig = (appConfig: AppConfig) => {
+  return Object.assign({ ...defaultAppConfig }, appConfig);
 };
