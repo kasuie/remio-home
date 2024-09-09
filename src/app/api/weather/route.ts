@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-08-15 23:26:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-09-09 09:31:47
+ * @LastEditTime: 2024-09-09 09:42:02
  * @Description:
  */
 import { onAmap, onOio } from "@/lib/api";
@@ -13,10 +13,10 @@ export const revalidate = 0;
 const AMAP_KEY = process.env.AMAP_KEY;
 
 export const GET = async (req: NextRequest) => {
-  const clientIp = req.headers.get("x-forwarded-for") || null;
+  const clientIp = req.headers.get("x-forwarded-for") || "";
 
   if (!AMAP_KEY) {
-    const res: any = await onOio("weather");
+    const res: any = await onOio("weather", {}, clientIp);
     if (res?.code == 200 && res?.result) {
       const {
         result: { city, condition },
@@ -49,7 +49,7 @@ export const GET = async (req: NextRequest) => {
     }
   }
 
-  const resIp: any = (await onAmap("ip")) || {};
+  const resIp: any = (await onAmap("ip", {}, clientIp)) || {};
 
   if (resIp?.status != "1")
     return NextResponse.json({
