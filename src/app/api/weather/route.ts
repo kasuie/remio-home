@@ -2,17 +2,19 @@
  * @Author: kasuie
  * @Date: 2024-08-15 23:26:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 16:04:13
+ * @LastEditTime: 2024-09-09 09:31:47
  * @Description:
  */
 import { onAmap, onOio } from "@/lib/api";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const revalidate = 0;
 
 const AMAP_KEY = process.env.AMAP_KEY;
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
+  const clientIp = req.headers.get("x-forwarded-for") || null;
+
   if (!AMAP_KEY) {
     const res: any = await onOio("weather");
     if (res?.code == 200 && res?.result) {
