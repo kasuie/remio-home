@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-08-15 23:14:24
  * @LastEditors: kasuie
- * @LastEditTime: 2024-09-09 09:36:08
+ * @LastEditTime: 2024-10-21 20:41:38
  * @Description:
  */
 import request from "@/lib/fetch";
@@ -13,7 +13,7 @@ const AMAP_KEY = process.env.AMAP_KEY;
 export const onAmap = async (
   key: string,
   params: Record<string, any> = {},
-  clientIp: string = ""
+  headers?: Headers
 ) => {
   if (!AMAP_KEY || !amapApis[key] || !amapApis.base) return null;
   return await request.get(
@@ -22,19 +22,14 @@ export const onAmap = async (
       ...params,
       key: AMAP_KEY,
     },
-    {
-      headers: {
-        "x-forwarded-for": clientIp,
-        "X-Client-IP": clientIp,
-      },
-    }
+    headers
   );
 };
 
 export const onOio = async (
   key: string,
   params: Record<string, any> = {},
-  clientIp: string = ""
+  headers?: Headers
 ) => {
   if (!oioApis[key] || !oioApis.base) return null;
   return await request.get(
@@ -43,10 +38,7 @@ export const onOio = async (
       ...params,
     },
     {
-      headers: {
-        "x-forwarded-for": clientIp,
-        "X-Client-IP": clientIp,
-      },
+      headers,
     }
   );
 };
