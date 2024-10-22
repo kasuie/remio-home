@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-15 10:30:25
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-19 15:45:09
+ * @LastEditTime: 2024-10-22 21:40:27
  * @Description:
  */
 "use client";
@@ -13,13 +13,34 @@ import { useState } from "react";
 import { Encrypt } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import message from "../message";
-import { LockClosed } from "@kasuie/icon";
+import { K, LockClosed } from "@kasuie/icon";
 import fetch from "@/lib/fetch";
 
 export const Verify = () => {
   const [checkCode, setCheckCode] = useState<string>();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+
+  const onSubmit = () => {
+    if (!checkCode) return message.warning("密码不能为空~");
+    setLoading(true);
+    fetch
+      .post("/api/verify", {
+        checkCode: Encrypt(checkCode),
+      })
+      .then((res) => {
+        if (res.success) {
+          message.success("操作成功");
+          router.refresh();
+        } else {
+          message.error("操作失败");
+        }
+      })
+      .catch((_) => message.error("操作失败！"))
+      .finally(() => setLoading(false));
+  }
+
   return (
     <FlipCard
       flip
@@ -33,6 +54,9 @@ export const Verify = () => {
         radius="lg"
         size="lg"
         onValueChange={setCheckCode}
+        onKeyDown={({ key }) => {
+          if (key === "Enter") onSubmit()
+        }}
         autoComplete="off"
         type="password"
         classNames={{
@@ -61,22 +85,7 @@ export const Verify = () => {
       <Button
         loading={loading}
         className="mt-8 rounded-2xl text-white"
-        onClick={() => {
-          if (!checkCode) return message.warning("密码不能为空~");
-          setLoading(true);
-          fetch.post("/api/verify", {
-            checkCode: Encrypt(checkCode),
-          }).then((res) => {
-            if (res.success) {
-              message.success("操作成功");
-              router.refresh();
-            } else {
-              message.error("操作失败");
-            }
-          })
-            .catch(_ => message.error("操作失败！"))
-            .finally(() => setLoading(false));;
-        }}
+        onClick={onSubmit}
       >
         提交
       </Button>

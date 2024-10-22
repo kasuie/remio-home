@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-24 22:12:19
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-17 21:16:13
+ * @LastEditTime: 2024-10-22 21:33:45
  * @Description:
  */
 "use client";
@@ -22,11 +22,11 @@ export const MuteSwitcher = ({
   onSwitch?: Function;
   motions?: object;
 }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
 
-  useEffect(() => {
-    setChecked(true);
-  }, [onSwitch]);
+  // useEffect(() => {
+  //   setChecked(true);
+  // }, [onSwitch]);
 
   const onChange = () => {
     if (!checked) {
@@ -42,7 +42,7 @@ export const MuteSwitcher = ({
     <motion.div {...motions} className={className}>
       <div
         onClick={onChange}
-        className="relative flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white/15 opacity-75 shadow-[2px_2px_10px_rgba(0,0,0,0.13)] transition duration-300 hover:opacity-100"
+        className="relative z-10 flex h-8 w-8 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-white/15 opacity-75 shadow-[2px_2px_10px_rgba(0,0,0,0.13)] transition duration-300 hover:opacity-100"
       >
         <div
           className={clsx(

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 12:28:25
+ * @LastEditTime: 2024-10-22 21:11:14
  * @Description:
  */
 export interface Link {
@@ -66,6 +66,7 @@ export interface SocialConfig {
 export interface BgConfig {
   bg?: string; // pc背景图
   mbg?: string; // 移动端背景图
+  audio?: string; // 背景音频
   bgStyle?: string; // 背景飘浮风格 可选 sakura 或者 snow 或者自行填写飘浮物资源图片
   blur?: string;
   cardOpacity?: number;

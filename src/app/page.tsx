@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 14:34:34
+ * @LastEditTime: 2024-10-22 21:15:06
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -72,6 +72,7 @@ export default async function Home() {
         mbgArr={bgConfig.mbgs}
         bgStyle={bgConfig?.bgStyle}
         blur={bgConfig?.blur || "sm"}
+        audio={bgConfig?.audio}
         theme={globalStyle?.theme}
         motions={getMotion(0.1, 4, 0.2, istTransition)}
       />

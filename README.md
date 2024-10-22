@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 14:43:53
+ * @LastEditTime: 2024-10-22 22:05:27
  * @Description:
 -->
 
@@ -188,6 +188,7 @@ docker-compose up -d remio-home
 | --------------- | --------------- | ---- | ------------------------------------------------------------------------------------------------------ |
 | bg              | string/string[] | 否   | pc背景资源链接                                                                                         |
 | mbg             | string/string[] | 否   | 移动端背景资源链                                                                                       |
+| audio           | string          | 否   | 背景音乐                                                                                               |
 | bgStyle         | string          | 否   | 背景飘浮风格。可选值：`sakura`(樱花) 或 `snow`：(雪花)，也可自行填写飘浮物资源图片                     |
 | blur            | string          | 否   | 背景模糊程度，可选`none`,`sm`,`md`和`lg`，默认`sm`                                                     |
 | cardOpacity     | number          | 否   | 卡片的透明度，`0-1`之间，默认`0.1`                                                                     |

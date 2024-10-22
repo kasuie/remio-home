@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 16:56:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 14:35:17
+ * @LastEditTime: 2024-10-22 22:03:02
  * @Description:
  */
 "use client";
@@ -18,6 +18,7 @@ export function MainEffect({
   mbgArr,
   bgStyle,
   blur,
+  audio,
   carousel = true,
   carouselGap = 6,
   transitionTime,
@@ -49,7 +50,11 @@ export function MainEffect({
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const [hasVideo, setHasVideo] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const [aPlaying, setAPlaying] = useState(false);
+
+  const [hasMedia, setHasMedia] = useState(false);
 
   const [vPlaying, setVPlaying] = useState(false);
 
@@ -59,7 +64,17 @@ export function MainEffect({
         aSakura(bgStyle);
       }
     }
+    if (audioRef.current) {
+      audioRef.current.play();
+      setAPlaying(true);
+    }
   });
+
+  useEffect(() => {
+    if (audio) {
+      setHasMedia(true);
+    }
+  }, [audio]);
 
   useEffect(() => {
     if (bgArr && bgArr.length > 1 && carousel) {
@@ -97,13 +112,13 @@ export function MainEffect({
     if (mbgArr?.length) {
       const index = mbgArr.findIndex((v: string) => isVideo(v));
       if (index > -1) {
-        setHasVideo(true);
+        setHasMedia(true);
       }
     }
     if (bgArr?.length) {
       const index = bgArr.findIndex((v: string) => isVideo(v));
       if (index > -1) {
-        setHasVideo(true);
+        setHasMedia(true);
       }
     }
   }, [mbgArr, bgArr]);
@@ -113,6 +128,18 @@ export function MainEffect({
     return videoExtensions.some((extension) =>
       lowerCaseUrl.endsWith(extension)
     );
+  };
+
+  // 切换播放/暂停状态
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (aPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setAPlaying(!aPlaying);
+    }
   };
 
   const handlePlayPause = () => {
@@ -168,6 +195,10 @@ export function MainEffect({
         ></motion.video>
       </>
     );
+  };
+
+  const renderAudio = (url: string) => {
+    return <audio ref={audioRef} src={url} />;
   };
 
   const renderIframe = (
@@ -228,14 +259,15 @@ export function MainEffect({
       <AnimatePresence>
         {bgArr && renderBg(bgArr[index], false, index)}
         {mbgArr && renderBg(mbgArr[mindex], true, mindex)}
+        {audio && renderAudio(audio)}
         {/* {bgArr && bgArr.map((v, i) => renderBg(v, false, i))}
         {mbgArr && mbgArr.map((v, i) => renderBg(v, true, i))} */}
       </AnimatePresence>
       <Controller
         theme={theme}
-        hasVideo={hasVideo}
+        hasMedia={hasMedia}
         motions={motions}
-        handleMuteUnmute={handleMuteUnmute}
+        handleMuteUnmute={audio ? togglePlayPause : handleMuteUnmute}
       />
     </section>
   );

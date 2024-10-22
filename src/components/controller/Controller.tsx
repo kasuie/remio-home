@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-08-17 10:47:06
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 14:35:35
+ * @LastEditTime: 2024-10-22 21:33:33
  * @Description:
  */
 "use client";
@@ -21,15 +21,15 @@ const MuteSwitcher = dynamic(
 export function Controller({
   motions,
   theme,
-  hasVideo,
+  hasMedia,
   handleMuteUnmute,
 }: {
   motions?: object;
   theme?: string;
-  hasVideo?: boolean;
+  hasMedia?: boolean;
   handleMuteUnmute?: Function;
 }) {
-  const hidden = !hasVideo && theme != "switcher";
+  const hidden = !hasMedia && theme != "switcher";
 
   return (
     <motion.div
@@ -43,7 +43,7 @@ export function Controller({
     >
       <div className="hidden h-0 flex-col gap-2 duration-300 group-hover:flex group-hover:h-auto">
         <ThemeSwitcher theme={theme} />
-        {hasVideo && <MuteSwitcher onSwitch={handleMuteUnmute} />}
+        {hasMedia && <MuteSwitcher onSwitch={handleMuteUnmute} />}
       </div>
       <div className="px-2">
         <Setting size={22} />

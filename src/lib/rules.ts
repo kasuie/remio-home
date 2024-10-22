@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 12:31:43
+ * @LastEditTime: 2024-10-22 21:12:37
  * @Description:
  */
 export interface ItemsItem {
@@ -258,6 +258,12 @@ const bgRules: RuleItem[] = [
     },
     default: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
     desc: "多张背景请以英文分号';'分隔",
+  },
+  {
+    field: "audio",
+    isRequired: false,
+    label: "音频",
+    desc: "背景播放的音频",
   },
   {
     field: "bgStyle",
