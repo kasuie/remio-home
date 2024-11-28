@@ -1,22 +1,16 @@
 {
   "name": "KASUIEの主页✨",
   "favicon": "/favicon.ico",
-  "domain": "https://remio-home.vercel.app",
   "keywords": "remio,rem,mio,C.C.,KASUIEの次元,KASUIE的个人博客,KASUIE,个人主页,主页,个人记录,技术博客,个人生活",
   "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
   "avatarConfig": {
-    "hidden": false,
     "src": "https://s2.loli.net/2024/06/19/8zlOyDUnGjXeHpi.webp",
     "size": 150,
     "round": "full",
+    "style": "wave",
     "hoverAnimate": "top",
-    "style": "glint",
+    "hidden": false,
     "aloneRight": false
-  },
-  "resources": {
-    "css": [],
-    "js": [],
-    "bodyHtml": ""
   },
   "bgConfig": {
     "bg": ["https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp"],
@@ -30,22 +24,15 @@
     "transitionStyle": "default",
     "autoAnimate": false
   },
+  "globalStyle": {
+    "primaryColor": "#0dbf56",
+    "theme": "switcher",
+    "weather": true
+  },
   "layoutConfig": {
     "gapSize": "lg",
     "style": "",
     "istTransition": true
-  },
-  "globalStyle": {
-    "fonts": [
-      {
-        "src": "https://cs.kasuie.cc/fonts/XiaolaiMonoSC-Regular.ttf",
-        "name": "XiaolaiMonoSC"
-      }
-    ],
-    "fallback": "cursive,emoji",
-    "primaryColor": "#0dbf56",
-    "theme": "switcher",
-    "weather": true
   },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
@@ -281,5 +268,11 @@
     "ICP": "ICP备xxxxxxxx号",
     "direction": "col-reverse",
     "isExternal": true
-  }
+  },
+  "resources": {
+    "css": [],
+    "js": [],
+    "bodyHtml": ""
+  },
+  "domain": "https://remio-home.vercel.app"
 }

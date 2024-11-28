@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-22 18:12:10
+ * @LastEditTime: 2024-11-28 20:57:07
  * @Description:
  */
 import type { Config } from "tailwindcss";
@@ -34,7 +34,7 @@ const config: Config = {
           "100%": { transform: "translateY(0px)" },
         },
         "mio-ping": {
-          "0%": { transform: "scale(1)", opacity: "0.16" },
+          "0%": { transform: "scale(1)", opacity: "0.13" },
           "50%": { transform: "scale(1.4)", opacity: "0.1" },
           "100%": { transform: "scale(1.8)", opacity: "0" },
         },

@@ -2,11 +2,10 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-16 15:44:12
+ * @LastEditTime: 2024-11-28 21:01:15
  * @Description:
  */
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Layout } from "@/components/layout/Layout";
 import { AppProviders } from "@/providers";
 import { getConfig } from "@/lib/config";
@@ -14,8 +13,6 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import Script from "next/script";
 import "@/styles/index.css";
 import StyleRegistry from "@/components/layout/StyleRegistry";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata() {
   const appConfig = await getConfig("config.json");
@@ -42,13 +39,8 @@ export default async function RootLayout({
   const appConfig = await getConfig("config.json");
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body
-        className={`${inter.className} mio-scroll mio-fonts overflow-y-auto`}
-      >
-        <AppProviders
-          appConfig={appConfig}
-          ver={process.env.VERSION || ""}
-        >
+      <body className={`mio-scroll mio-fonts overflow-y-auto`}>
+        <AppProviders appConfig={appConfig} ver={process.env.VERSION || ""}>
           <Layout>{children}</Layout>
           <StyleRegistry />
         </AppProviders>

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-26 23:01:20
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 00:17:03
+ * @LastEditTime: 2024-11-28 22:02:47
  * @Description:
  */
 "use client";
@@ -13,10 +13,20 @@ export default function StyleRegistry() {
   const { appConfig } =
     (useContext(ConfigProvider) as { appConfig: AppConfig }) || {};
 
-  if (appConfig?.globalStyle) {
-    let { fonts, fallback } = appConfig.globalStyle;
+  const defaultFont = `
+    @font-face {
+      font-family: HYTMR;
+      src: url("https://npm.elemecdn.com/fontcdn-ariasaka@1.0.0/HYTangMeiRen55W.woff2")
+        format("woff2");
+      font-weight: normal;
+      font-style: normal;
+    }
+  `;
+  let { fonts, fallback } = appConfig.globalStyle || {};
+
+  if (fonts || fallback) {
     const arr: any = [];
-    const font = fonts?.reduce((prev, curr) => {
+    let font = fonts?.reduce((prev, curr) => {
       arr.push(curr?.name);
       return `
             @font-face {
@@ -27,21 +37,28 @@ export default function StyleRegistry() {
             }
             ${prev}
         `;
-    }, "");
+    }, defaultFont);
 
-    if (!arr?.length && !fallback) {
-      return null
-    }
-    
     return (
       <style jsx global>{`
         ${font}
         .mio-fonts {
-          font-family: ${arr.length ? (arr.join(",") + ',' + fallback) : fallback }};
+          font-family: ${arr.length
+            ? arr.join(",") + "," + fallback
+            : fallback
+            ? `HYTMR, ${fallback}`
+            : fallback};
         }
       `}</style>
     );
   } else {
-    return null;
+    return (
+      <style jsx global>{`
+        ${defaultFont}
+        .mio-fonts {
+          font-family: "HYTMR";
+        }
+      `}</style>
+    );
   }
 }

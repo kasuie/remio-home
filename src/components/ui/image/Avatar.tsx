@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 14:21:22
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 10:26:12
+ * @LastEditTime: 2024-11-28 20:58:12
  * @Description:
  */
 "use client";
@@ -59,9 +59,9 @@ export function Avatar({
     >
       {animateStyle === "wave" && (
         <>
-          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_1s_ease-in_infinite] rounded-full bg-white dark:bg-black "></span>
-          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_ease-in_infinite] rounded-full bg-white dark:bg-black"></span>
-          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_ease-in_infinite] rounded-full bg-white dark:bg-black"></span>
+          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_0.3s_ease-in-out_infinite] rounded-full bg-white duration-300 dark:bg-black "></span>
+          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_0.7s_ease-in-out_infinite] rounded-full bg-white duration-300 dark:bg-black"></span>
+          <span className="absolute inline-flex h-full w-full animate-[mio-ping_2s_1s_ease-in_infinite] rounded-full bg-white dark:bg-black"></span>
         </>
       )}
       <Image
