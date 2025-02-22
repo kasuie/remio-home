@@ -78,6 +78,6 @@ jobs:
           username: ${{ secrets.REMOTE_USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            cd /opt/apps/remio-home/
+            cd /usr/docker/home/
             docker-compose pull remio-home && docker-compose up -d remio-home
             docker rmi $(docker image ls ${{ secrets.DOCKERHUB_REPO }} -q) || echo "删除镜像异常"
