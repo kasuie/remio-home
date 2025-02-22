@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-26 01:00:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-10-22 21:11:14
+ * @LastEditTime: 2025-02-22 19:17:24
  * @Description:
  */
 export interface Link {
@@ -130,6 +130,7 @@ interface FooterConfig {
   text?: string;
   url?: string;
   ICP?: string; // https://beian.miit.gov.cn
+  MPSICP?: string; // https://beian.mps.gov.cn/#/query/webSearch?code=
   direction?: string;
   isExternal?: boolean;
 }

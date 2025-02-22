@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-10-22 21:12:37
+ * @LastEditTime: 2025-02-22 19:18:52
  * @Description:
  */
 export interface ItemsItem {
@@ -362,6 +362,12 @@ const footerRules: RuleItem[] = [
     isRequired: false,
     label: "备案号",
     desc: "填写后会链接到工信部",
+  },
+  {
+    field: "MPSICP",
+    isRequired: false,
+    label: "公安部备案号",
+    desc: "填写后会链接到公安部",
   },
   {
     controlKey: "select",

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-31 13:22:52
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-28 09:34:48
+ * @LastEditTime: 2025-02-22 19:54:25
  * @Description:
  */
 import { HTMLAttributes } from "react";
@@ -37,6 +37,7 @@ interface VerticalProps extends HTMLAttributes<HTMLDivElement> {
   subTitle?: string;
   sliders?: SlidersConfig;
   cardOpacity?: number;
+  footers?: number;
 }
 
 export function Vertical({
@@ -55,6 +56,7 @@ export function Vertical({
   sliders,
   cardOpacity = 0.1,
   className,
+  footers = 0,
   ...others
 }: VerticalProps) {
   return (
@@ -65,6 +67,7 @@ export function Vertical({
           "gap-8 pt-[20vh]": gapSize == "sm",
           "gap-10 pt-[18vh]": gapSize == "md",
           "gap-12 pt-[15vh]": gapSize == "lg",
+          "!pb-20": footers > 2,
           [`${className}`]: className,
         }
       )}

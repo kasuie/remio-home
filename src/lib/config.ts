@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-24 22:10:32
  * @LastEditors: kasuie
- * @LastEditTime: 2024-08-18 15:27:33
+ * @LastEditTime: 2025-02-22 19:50:50
  * @Description:
  */
 import { AppConfig, Site } from "@/config/config";
@@ -61,6 +61,7 @@ export const transformConfig = (appConfig: AppConfig) => {
     domain,
     bgConfig,
     globalStyle,
+    footer,
     ...others
   } = appConfig;
 
@@ -107,8 +108,17 @@ export const transformConfig = (appConfig: AppConfig) => {
     mbgs = bgConfig.mbg;
   }
 
+  let footers = 0;
+  if (typeof footer === "object" && footer.direction?.includes("col")) {
+    if (footer.ICP) ++footers;
+    if (footer.MPSICP) ++footers;
+    if (footer.text) ++footers;
+  }
+
   return {
     ...others,
+    footers,
+    footer,
     bgConfig: { ...bgConfig, bgs, mbgs },
     sitesConfig,
     primaryColor,

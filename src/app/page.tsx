@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-10-22 21:15:06
+ * @LastEditTime: 2025-02-22 19:51:52
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
@@ -37,6 +37,7 @@ export default async function Home() {
     footer,
     globalStyle,
     resources,
+    footers,
     ...others
   } = transformConfig(await getConfig("config.json"));
 
@@ -61,6 +62,7 @@ export default async function Home() {
       {globalStyle?.weather && <Weather size={18} />}
       {renderMain({
         ...others,
+        footers,
         gapSize,
         istTransition,
         staticSites,
