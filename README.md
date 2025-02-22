@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 19:31:13
  * @LastEditors: kasuie
- * @LastEditTime: 2024-10-22 22:05:27
+ * @LastEditTime: 2025-02-22 19:59:57
  * @Description:
 -->
 
@@ -230,6 +230,7 @@ docker-compose up -d remio-home
 | text       | string  | 否   | 展示文字                                                           |
 | url        | string  | 否   | 展示文字的链接地址，点击可跳转                                     |
 | ICP        | string  | 否   | 备案号，填写后会链接到工信部                                       |
+| MPSICP     | string  | 否   | 公安部备案号，填写后会链接到公安部                                 |
 | direction  | string  | 否   | 排列方式，可选`col`,`row`，`col-reverse`和`row-reverse`，默认`col` |
 | isExternal | boolean | 否   | 是否展示链接图标，默认`false`                                      |
 
