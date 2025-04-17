@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-02 19:49:21
+ * @LastEditTime: 2025-04-17 17:48:01
  * @Description:
  */
 /** @type {import('next').NextConfig} */

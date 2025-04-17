@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-29 11:58:25
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-30 11:41:52
+ * @LastEditTime: 2025-04-17 14:53:55
  * @Description:
  */
 import { getConfig } from "@/lib/config";
@@ -18,7 +18,7 @@ export const GET = async (req: NextRequest) => {
     const password = Decrypt(accessToken.value, process.env.PASSWORD);
     if (password === process.env.PASSWORD) {
       const time = dateFormat(new Date(), "YYYY-MM-DD_HH-mm-ss");
-      const config = await getConfig("config.json", true);
+      const config = await getConfig(true);
       const headers = new Headers();
       headers.append(
         "Content-Disposition",

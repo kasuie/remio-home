@@ -22,7 +22,7 @@ export default async function Config({
 }) {
   const verify = Object.hasOwn(searchParams, "verify");
 
-  const appConfig = await getConfig("config.json");
+  const appConfig = await getConfig();
 
   const { bgConfig, primaryColor } = transformConfig(appConfig);
 

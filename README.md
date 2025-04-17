@@ -1,18 +1,10 @@
-<!--
- * @Author: kasuie
- * @Date: 2024-05-20 19:31:13
- * @LastEditors: kasuie
- * @LastEditTime: 2025-02-22 19:59:57
- * @Description:
--->
-
 # 个人主页
 
 remio-home(homepage): 基于配置的个人主页
 
 - Next.js构建，服务端渲染，较好的SEO
 - 部署方便，支持docker，vercel快速部署
-- 配置方便，修改一个文件基本就可完成
+- 配置方便，支持在线配置，文件配置
 - Pwa 支持，也可进行配置
 - 移动端适配...
 
@@ -139,7 +131,9 @@ docker-compose up -d remio-home
 
 ### 部署到Vercel
 
-> 注意，在线编辑仅支持`docker`部署，vercel部署没办法持久化配置文件，所以每一次重新部署，都会重置配置。
+> ~注意，在线编辑仅支持`docker`部署，vercel部署没办法持久化配置文件，所以每一次重新部署，都会重置配置~。
+>
+> **新增功能：** 从 `v1.0.6` 版本开始，vercel部署如果配置了数据库，也支持在线编辑，数据库仅支持`PostgreSQL`，在vercel可以免费创建配置数据库，然后在项目环境变量处设置数据量连接的环境变量`PG_DATABASE_URL`，格式为`postgres://xxxxxx`，如果连接失败，可以去掉连接url的`?`后面的参数。
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kasuie/remio-home&env=PASSWORD&project-name=remio-home&repository-name=remio-home)
 
