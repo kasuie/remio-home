@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2025-04-17 10:34:15
  * @LastEditors: kasuie
- * @LastEditTime: 2025-04-17 16:46:14
+ * @LastEditTime: 2025-04-17 18:19:12
  * @Description:
  */
 import { pg } from "./db";
@@ -125,21 +125,23 @@ export const onConvert = (
   appConfig: Record<string, any>,
   key: string = "sql"
 ) => {
+  const tempConfig: Record<string, any> = defaultAppConfig;
+  const keys = Object.keys(tempConfig);
   return Object.keys(appConfig || {})?.reduce(
     (prev: Record<string, any>, curr: string) => {
-      const tempConfig: Record<string, any> = defaultAppConfig;
       const type = mapTypeScriptTypeToSQL(
         key != "parse" ? typeof appConfig[curr] : typeof tempConfig[curr]
       );
-      if (appConfig[curr]) {
-        if (key === "sql") {
-          prev[curr] = type;
-        } else if (key === "stringify" || key === "parse") {
-          if (type === "JSONB") {
-            prev[curr] = JSON[key](appConfig[curr]);
-          } else {
-            prev[curr] = appConfig[curr];
-          }
+      if (key === "sql") {
+        prev[curr] = type;
+      } else if (
+        (key === "stringify" || key === "parse") &&
+        [...keys, "id", "version", "remark", "created_at"].includes(curr)
+      ) {
+        if (type === "JSONB") {
+          prev[curr] = JSON[key]?.(appConfig[curr]) || null;
+        } else {
+          prev[curr] = appConfig[curr];
         }
       }
       return prev;
