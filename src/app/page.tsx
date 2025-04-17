@@ -2,18 +2,19 @@
  * @Author: kasuie
  * @Date: 2024-05-20 16:08:41
  * @LastEditors: kasuie
- * @LastEditTime: 2025-02-22 19:51:52
+ * @LastEditTime: 2025-04-17 16:44:07
  * @Description:
  */
 import { Loader } from "@/components/ui/loader/Loader";
 import { Suspense } from "react";
-import { getConfig, transformConfig } from "@/lib/config";
+import { getConfig, getDbConfig, transformConfig } from "@/lib/config";
 import { MainEffect } from "@/components/effect/MainEffect";
 import { getMotion } from "@/lib/motion";
 import { Footer } from "@/components/layout/Footer";
 import dynamic from "next/dynamic";
 import { Controller } from "@/components/controller/Controller";
 import { Weather } from "@/components/weather/Weather";
+import { pg } from "@/lib/db";
 
 export const revalidate = 0;
 
@@ -39,7 +40,7 @@ export default async function Home() {
     resources,
     footers,
     ...others
-  } = transformConfig(await getConfig("config.json"));
+  } = transformConfig(await getConfig());
 
   const { bodyHtml } = resources || {};
 

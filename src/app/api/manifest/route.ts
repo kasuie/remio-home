@@ -11,7 +11,7 @@ import { NextResponse } from "next/server";
 export const revalidate = 0;
 
 export const GET = async () => {
-  const config = await getConfig("config.json");
+  const config = await getConfig();
 
   return new NextResponse(
     JSON.stringify({

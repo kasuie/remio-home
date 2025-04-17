@@ -15,7 +15,7 @@ import "@/styles/index.css";
 import StyleRegistry from "@/components/layout/StyleRegistry";
 
 export async function generateMetadata() {
-  const appConfig = await getConfig("config.json");
+  const appConfig = await getConfig();
 
   return {
     title: appConfig.name,
@@ -36,7 +36,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const appConfig = await getConfig("config.json");
+  const appConfig = await getConfig();
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <body className={`mio-scroll mio-fonts overflow-y-auto`}>
