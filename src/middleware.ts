@@ -2,11 +2,12 @@
  * @Author: kasuie
  * @Date: 2024-06-14 22:32:09
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 22:13:46
+ * @LastEditTime: 2024-08-05 20:19:09
  * @Description:
  */
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { Encrypt } from "./lib/utils";
 
 const PRIVATE = ["/config"];
 
@@ -14,10 +15,13 @@ export default async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname && PRIVATE.includes(pathname)) {
-    const cookieKey: any = "accessToken";
-
+    const cookieKey: string = "accessToken";
     if (req.cookies.has(cookieKey)) {
-      return NextResponse.next();
+      const encrypt = Encrypt(process.env.PASSWORD);
+      const accessToken = req.cookies.get(cookieKey);
+      if (accessToken?.value === encrypt) {
+        return NextResponse.next();
+      }
     }
 
     if (!process.env.PASSWORD) {

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-13 11:03:00
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 22:04:07
+ * @LastEditTime: 2024-07-05 17:51:44
  * @Description:
  */
 "use client";
@@ -13,6 +13,7 @@ import { Select } from "../select/Select";
 import { Checkbox } from "../checkbox/Checkbox";
 import { RuleItem } from "@/lib/rules";
 import { FormList } from "./FormList";
+import { Textarea } from "../textarea/Textarea";
 
 export interface FormObj {
   [key: string]: any;
@@ -121,24 +122,20 @@ export const Form = ({
     }
   }, [formData]);
 
-  const onSubmit = () => {
-    if (transform && formData) {
-      const keys = Object.keys(formData)?.filter?.((v) =>
-        v.includes("$boolean")
-      );
-      keys.map((key) => {
-        formData[key]?.map((v: string) => (formData[v] = true));
-      });
-    }
-    console.log(formData);
-  };
-
   return (
     <div className="flex flex-wrap justify-between gap-y-4">
       {formData &&
         rules?.map(
           (
-            { field, controlKey, items, desc, controlProps: _props, ...others },
+            {
+              field,
+              transform,
+              controlKey,
+              items,
+              desc,
+              controlProps: _props,
+              ...others
+            },
             index
           ) => {
             const props = {
@@ -203,22 +200,71 @@ export const Form = ({
                     title={props.label}
                     controlProps={{
                       ...controlProps,
-                      ..._props
+                      ..._props,
                     }}
                     rules={items}
                     data={formData[field]}
+                    onProxy={(key: string, index?: number) => {
+                      if (key === "del" && typeof index != "undefined") {
+                        const newFormData = [...formData[field]];
+                        newFormData.splice(index, 1);
+                        setFormData({
+                          ...formData,
+                          [field]: newFormData,
+                        });
+                      } else if (key === "add") {
+                        const newFormData = formData[field]
+                          ? [...formData[field], {}]
+                          : [{}];
+                        setFormData({
+                          ...formData,
+                          [field]: newFormData,
+                        });
+                      }
+                    }}
+                    onChange={(
+                      index: number,
+                      colField: string,
+                      value: string
+                    ) => {
+                      const newFormData = [...formData[field]];
+                      newFormData[index][colField] = value;
+                      setFormData({
+                        ...formData,
+                        [field]: newFormData,
+                      });
+                    }}
                   />
                 );
-              default:
+              case "textarea":
                 return (
-                  <Input
+                  <Textarea
                     key={field}
                     value={formData[field] || ""}
                     {...props}
                     onValueChange={(val: string) => {
                       setFormData({
                         ...formData,
-                        [field]: props?.type == "number" ? +val : val,
+                        [field]: val,
+                      });
+                    }}
+                  />
+                );
+              default:
+                return (
+                  <Input
+                    key={field}
+                    value={
+                      transform
+                        ? transform(formData[field], true) || ""
+                        : formData[field] || ""
+                    }
+                    {...props}
+                    onValueChange={(val: string) => {
+                      const data = transform ? transform(val) : val;
+                      setFormData({
+                        ...formData,
+                        [field]: props?.type == "number" ? +data : data,
                       });
                     }}
                   />

@@ -1,27 +1,38 @@
 {
   "name": "KASUIEの主页✨",
   "favicon": "/favicon.ico",
-  "domain": "https://remio-home.vercel.app",
   "keywords": "remio,rem,mio,C.C.,KASUIEの次元,KASUIE的个人博客,KASUIE,个人主页,主页,个人记录,技术博客,个人生活",
   "description": "KASUIEの次元，兴趣至上，内容随缘，个人主页",
   "avatarConfig": {
-    "src": "https://cdn.jsdelivr.net/gh/pixlips/picx-images-hosting@master/web/kasuie_new.5du9br5ow240.webp",
+    "src": "https://s2.loli.net/2024/06/19/8zlOyDUnGjXeHpi.webp",
     "size": 150,
     "round": "full",
+    "style": "wave",
     "hoverAnimate": "top",
-    "style": "glint"
+    "hidden": false,
+    "aloneRight": false
   },
   "bgConfig": {
-    "bg": "",
-    "mbg": "",
+    "bg": ["https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp"],
+    "mbg": ["https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp"],
     "bgStyle": "snow",
     "blur": "",
-    "cardOpacity": 0.1
+    "cardOpacity": 0.1,
+    "carousel": true,
+    "carouselGap": 5,
+    "transitionTime": 0.7,
+    "transitionStyle": "default",
+    "autoAnimate": false
+  },
+  "globalStyle": {
+    "primaryColor": "#0dbf56",
+    "theme": "switcher",
+    "weather": true
   },
   "layoutConfig": {
-    "istTransition": true,
     "gapSize": "lg",
-    "style": ""
+    "style": "",
+    "istTransition": true
   },
   "subTitle": "https://v1.hitokoto.cn?c=a&c=b&c=c",
   "subTitleConfig": {
@@ -33,23 +44,9 @@
     "showFrom": true,
     "style": "desc",
     "gapDelay": 0.05,
-    "content": "这里是kasuieの主页，可以叫我kasuie",
-    "desc": "kasuie是自己胡乱起的，也可以叫我暖暖;目前已经毕业了，在职前端，社畜了，会点点后端，目标是成为一个温柔的全栈开发🥰"
+    "content": "Hello💫，这里是kasuieの主页",
+    "desc": "kasuie是自己胡乱起的，也可以叫我暖暖;已经毕业快两年半了，主要捣鼓一些前端，会点点后端，目标是成为一个温柔的全栈开发，好耶！🥰"
   },
-  "socialConfig": {
-    "autoAnimate": true,
-    "loading": "wave",
-    "ripple": true
-  },
-  "footer": {
-    "text": "© 2020 - 2024 By KASUIE",
-    "url": "https://kasuie.cc",
-    "ICP": "ICP备xxxxxxxx号",
-    "direction": "col-reverse",
-    "isExternal": true
-  },
-  "primaryColor": "#0dbf56",
-  "theme": "switcher",
   "links": [
     {
       "title": "qq",
@@ -196,6 +193,11 @@
     "modalTips": "这里大多都是初学时开发的，算是练手的，技术力不高，看起来也很不好看，算是黑历史，但也算是一段记忆的载体了，所以我想把它保存在此。",
     "modalTitle": ""
   },
+  "socialConfig": {
+    "autoAnimate": true,
+    "loading": "wave",
+    "ripple": true
+  },
   "sliders": {
     "data": [
       {
@@ -258,7 +260,20 @@
     "title": "技能加点",
     "color": "linear-gradient(to right, #ffafbd 0%, #c9ffbf 100%)",
     "hidden": false,
-    "dotColor": "#18c964",
     "column": 4
-  }
+  },
+  "footer": {
+    "text": "© 2020 - 2025 By KASUIE",
+    "url": "https://kasuie.cc",
+    "ICP": "ICP备xxxxxxxx号",
+    "MPSICP": "京公网安备xxxxxxxx号",
+    "direction": "col-reverse",
+    "isExternal": true
+  },
+  "resources": {
+    "css": [],
+    "js": [],
+    "bodyHtml": ""
+  },
+  "domain": "https://remio-home.vercel.app"
 }

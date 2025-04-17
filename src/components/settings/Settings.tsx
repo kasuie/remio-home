@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-12 19:52:57
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 20:22:33
+ * @LastEditTime: 2024-06-29 15:40:01
  * @Description:
  */
 "use client";
@@ -10,9 +10,13 @@ import { motion } from "framer-motion";
 import { AppConfig } from "@/config/config";
 import { AppRules } from "@/lib/rules";
 import { Form, FormObj } from "../ui/form/Form";
-import { memo, useState } from "react";
+import { memo, useRef, useState } from "react";
 import { Button } from "../ui/button/Button";
+import fetch from "@/lib/fetch";
+import { useRouter } from "next/navigation";
+import message from "@/components/message";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
+import Link from "next/link";
 
 const MemoizedForm = memo(Form);
 
@@ -25,6 +29,8 @@ export const Settings = ({
 }) => {
   const [result, setResult] = useState<FormObj>(config);
   const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const onMerge = (data: FormObj, field?: string) => {
     setResult({
@@ -33,8 +39,65 @@ export const Settings = ({
     });
   };
 
+  const handleFileChange = (event: any) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    setLoading(true);
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      try {
+        const config = JSON.parse(e.target.result);
+        config && onSubmit(config);
+      } catch (error) {
+        setLoading(false);
+        message.error("JSON 文件加载失败");
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const onSubmit = (data?: FormObj) => {
+    setLoading(true);
+    fetch
+      .post("/api/config", data || result)
+      .then((res) => {
+        if (res.success) {
+          message.success(data ? "上传成功，配置已更新~" : "保存成功~");
+          router.refresh();
+        } else {
+          message.error(res.message || "操作失败！");
+        }
+      })
+      .catch((_) => message.error("操作失败！"))
+      .finally(() => setLoading(false));
+  };
+
   return (
     <motion.div className="flex h-[85vh] w-[95vw] flex-col items-center gap-4 overflow-hidden rounded p-4 text-[hsl(var(--mio-foreground)/1)] shadow-mio-link backdrop-blur-lg md:w-[65vw]">
+      <div className="relative w-full md:text-center">
+        <h1 className="text-2xl font-bold">当前配置</h1>
+        <div className="absolute right-2 top-2 flex w-full flex-row items-center justify-end gap-2">
+          <input
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            type="file"
+            name="upload"
+            accept=".json"
+            hidden
+          />
+          <span
+            className="cursor-pointer underline"
+            onClick={() =>
+              fileInputRef?.current && fileInputRef.current.click()
+            }
+          >
+            上传配置
+          </span>
+          <Link className="underline" href={`/api/file`}>
+            下载配置
+          </Link>
+        </div>
+      </div>
       <Accordion
         showDivider
         className="mio-scroll flex w-full flex-col overflow-y-auto px-2"
@@ -68,19 +131,7 @@ export const Settings = ({
         <Button
           loading={loading}
           className="rounded-2xl"
-          onClick={() => {
-            console.log(result, "result");
-            setLoading(true);
-            // fetch("/api/config", {
-            //   method: "POST",
-            //   body: JSON.stringify({
-            //     ...result,
-            //   }),
-            // }).then(async (res) => {
-            //   console.log(await res.json());
-            //   setLoading(false)
-            // });
-          }}
+          onClick={() => onSubmit()}
         >
           保存
         </Button>

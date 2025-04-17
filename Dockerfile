@@ -1,4 +1,5 @@
 FROM node:22-alpine AS base
+ARG VERSION
 
 FROM base AS deps
 
@@ -27,8 +28,7 @@ RUN adduser --system --uid 1001 nextjs
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-ENV NODE_ENV production
-ENV CONFIG_DIR=/remio-home/config
+ENV CONFIG_DIR=/remio-home/config NODE_ENV=production IS_DOCKER=1 VERSION=${VERSION}
 
 COPY --from=builder /remio-home/public ./public
 COPY --from=builder --chown=nextjs:nodejs /remio-home/.next/standalone ./

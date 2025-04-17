@@ -1,8 +1,10 @@
+import { AppConfig } from "@/config/config";
+
 /*
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-15 22:05:11
+ * @LastEditTime: 2025-02-22 19:18:52
  * @Description:
  */
 export interface ItemsItem {
@@ -18,6 +20,7 @@ export interface RuleItem {
   isRequired?: boolean;
   label?: string;
   placeholder?: string;
+  transform?: Function;
   items?: Array<ItemsItem>;
   field: string;
   desc?: string;
@@ -47,18 +50,6 @@ const mainRules: RuleItem[] = [
     label: "站点描述性信息",
   },
   {
-    controlKey: "radio",
-    field: "theme",
-    isRequired: false,
-    label: "主题设置",
-    items: [
-      { label: "亮色", value: "light" },
-      { label: "暗色", value: "dark" },
-      { label: "手动切换", value: "switcher" },
-    ],
-    default: ["light"],
-  },
-  {
     field: "subTitle",
     isRequired: false,
     label: "站点次标题",
@@ -86,6 +77,50 @@ const mainRules: RuleItem[] = [
       { label: "链接", value: "url", controlKey: "input" },
       { label: "图标链接", value: "icon", controlKey: "input" },
     ],
+  },
+];
+
+const globalStyleRules: RuleItem[] = [
+  {
+    field: "primaryColor",
+    isRequired: false,
+    label: "主题颜色",
+    default: "#229fff",
+  },
+  {
+    controlKey: "radio",
+    field: "theme",
+    isRequired: false,
+    label: "主题设置",
+    items: [
+      { label: "亮色", value: "light" },
+      { label: "暗色", value: "dark" },
+      { label: "手动切换", value: "switcher" },
+    ],
+    default: ["light"],
+  },
+  {
+    field: "fallback",
+    isRequired: false,
+    label: "次要字体",
+    desc: "系统自带字体，优先级低低于自定义字体，作字体垫片",
+  },
+  {
+    controlKey: "list",
+    field: "fonts",
+    isRequired: false,
+    label: "自定义字体",
+    items: [
+      { label: "字体名称", value: "name", controlKey: "input" },
+      { label: "字体资源路径", value: "src", controlKey: "input" },
+    ],
+  },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [{ label: "显示地理天气", value: "weather" }],
   },
 ];
 
@@ -143,6 +178,20 @@ const avatarRules: RuleItem[] = [
     ],
     default: ["none"],
   },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [
+      { label: "隐藏组件", value: "hidden" },
+      {
+        label: "头像单独在右侧",
+        value: "aloneRight",
+        desc: "layoutConfig.style为horizontal生效",
+      },
+    ],
+  },
 ];
 
 const layoutRules: RuleItem[] = [
@@ -184,13 +233,37 @@ const bgRules: RuleItem[] = [
     field: "bg",
     isRequired: false,
     label: "pc背景图",
-    default: "https://cs.kasuie.cc/blog/image/wallpaper/bg.webp",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return Array.isArray(val) ? val.join(";") : val;
+      } else {
+        return val.split(";");
+      }
+    },
+    default: "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp",
+    desc: "多张背景请以英文分号';'分隔",
   },
   {
     field: "mbg",
     isRequired: false,
     label: "移动端背景图",
-    default: "https://kasuie.cc/api/img/bg?type=mobile&size=regular",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return Array.isArray(val) ? val.join(";") : val;
+      } else {
+        return val.split(";");
+      }
+    },
+    default: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
+    desc: "多张背景请以英文分号';'分隔",
+  },
+  {
+    field: "audio",
+    isRequired: false,
+    label: "音频",
+    desc: "背景播放的音频",
   },
   {
     field: "bgStyle",
@@ -224,6 +297,53 @@ const bgRules: RuleItem[] = [
     },
     default: 0.1,
   },
+  {
+    field: "carouselGap",
+    isRequired: false,
+    label: "图片轮播间隔时间",
+    desc: "单位s(秒)，默认5s，最小3s",
+    controlProps: {
+      type: "number",
+      min: 3,
+    },
+    default: 5,
+  },
+  {
+    controlKey: "select",
+    field: "transitionStyle",
+    isRequired: false,
+    label: "图片轮播过渡动画",
+    items: [
+      { label: "默认", value: "default" },
+      { label: "向下", value: "toBottom" },
+      { label: "向上", value: "toTop" },
+      { label: "向左", value: "toLeft" },
+      { label: "向右", value: "toRight" },
+      { label: "由远及近", value: "toIn" },
+      { label: "远近混合", value: "toInOut" },
+    ],
+    default: "default",
+  },
+  {
+    field: "transitionTime",
+    isRequired: false,
+    label: "图片轮播过渡时间",
+    desc: "单位s(秒)，默认0.7s",
+    controlProps: {
+      type: "number",
+    },
+    default: 0.7,
+  },
+  {
+    controlKey: "checkbox",
+    field: "$boolean",
+    isRequired: false,
+    label: "启用效果",
+    items: [
+      { label: "图片轮播", value: "carousel" },
+      { label: "背景图动画", value: "autoAnimate" },
+    ],
+  },
 ];
 
 const footerRules: RuleItem[] = [
@@ -242,6 +362,12 @@ const footerRules: RuleItem[] = [
     isRequired: false,
     label: "备案号",
     desc: "填写后会链接到工信部",
+  },
+  {
+    field: "MPSICP",
+    isRequired: false,
+    label: "公安部备案号",
+    desc: "填写后会链接到公安部",
   },
   {
     controlKey: "select",
@@ -428,12 +554,6 @@ const slidersRules: RuleItem[] = [
     default: "#fff",
   },
   {
-    field: "dotColor",
-    isRequired: false,
-    label: "标题前面点的颜色",
-    default: "#fff",
-  },
-  {
     field: "column",
     isRequired: false,
     label: "一行展示几列",
@@ -475,8 +595,52 @@ const slidersRules: RuleItem[] = [
   },
 ];
 
+const resourcesRules: RuleItem[] = [
+  {
+    field: "css",
+    isRequired: false,
+    label: "自定义css",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return Array.isArray(val) ? val.join(";") : val;
+      } else {
+        return val.split(";");
+      }
+    },
+    default: [],
+    desc: "多个css资源请以';'分隔",
+  },
+  {
+    field: "js",
+    isRequired: false,
+    label: "自定义js",
+    transform: (val: any, input?: boolean) => {
+      if (!val) return val;
+      if (input) {
+        return Array.isArray(val) ? val.join(";") : val;
+      } else {
+        return val.split(";");
+      }
+    },
+    default: [],
+    desc: "多个js资源请以';'分隔",
+  },
+  {
+    field: "bodyHtml",
+    isRequired: false,
+    label: "自定义body元素",
+    controlKey: "textarea",
+    controlProps: {
+      type: "textarea",
+    },
+    desc: "将以html文本渲染",
+  },
+];
+
 export const AppRules = [
   { title: "主要设置", rules: mainRules },
+  { title: "样式设置", rules: globalStyleRules, field: "globalStyle" },
   { title: "头像设置", rules: avatarRules, field: "avatarConfig" },
   { title: "布局设置", rules: layoutRules, field: "layoutConfig" },
   { title: "背景设置", rules: bgRules, field: "bgConfig" },
@@ -485,4 +649,168 @@ export const AppRules = [
   { title: "标题设置", rules: subTitleRules, field: "subTitleConfig" },
   { title: "社媒设置", rules: socialRules, field: "socialConfig" },
   { title: "技能设置", rules: slidersRules, field: "sliders" },
+  { title: "资源设置", rules: resourcesRules, field: "resources" },
 ];
+
+export const defaultAppConfig: AppConfig = {
+  name: "我的主页✨",
+  favicon: "/favicon.ico",
+  keywords: "remio,rem,mio,C.C.,KASUIE,个人主页,主页",
+  description: "KASUIEの次元，兴趣至上，内容随缘，个人主页",
+  avatarConfig: {
+    src: "https://s2.loli.net/2024/06/19/8zlOyDUnGjXeHpi.webp",
+    size: 150,
+    round: "full",
+    hoverAnimate: "top",
+    style: "glint",
+  },
+  bgConfig: {
+    bg: "https://s2.loli.net/2024/06/21/euQ48saP7UgMyDr.webp",
+    mbg: "https://s2.loli.net/2024/06/21/59b6eRscAvQWHT1.webp",
+    bgStyle: "snow",
+    blur: "sm",
+    cardOpacity: 0.1,
+    carousel: true,
+    carouselGap: 5,
+    transitionTime: 0.7,
+    transitionStyle: "default",
+    autoAnimate: false,
+  },
+  globalStyle: {
+    theme: "light",
+    primaryColor: "#229fff",
+    fallback: "",
+    fonts: [],
+    weather: false,
+  },
+  layoutConfig: {
+    gapSize: "md",
+    style: "vertical",
+    istTransition: true,
+  },
+  subTitle: "https://v1.hitokoto.cn?c=a&c=b&c=c",
+  subTitleConfig: {
+    typing: false,
+    loading: "",
+    loopTyping: false,
+    shadow: false,
+    typingCursor: true,
+    typingGap: 10,
+    heart: true,
+    showFrom: true,
+    style: "",
+    gapDelay: 0.05,
+    content: "Hello💫",
+    desc: "这里是我の主页",
+  },
+  links: [
+    {
+      title: "qq",
+      color: "#dfba00",
+      url: "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=zIvBSvLDRr4MvqFSHcioDwS090ljUYHT&authKey=THHoVVpDZWHfnpZoNf57rDWzwrXmTWtnlN70ljCM6cG9eZ5KTIJcTxrvc7%2B7YdVI&noverify=0&group_code=793752494",
+      icon: "qq",
+    },
+    {
+      title: "github",
+      color: "#000000",
+      url: "https://github.com/kasuie",
+      icon: "github",
+    },
+    {
+      title: "email",
+      color: "#fd3232",
+      url: "mailto:i@kasuie.cc",
+      icon: "email",
+    },
+    {
+      title: "bilibili",
+      color: "#0088cc",
+      url: "https://space.bilibili.com/85447052",
+      icon: "bilibili",
+    },
+  ],
+  sites: [
+    {
+      icon: "https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
+      title: "KASUIEの次元",
+      url: "https://kasuie.cc",
+      desc: "博客主页",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
+      title: "Mio 导航",
+      url: "https://nav.kasuie.cc",
+      desc: "Mio 网站导航",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/a8cb45a8-c0ec-41e7-ab8f-ff4fe8817230.jpg!cover",
+      title: "KASUIEのAI",
+      url: "https://ai.kasuie.cc",
+      desc: "ChatGPT",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
+      title: "KASUIEの库",
+      url: "https://dist.kasuie.cc",
+      desc: "网盘挂载程序",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/0d2e7fe7-3cca-4989-9bb4-4a39cee77801.png!cover",
+      title: "KASUIEの图床",
+      url: "https://upload.kasuie.cc",
+      desc: "图床服务",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
+      title: "监控服务",
+      url: "https://status.kasuie.cc/status",
+      desc: "服务程序监控",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/d5570e8a-a826-47be-91b2-f6949b743111.webp!cover",
+      title: "KASUIEのDocs",
+      url: "https://docs.kasuie.cc",
+      desc: "文档服务",
+    },
+    {
+      icon: "https://cs.kasuie.cc/icons/1419ac35-0a57-4359-bb2f-55a26fc52bd8.png!cover",
+      title: "喜好生成表",
+      url: "https://like.kasuie.cc",
+      desc: "个人喜好生成表",
+    },
+  ],
+  sitesConfig: {
+    hidden: false,
+    cardStyle: "",
+    hoverBlur: false,
+    hoverScale: false,
+    hoverFlip: true,
+    direction: "",
+    modal: false,
+    modalTips: "",
+    modalTitle: "",
+  },
+  socialConfig: {
+    loading: "default",
+    ripple: true,
+  },
+  sliders: {
+    data: [],
+    title: "技能加点",
+    color: "#fff",
+    hidden: true,
+    column: 2,
+  },
+  footer: {
+    text: "© 2020 - 2024 By KASUIE",
+    url: "https://kasuie.cc",
+    ICP: "ICP备xxxxxxxx号",
+    direction: "col-reverse",
+    isExternal: true,
+  },
+  resources: {
+    css: [],
+    js: [],
+    bodyHtml: "",
+  },
+};

@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-06-04 14:53:15
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-13 19:15:30
+ * @LastEditTime: 2024-06-18 11:39:49
  * @Description:
  */
 "use client";
@@ -16,7 +16,6 @@ export const Sliders = ({
   data,
   color,
   title,
-  dotColor,
   cardOpacity,
   column = 2,
   motions = {},
@@ -36,14 +35,7 @@ export const Sliders = ({
     >
       {title && (
         <div className="mb-2 flex flex-nowrap items-center gap-2">
-          {dotColor && (
-            <span
-              className="ml-1 h-2 w-2 rounded-full"
-              style={{
-                background: dotColor,
-              }}
-            ></span>
-          )}
+            <span className="ml-1 h-2 w-2 rounded-full bg-[var(--primary-color)]"></span>
           <span className="text-sm">{title}</span>
         </div>
       )}

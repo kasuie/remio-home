@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-06 14:26:31
+ * @LastEditTime: 2024-06-24 21:51:34
  * @Description:
  */
 "use client";
@@ -43,10 +43,11 @@ export function Links({
   const { isVisible, openModal, closeModal } = useModal();
 
   const itemContent = (item: Site, outer: boolean = true) => {
-
-    const style: CSSProperties = outer ? {
-      backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`
-    } : {};
+    const style: CSSProperties = outer
+      ? {
+          backgroundColor: `rgba(var(--mio-main), ${cardOpacity})`,
+        }
+      : {};
 
     if (sitesConfig.cardStyle == "flip") {
       return (
@@ -71,9 +72,7 @@ export function Links({
     );
 
     return (
-      <div
-        style={style}
-        className={className}>
+      <div style={style} className={className}>
         {/* {animate && (
           <div className="absolute left-[20px] right-0 top-24 z-[-1] h-[25rem] w-[25rem] rotate-[-36deg] rounded-full bg-[#3651cf26] duration-500 group-hover/main:left-[-20px] group-hover/main:top-[-20px]"></div>
         )} */}
@@ -96,7 +95,7 @@ export function Links({
             <p className="pt-[10px] text-[15px] text-white/70">{item.desc}</p>
           )}
         </div>
-        <span className="absolute bottom-[5px] right-[7px]">
+        <span className="absolute bottom-[5px] right-[7px] text-white/70">
           {item?.url ? (
             <ExternalLink size={14} />
           ) : (
@@ -139,7 +138,7 @@ export function Links({
   return (
     <motion.div
       {...motions}
-      className="group/links mt-3 z-[1] flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-8 md:w-[65vw]"
+      className="group/links z-[1] mt-3 flex w-[95vw] flex-wrap justify-evenly gap-x-4 gap-y-6 md:mt-8 md:w-[65vw]"
     >
       {staticSites.map((v, index) => linkItem(v, index))}
       {sitesConfig?.modal && modalSites?.length ? (
@@ -150,7 +149,7 @@ export function Links({
           closeModal={closeModal}
         >
           {sitesConfig?.modalTips && (
-            <div className="relative pb-2 indent-5 text-sm before:absolute before:left-[7px] before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-[#229fff] before:content-[''] after:absolute after:left-[5px] after:top-[6px] after:h-2 after:w-2 after:rounded-full after:border after:border-[#229fff]">
+            <div className="relative pb-2 indent-5 text-sm text-white/90 before:absolute before:left-[7px] before:top-2 before:h-1 before:w-1 before:rounded-full before:bg-[#229fff] before:content-[''] after:absolute after:left-[5px] after:top-[6px] after:h-2 after:w-2 after:rounded-full after:border after:border-[#229fff]">
               {sitesConfig.modalTips}
             </div>
           )}
