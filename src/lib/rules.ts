@@ -4,7 +4,7 @@ import { AppConfig } from "@/config/config";
  * @Author: kasuie
  * @Date: 2024-06-13 10:00:42
  * @LastEditors: kasuie
- * @LastEditTime: 2025-02-22 19:18:52
+ * @LastEditTime: 2025-04-17 18:01:58
  * @Description:
  */
 export interface ItemsItem {
@@ -657,6 +657,7 @@ export const defaultAppConfig: AppConfig = {
   favicon: "/favicon.ico",
   keywords: "remio,rem,mio,C.C.,KASUIE,个人主页,主页",
   description: "KASUIEの次元，兴趣至上，内容随缘，个人主页",
+  domain: "",
   avatarConfig: {
     src: "https://s2.loli.net/2024/06/19/8zlOyDUnGjXeHpi.webp",
     size: 150,
