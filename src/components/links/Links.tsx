@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-05-22 19:32:38
  * @LastEditors: kasuie
- * @LastEditTime: 2024-06-24 21:51:34
+ * @LastEditTime: 2025-06-16 10:01:57
  * @Description:
  */
 "use client";
@@ -85,6 +85,9 @@ export function Links({
               height={42}
               style={{
                 borderRadius: "50%",
+                objectFit: "cover",
+                height: "42px",
+                width: "42px",
               }}
             ></Image>
           </div>
